@@ -1,0 +1,647 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.6);
+}
+.wrap{
+    width: 100%;
+    height: 100vh;
+    /*height: 100%;*/
+    /*内容水平、垂直居中显示、flex布局*/
+    background: url(../img/background_1.png) center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: left;/*靠左显示*/
+}
+.nav{
+    /*width: 110px;*/
+    /*height:820px;*/
+    /*background: rgba(27, 27, 27, 0.712);*/
+    /*border-radius: 20px;*/
+    /*overflow:hidden;*/
+    /*transition: 0.5s;*/
+    width: 110px; /* 占据整个视口宽度:width: 100vw*/
+    height: 100vh; /* 视口高度的 100%:height: 100vh*/
+    /*height: 100%;*/
+    background: rgba(27, 27, 27, 0.712);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.5s;
+    position: fixed; /* 如果你希望它始终在屏幕上可见，可以使用 fixed 定位 */
+    left: 0; /* 如果你使用了 fixed 定位，可能需要设置水平位置 */
+}
+.nav:hover{
+    width: 280px;
+}
+.btn{
+    width: 60px;
+    height: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+.btn-item{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.btn-item:nth-child(1){
+    background:#eb5a56;
+}
+.btn-item:nth-child(2){
+    background:#f8bc33;
+}
+.btn-item:nth-child(3){
+    background:#62cb44;
+}
+.icon{
+    width: 250px;
+    height: 60px;
+    margin-left: 25px;
+    margin-top: 20px;
+    display: flex;
+}
+.icon-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+.icon-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.icon-con{
+    height: 60px;
+    margin-left: 25px;
+}
+.icon-con p{
+    padding: 5px;
+}
+.icon-con h2{
+    font-weight: 400;
+}
+.line{
+    width: 60px;
+    height: 1px;
+    background: rgba(245, 253, 255, 0.5);
+    margin:20px 25px;
+    transition: 0.5s;
+}
+.nav:hover .line{
+    width: 230px;
+}
+.title{
+    width: 60px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+.title p{
+    font-size: 14px;
+}
+.menu{
+    width: 230px;
+    margin-left: 25px;
+}
+.item{
+    display: flex;
+    position: relative;
+    transition: 0.5s;
+    border-radius: 6px;
+}
+.item:hover{
+    background: rgb(8, 8, 8);
+}
+.licon{
+    width: 60px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.con{
+    width: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    left: -20px;
+}
+.nav:hover .con{
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+.ricon{
+    width: 0;
+    height: 50px;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+}
+.nav:hover .ricon{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+.iconfont{
+    font-size: 60px;
+}
+.ricon .iconfont{
+    font-size: 20px;
+    color: #62cb44;
+}
+.light{
+    width: 6px;
+    height: 50px;
+    background: #eb5a56;
+    position: absolute;
+    left: -25px;
+    transition: 0.5s;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    opacity: 0;
+}
+.item:hover .light{
+    opacity: 1;
+}
+.server{
+    width: 60px;
+    background: rgba(0, 0, 0, 0.45);
+    margin-left: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.nav:hover .server{
+    width: 230px;
+}
+/*取消链接下划线*/
+a{
+    text-decoration: none;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;/*
+    /*background: -webkit-linear-gradient(left, #b224ef, #7579ff);*/
+    /*渐变背景*/
+    /*background:linear-gradient(125deg,#7377e7,#455de7,#85eb11,#f39214,#b224ef);*/
+    /*指定大小*/
+    /*background-size: 500%;*/
+    /*执行动画：名称、时长、线性、无限次*/
+    /*animation: bgAnimation 15s linear infinite;*/
+}
+
+/*定义动画*/
+@keyframes bgAnimation {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+.main_back{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.back_snow {
+    background: #262626 url(../img/background_1.png);
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    position:absolute;
+    z-index: -1;
+}
+
+.cont {
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 550px;
+    /*毛玻璃*/
+    /*
+    background:rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur();
+    */
+    background:linear-gradient(125deg,#7377e7,#455de7,#4499fa,#f373f3,#b224ef);
+    background-size: 500%;
+    animation: bgAnimation 15s linear infinite;
+}
+
+.form {
+    position: relative;
+    width: 640px;
+    height: 100%;
+    padding: 50px 30px;
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+h2 {
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+}
+
+label {
+    width: 260px;
+    margin: 25px auto;
+    text-align: center;
+    display: block;
+}
+
+label span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c255e;
+    text-transform: uppercase;
+}
+
+input{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 5px;
+}
+input{
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+button {
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+.submit-global {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+}
+.submit-regis {
+    margin-top: 4px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+}
+
+.submit:hover {
+    background: -webkit-linear-gradient(left, #b224ef, #7579ff);
+}
+
+.forgot-pass {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0c0101;
+    cursor: pointer;
+}
+
+.forgot-pass:hover {
+    color: blue;
+}
+
+.social-medie {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-medie ul {
+    list-style: none;
+}
+
+.social-medie ul li {
+    display: inline-block;
+    margin: 25px 15px;
+    cursor: pointer;
+}
+
+.social-medie img {
+    width: 40px;
+    height: 40px;
+}
+
+.sbu-cont {
+    overflow: hidden;
+    position: absolute;
+    left: 640px;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    padding-left: 260px;
+    /*background: #fff;*/
+    background:linear-gradient(125deg,#7377e7,#455de7,#4499fa,#f373f3,#b224ef);
+    background-size: 500%;
+    animation: bgAnimation 15s linear infinite;
+
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+}
+
+.cont.s-signup .sbu-cont {
+    -webkit-transform: translate3d(-640px, 0, 0);
+    transform: translate3d(-640px, 0, 0);
+}
+
+.img {
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 360px;
+}
+
+.img:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    background-image: url(../img/background_1.png);
+    background-size: cover;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+.img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.cont.s-signup .img:before {
+    -webkit-transform: translate3d(640px, 0, 0);
+    transform: translate3d(640px, 0, 0);
+}
+
+.img-text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+    -webkit-transition: -webkit-transform 1.2s ease-in-out;
+    transition: -webkit-transform 1.2s ease-in-out;
+    transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+}
+
+.img-text h2 {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.img-text p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.cont.s-signup .img-text.m-up {
+    -webkit-transform: translateX(520px);
+    transform: translateX(520px);
+}
+
+.img-text.m-in {
+    -webkit-transform: translateX(-520px);
+    transform: translateX(-520px);
+}
+
+.cont.s-signup .img-text.m-in {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.sign-in {
+    padding-top: 65px;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.cont.s-signup .sign-in {
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 1.2s;
+    transition-duration: 1.2s;
+    -webkit-transform: translate3d(640px, 0, 0);
+    transform: translate3d(640px, 0, 0);
+}
+
+.img-btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+    height: 36px;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.img-btn:after {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    left: 0;
+    top: 0;
+}
+
+.img-btn span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: -webkit-transform 1.2s;
+    transition: -webkit-transform 1.2s;
+    transition: transform 1.2s;
+    transition: transform 1.2s, -webkit-transform 1.2s;
+}
+
+.img-btn span.m-in {
+    -webkit-transform: translateY(-72px);
+    transform: translateY(-72px);
+}
+
+.img-btn span.m-up {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+/**动画切换**/
+.cont.s-signup .img-btn span.m-up {
+    -webkit-transform: translateY(-72px);
+    transform: translateY(-72px);
+}
+
+.cont.s-signup .img-btn span.m-in {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.cont.s-signup .sign-up {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.sign-up {
+    -webkit-transform: translate3d(-900px, 0, 0);
+    transform: translate3d(-900px, 0, 0);
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.product-item-spacing {
+    margin-top: 10px; /* 上间隔 */
+    margin-bottom: 10px; /* 下间隔 */
+}
+
+.product-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-info h3 {
+    margin-bottom: 10px;
+}
+
+.product-info .price {
+    font-weight: bold;
+    color: #f56c6c;
+}
+
+.product-info .add-to-cart {
+    margin-top: 10px;
+}
+.btn-disable {
+    color: #94948f;
+}
+.logo-image {
+    width: 98px; /* 设置图片宽度 */
+    height: 98px; /* 设置图片高度 */
+    margin-right: 10px; /* 设置图片右边距 */
+    vertical-align: middle; /* 垂直居中对齐 */
+}
+
+.checkbox,.radio {
+    position: relative;
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 2px
+}
+.checkbox-label input[type="checkbox"] {
+    margin-right: 1px; /* 根据需要调整间距 */
+}
+/* GLOBAL  */
+.no-padding {
+    padding: 0 !important;
+}
