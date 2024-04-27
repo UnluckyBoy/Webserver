@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.matrix.webserver.model.mapper.UserMapper">
+    <!--查询逻辑-->
+    <select id="accountQuery" resultType="UserInfo" parameterType="String">
+        SELECT
+            uId,
+            uAccount,
+            uPassword,
+            uName,
+            uSex,
+            uHead,
+            uPhone,
+            uEmail,
+            uLevel,
+            uStatus,
+            uAddressIp
+        FROM
+            user_info_data
+        WHERE
+            uAccount = #{account};
+    </select>
+</mapper>

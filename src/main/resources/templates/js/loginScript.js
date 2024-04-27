@@ -8,31 +8,37 @@ $(document).ready(function() {
     });
 
     /**登录**/
-    // $("#login-btn").click(function (){
-    //     var account=$("#account").val();
-    //     var password=$("#password").val();
-    //     if(account.trim()===''|password.trim()===''){
-    //         alert("请检查输入情况!");
-    //     }
-    //     $.ajax({
-    //         url:'/UserInfo/handleLogin',
-    //         type: 'Post',
-    //         data: {
-    //             account: account,
-    //             password:password
-    //         },
-    //         //dataType: 'json',
-    //         success: function(data) {
-    //             if(data=="success"){
-    //                 //alert("登录成功!");
-    //                 window.location.href = '/index';
-    //             }
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error("AJAX请求失败: " +xhr.responseText);
-    //         }
-    //     });
-    // })
+    $("#login-btn").click(function (){
+        var account=$("#account").val();
+        var password=$("#password").val();
+        if(account.trim()===''|password.trim()===''){
+            alert("请检查输入情况!");
+            return;
+        }
+        $.ajax({
+            // url:'/UserInfo/handleLogin',
+            url:'login',
+            type: 'POST',
+            data: {
+                account: account,
+                password:password
+            },
+            dataType: 'json',
+            success: function(data) {
+                if(data.handleType){
+                    console.log(data)
+                    location.href='/index';
+                }else{
+                    alert("登录失败");
+                    // location.href='/login';
+                    location.reload(true);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX请求失败: " +xhr.responseText);
+            }
+        });
+    })
     /**注册**/
     $("#register-btn").click(function (){
         var name=$("#re_name").val();

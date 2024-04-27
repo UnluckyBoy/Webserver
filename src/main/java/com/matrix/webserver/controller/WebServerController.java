@@ -1,9 +1,11 @@
 package com.matrix.webserver.controller;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,16 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class WebServerController {
     @RequestMapping("/index")
-    public String Index(Model model, HttpSession session){
+    public String Index(){
         return "/view/index";
     }
     @RequestMapping("/login")
-    public String Login(Model model, HttpSession session){
-        return "/view/login_test";
+    public String Login(){
+        return "/view/login";
     }
 
     @RequestMapping("/errorPage")
-    public String errorPage(Model model, HttpSession session){
+    public String errorPage(){
         return "/view/error";
+    }
+
+    @RequestMapping("/test")
+    public String Test(){
+        return "/view/test";
     }
 }
