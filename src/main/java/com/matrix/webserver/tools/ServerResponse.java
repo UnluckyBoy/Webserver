@@ -1,6 +1,7 @@
 package com.matrix.webserver.tools;
 
 import lombok.Data;
+import org.springframework.security.core.AuthenticationException;
 
 /**
  * @ClassName ServerResponse
@@ -12,34 +13,34 @@ import lombok.Data;
 @Data
 public class ServerResponse {
     private boolean handleType;//处理状态
-    private int code;//处理代码
-    private String message;//处理描述
-    private Object data;//处理数据
+    private int handleCode;//处理代码
+    private String handleMessage;//处理描述
+    private Object handleData;//处理数据
 
     private ServerResponse(){};
 
     public static ServerResponse error(){
         ServerResponse resultResponse=new ServerResponse();
         resultResponse.setHandleType(false);
-        resultResponse.setCode(404);
-        resultResponse.setMessage("请求错误");
-        resultResponse.setData(null);
+        resultResponse.setHandleCode(404);
+        resultResponse.setHandleMessage("请求错误");
+        resultResponse.setHandleData(null);
         return resultResponse;
     }
     public static ServerResponse success(){
         ServerResponse resultResponse=new ServerResponse();
         resultResponse.setHandleType(true);
-        resultResponse.setCode(200);
-        resultResponse.setMessage("请求成功");
-        resultResponse.setData(null);
+        resultResponse.setHandleCode(200);
+        resultResponse.setHandleMessage("请求成功");
+        resultResponse.setHandleData(null);
         return resultResponse;
     }
-    public static ServerResponse failure(){
+    public static ServerResponse failure(AuthenticationException exception){
         ServerResponse resultResponse=new ServerResponse();
         resultResponse.setHandleType(false);
-        resultResponse.setCode(404);
-        resultResponse.setMessage("请求失败");
-        resultResponse.setData(null);
+        resultResponse.setHandleCode(404);
+        resultResponse.setHandleMessage(MessageUtil.Message(exception));
+        resultResponse.setHandleData(null);
         return resultResponse;
     }
 }

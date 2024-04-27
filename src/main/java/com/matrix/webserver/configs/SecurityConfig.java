@@ -54,7 +54,7 @@ public class SecurityConfig {
                                 // 允许所有OPTIONS请求:HttpMethod.OPTIONS,
                                 .requestMatchers(HttpMethod.GET,"/css/**","/img/**","/js/**").permitAll()
                                 // 允许 SpringMVC 的默认错误地址匿名访问
-                                .requestMatchers("/errorPage","/test","/openApi/**").permitAll()
+                                .requestMatchers("/errorPage","/openApi/**").permitAll()
                                 // 允许直接访问授权登录接口
                                 .requestMatchers(HttpMethod.POST,"/login","/register").permitAll()
                                 .anyRequest().authenticated()

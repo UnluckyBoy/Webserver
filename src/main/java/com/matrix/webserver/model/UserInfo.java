@@ -11,7 +11,7 @@ import java.util.Collection;
  * @Author Create By matrix
  * @Date 2024/4/27 0027 14:59
  *
- * 用户实体类，实现UserDetails接口
+ * 用户实体类,实现UserDetails接口
  */
 @Data
 public class UserInfo implements UserDetails {
@@ -26,7 +26,6 @@ public class UserInfo implements UserDetails {
     private int uLevel;
     private int uStatus;
     private String uAddressIp;
-//    private Boolean enabled;
 
     /**
      * 存放当前用户的角色以及权限
@@ -92,11 +91,12 @@ public class UserInfo implements UserDetails {
      */
     @Override
     public boolean isEnabled() {
-        if(uStatus>0){
-            return false;
-        }
-        else{
-            return true;
-        }
+//        if(uStatus>0){
+//            return false;
+//        }
+//        else{
+//            return true;
+//        }
+        return true;
     }
 }

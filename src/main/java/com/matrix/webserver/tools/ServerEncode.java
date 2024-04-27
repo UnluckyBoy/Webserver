@@ -10,24 +10,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 public class ServerEncode {
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private static PasswordEncoder passwordEncoder;
 
     /**
      * 加密
      * @param rawPassword
      * @return
      */
-    public String encodePassword(String rawPassword) {
+    public static String encodePassword(String rawPassword) {
         return passwordEncoder.encode(rawPassword);
     }
 
     /**
      * 验证密码是否正确
-     * @param rawPassword
-     * @param encodedPassword
+     * @param rawPassword 数据库密码
+     * @param encodedPassword 待校验密码
      * @return
      */
-    public boolean isPasswordMatch(String rawPassword, String encodedPassword) {
+    public static boolean isPasswordMatch(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 }

@@ -2,7 +2,9 @@ package com.matrix.webserver.service;
 
 import com.matrix.webserver.model.UserInfo;
 import com.matrix.webserver.model.mapper.UserMapper;
+import com.matrix.webserver.tools.ServerEncode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,8 +23,8 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     UserMapper userMapper;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
     /**
      * 根据用户名查询用户对象
      *
@@ -38,6 +40,7 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("账号不存在");
         }
         System.out.println("UserDetails查询结果:"+userInfo.toString());
+        /*UserMapper实现了UserDetails接口,直接返回即可*/
         return userInfo;
     }
 
@@ -47,7 +50,7 @@ public class UserService implements UserDetailsService {
      * @param rawPassword
      */
     public void createUser(String username, String rawPassword) {
-        String encodedPassword = passwordEncoder.encode(rawPassword);
+        String encodedPassword = ServerEncode.encodePassword(rawPassword);/*调用加密*/
         // 将username和encodedPassword存储到数据库...
     }
 }

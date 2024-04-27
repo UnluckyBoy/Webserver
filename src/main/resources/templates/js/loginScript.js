@@ -29,7 +29,7 @@ $(document).ready(function() {
                     console.log(data)
                     location.href='/index';
                 }else{
-                    alert("登录失败");
+                    alert("登录状态码:"+data.handleCode+"---"+data.handleMessage);
                     // location.href='/login';
                     location.reload(true);
                 }
