@@ -1,14 +1,15 @@
 package com.matrix.webserver.controller;
 
-import org.springframework.http.ResponseEntity;
+import com.google.gson.Gson;
+import com.matrix.webserver.model.UserInfo;
+import com.matrix.webserver.tools.WebServerResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 
 /**
  * @ClassName DataHandelController
@@ -17,17 +18,27 @@ import java.util.Map;
  *
  * 登陆之后api逻辑
  */
-@RestController
+@Controller
+//@RestController
 @RequestMapping("/api")
 public class DataHandelController {
-    @RequestMapping("/user")
-    public ResponseEntity<?> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
-        // 在这里执行其他逻辑
+    private static Gson gson=new Gson();//Json数据对象
 
+    @RequestMapping("/userInfo")
+    public void getCurrentUser(@AuthenticationPrincipal UserInfo userInfo,
+                               HttpServletResponse response) throws IOException {/*ResponseEntity<?>*/
+        // 在这里执行其他逻辑
+        System.out.println("登录信息:"+userInfo.getUsername()+"---"+userInfo.getPassword());
+        if(userInfo==null){
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("请求失败")));
+            System.out.println("返回信息:"+WebServerResponse.failure("请求失败")+"---"+userInfo);
+        }
         // 返回JSON数据
-        Map<String, Object> response = new HashMap<>();
-        response.put("username", userDetails.getUsername());
+        response.getWriter().write(gson.toJson(WebServerResponse.success("请求成功",userInfo)));
+        System.out.println("返回信息:"+WebServerResponse.success("请求成功",userInfo));
+        //Map<String, Object> response = new HashMap<>();
+        //response.put("username", userDetails.getUsername());
         // ... 可以添加其他用户详情
-        return ResponseEntity.ok(response);
+        //return ResponseEntity.ok(response);
     }
 }

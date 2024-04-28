@@ -1,7 +1,7 @@
 package com.matrix.webserver.configs.securityHandel;
 
 import com.google.gson.Gson;
-import com.matrix.webserver.tools.ServerResponse;
+import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,7 +41,7 @@ public class ServerAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         if(loginType.equalsIgnoreCase("JSON")){
             //返回JSON数据逻辑
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(ServerResponse.success()));
+            response.getWriter().write(gson.toJson(WebServerResponse.success()));
             System.out.println("登录成功");
         }else{
             response.setContentType("application/html;charset=UTF-8");

@@ -16,15 +16,8 @@
     justify-content: left;/*靠左显示*/
 }
 .nav{
-    /*width: 110px;*/
-    /*height:820px;*/
-    /*background: rgba(27, 27, 27, 0.712);*/
-    /*border-radius: 20px;*/
-    /*overflow:hidden;*/
-    /*transition: 0.5s;*/
     width: 110px; /* 占据整个视口宽度:width: 100vw*/
     height: 100vh; /* 视口高度的 100%:height: 100vh*/
-    /*height: 100%;*/
     background: rgba(27, 27, 27, 0.712);
     border-radius: 20px;
     overflow: hidden;
@@ -105,7 +98,7 @@
     font-size: 14px;
 }
 .menu{
-    width: 230px;
+    width: 220px;
     margin-left: 25px;
 }
 .item{
@@ -263,7 +256,6 @@ button {
     position:absolute;
     z-index: -1;
 }
-
 .cont {
     overflow: hidden;
     position: relative;
@@ -632,16 +624,39 @@ button {
     vertical-align: middle; /* 垂直居中对齐 */
 }
 
-.checkbox,.radio {
-    position: relative;
-    display: block;
-    margin-top: 2px;
-    margin-bottom: 2px
+/* 自定义 checkbox 的样式 */
+.checkbox input[type="checkbox"] {
+    /* 设置自定义大小 */
+    width: 16px;
+    height: 16px;
+    /* 可能需要调整垂直对齐 */
+    vertical-align: middle;
+    /* 移除默认边框 */
+    border:2px solid black;/*边框2像素,实线,黑色*/
+    /* 根据需要设置背景色 */
+    background-color: rgba(255,255,255,0);
+    /* 添加一些样式以区分未被选中的 checkbox */
+    /*background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 10h20v2H0z"/></svg>');*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    /* 根据需要设置外观 */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 添加光标以表示可点击 */
+    cursor: pointer;
 }
-.checkbox-label input[type="checkbox"] {
-    margin-right: 1px; /* 根据需要调整间距 */
+/* 当 checkbox 被选中时改变样式 */
+.checkbox input[type="checkbox"]:checked {
+    /* 设置选中时的背景图 */
+    background-image: url(../img/checkbox_checked.png);
 }
-/* GLOBAL  */
-.no-padding {
-    padding: 0 !important;
+/* 设置 span 的样式，以确保与 checkbox 对齐 */
+.checkbox span {
+    /* 添加一些左边距以与 checkbox 分开 */
+    margin-left: 10px;
+    /* 根据需要设置字体大小和行高 */
+    font-size: 14px;
+    line-height: 1.5;
 }

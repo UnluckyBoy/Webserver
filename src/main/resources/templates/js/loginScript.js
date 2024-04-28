@@ -41,11 +41,11 @@ $(document).ready(function() {
     })
     /**注册**/
     $("#register-btn").click(function (){
-        var name=$("#re_name").val();
+        // var name=$("#re_name").val();
         var account=$("#re_account").val();
         var password=$("#re_password").val();
         var confirm_pass=$("#re_confirm_pass").val();
-        if(name.trim()===''|account.trim()===''|password.trim()===''|confirm_pass.trim()===''){
+        if(account.trim()===''|password.trim()===''|confirm_pass.trim()===''){/*name.trim()===''|*/
             alert("请检查输入!");
         }else{
             if (password != confirm_pass) {

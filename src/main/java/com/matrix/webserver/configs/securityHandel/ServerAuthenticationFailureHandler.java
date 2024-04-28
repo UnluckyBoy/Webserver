@@ -1,12 +1,11 @@
 package com.matrix.webserver.configs.securityHandel;
 
 import com.google.gson.Gson;
-import com.matrix.webserver.tools.ServerResponse;
+import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -34,7 +33,7 @@ public class ServerAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         if(loginType.equalsIgnoreCase("JSON")){
             //返回JSON数据逻辑
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(ServerResponse.failure(exception)));
+            response.getWriter().write(gson.toJson(WebServerResponse.failure(exception)));
             System.out.println("登录失败");
         }else{
             response.setContentType("application/html;charset=UTF-8");

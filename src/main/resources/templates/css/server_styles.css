@@ -1,0 +1,248 @@
+/*定义动画*/
+@keyframes bgAnimation {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+.wrap{
+    width: 240px;
+    height: 100vh;
+    /*内容水平、垂直居中显示、flex布局*/
+    /*background: url(../img/background_1.png) center no-repeat;*/
+    background: center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: left;/*靠左显示*/
+}
+.nav{
+    width: 110px;
+    height: 100vh; /* 视口高度的 100%:height: 100vh*/
+    background: rgba(27, 27, 27, 0.712);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.5s;
+    position: fixed; /* 如果你希望它始终在屏幕上可见，可以使用 fixed 定位 */
+    left: 0; /* 如果你使用了 fixed 定位，可能需要设置水平位置 */
+}
+.nav:hover{
+    width: 240px;
+}
+.btn{
+    width: 60px;
+    height: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+.btn-item{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.btn-item:nth-child(1){
+    background:#eb5a56;
+}
+.btn-item:nth-child(2){
+    background:#f8bc33;
+}
+.btn-item:nth-child(3){
+    background:#62cb44;
+}
+.icon{
+    width: 250px;
+    height: 60px;
+    margin-left: 25px;
+    margin-top: 20px;
+    display: flex;
+    /*justify-content: center; !* 水平居中 *!*/
+    /*align-items: center; !* 垂直居中 *!*/
+}
+.icon-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+.icon-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.icon-con{
+    height: 60px;
+    margin-left: 25px;
+    color: white;
+}
+.icon-con p{
+    padding: 5px;
+}
+.icon-con h2{
+    font-weight: 400;
+}
+.line{
+    width: 60px;
+    height: 1px;
+    background: rgba(245, 253, 255, 0.5);
+    margin:20px 25px;
+    transition: 0.5s;
+}
+.nav:hover .line{
+    width: 190px;
+}
+.title{
+    width: 60px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+.title p{
+    font-size: 14px;
+}
+.menu{
+    width: 190px;
+    margin-left: 25px;
+}
+.item{
+    display: flex;
+    position: relative;
+    transition: 0.5s;
+    border-radius: 6px;
+}
+.item:hover{
+    background: rgb(17, 143, 238);
+}
+.l-icon{
+    width: 60px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #efecec;
+}
+.con{
+    width: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    left: -20px;
+    color: #efecec;
+}
+.nav:hover .con{
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+.r-icon{
+    width: 0;
+    height: 50px;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+}
+.nav:hover .r-icon{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+.iconfont{
+    font-size: 60px;
+}
+.r-icon .iconfont{
+    font-size: 20px;
+    color: #62cb44;
+}
+.light{
+    width: 6px;
+    height: 50px;
+    background: #eb5a56;
+    position: absolute;
+    left: -25px;
+    transition: 0.5s;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    opacity: 0;
+}
+.item:hover .light{
+    opacity: 1;
+}
+.server{
+    width: 60px;
+    background: rgba(0, 0, 0, 0.45);
+    margin-left: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.nav:hover .server{
+    width: 230px;
+}
+/*取消链接下划线*/
+a{
+    text-decoration: none;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    background:linear-gradient(125deg,#7377e7,#455de7,#4499fa,#f373f3,#b224ef);
+    background-size: 500%;
+    animation: bgAnimation 15s linear infinite;
+}
+.child-content{
+    /* 设置内容块的宽度，可以是固定值或百分比 */
+    width: 100%;
+    height: 100vh;
+    /* 设置内容块的内边距，以创建一些空间 */
+    padding: 20px;
+    background: #62d6e9 url(../img/background_1.png);
+}
+.back_snow {
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100%;
+    background: #262626 url(../img/background_1.png) no-repeat fixed;
+    background-size: cover;
+    position:absolute;
+    z-index: -1;
+    overflow: hidden;
+}
+.cont {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}

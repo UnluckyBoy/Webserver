@@ -44,6 +44,10 @@ public class CORSConfig extends WebMvcConfigurationSupport {
         System.out.println(dirPath);
 
         //其中getImage表示图片资源访问的前缀。"file:E:/MatrixProject/BackResource/"是服务器文件真实的存储路径
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/","classpath:/templates/","file:"+dirPath);
+        /**
+         * "classpath:/static/","classpath:/templates/"
+         */
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:"+dirPath);
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/","classpath:/templates/");
     }
 }

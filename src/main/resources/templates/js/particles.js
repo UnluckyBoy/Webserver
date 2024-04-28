@@ -273,14 +273,14 @@ var pJS = function(tag_id, params){
         var color_selected = color.value[Math.floor(Math.random() * pJS.particles.color.value.length)];
         this.color.rgb = hexToRgb(color_selected);
       }else{
-        if(color.value.r != undefined && color.value.g != undefined && color.value.b != undefined){
+        if(color.value.r !== undefined && color.value.g !== undefined && color.value.b !== undefined){
           this.color.rgb = {
             r: color.value.r,
             g: color.value.g,
             b: color.value.b
           }
         }
-        if(color.value.h != undefined && color.value.s != undefined && color.value.l != undefined){
+        if(color.value.h !== undefined && color.value.s !== undefined && color.value.l !== undefined){
           this.color.hsl = {
             h: color.value.h,
             s: color.value.s,
@@ -290,11 +290,11 @@ var pJS = function(tag_id, params){
       }
 
     }
-    else if(color.value == 'random'){
+    else if(color.value === 'random'){
       this.color.rgb = {
-        r: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-        g: (Math.floor(Math.random() * (255 - 0 + 1)) + 0),
-        b: (Math.floor(Math.random() * (255 - 0 + 1)) + 0)
+        r: (Math.floor(Math.random() * (255 - 0 + 1))),
+        g: (Math.floor(Math.random() * (255 - 0 + 1))),
+        b: (Math.floor(Math.random() * (255 - 0 + 1)))
       }
     }
     else if(typeof(color.value) == 'string'){
