@@ -26,19 +26,9 @@ import java.io.IOException;
 //@RestController/*向前端返回Json数据*/
 @Controller
 public class WebServerController {
-    public static AuthenticationManager authenticationManager;
-
-    public WebServerController(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
-    public static AuthenticationManager getAuthenticationManager() {
-        return authenticationManager;
-    }
-
-
     @RequestMapping("/index")
     public String Index(){
-        return "/view/index";
+        return "index";
     }
     @RequestMapping("/login")
     public String Login(){
@@ -46,24 +36,24 @@ public class WebServerController {
 //                UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(), loginRequest.password());
 //        Authentication authenticationResponse =
 //                this.authenticationManager.authenticate(authenticationRequest);
-        return "/view/login";
+        return "login";
     }
 
     @RequestMapping("/errorPage")
     public String errorPage(){
-        return "/view/error";
+        return "error";
     }
 
     @RequestMapping("/test")
     public String Test(){
-        return "/view/test";
+        return "test";
     }
 
     @RequestMapping("/check")
     public ResponseEntity<Object> checkAuthentication(Authentication authentication) {
         // 如果authentication为null，则认证流程没有触发或成功
         if (authentication == null || !authentication.isAuthenticated()) {
-            System.out.println("User is not authenticated");
+            System.out.println("用户未认证");
             return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).body(WebServerResponse.failure("请求失败"));
         }
         // 如果authentication不为null且已认证，则可以访问用户详情
@@ -72,11 +62,11 @@ public class WebServerController {
         if (principal instanceof UserInfo) {
             UserInfo userDetails = (UserInfo) principal;
             // 这里可以访问用户详情，比如用户名等
-            System.out.println("User is authenticated: " + userDetails.getUsername());
+            System.out.println("认证用户: " + userDetails.getUsername());
             return ResponseEntity.ok(WebServerResponse.success("请求成功",userDetails));
         } else {
             // 如果不是UserDetails类型，可能是其他类型的Principal，比如String用户名等
-            System.out.println("User is authenticated with a different type of principal: " + principal.toString());
+            System.out.println("用户认证,但角色异常: " + principal.toString());
             return ResponseEntity.ok(WebServerResponse.success("请求成功",principal.toString()));
         }
     }
