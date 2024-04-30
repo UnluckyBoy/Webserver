@@ -1,5 +1,6 @@
 package com.matrix.webserver.configs;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.system.ApplicationHome;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -15,6 +16,10 @@ import java.io.File;
  */
 @Configuration
 public class CORSConfig extends WebMvcConfigurationSupport {
+
+    @Value("${back-resource.dir}")
+    private String backResourceDir;
+
     /**
      * 解决跨域问题配置类Cors
      * @param registry
@@ -34,20 +39,22 @@ public class CORSConfig extends WebMvcConfigurationSupport {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String dirPath=System.getProperty("user.dir")+"/BackResource/";
+        //String backResourceDir=System.getProperty("user.dir")+"/BackResource/";
 
-        //获取jar包所在目录
+        /*获取jar包所在目录--弃用*/
 //        ApplicationHome h = new ApplicationHome(getClass());
 //        File jarF = h.getSource();
-//        //在jar包所在目录下生成一个upload文件夹用来存储上传的图片
 //        String dirPath = jarF.getParentFile().toString()+"/BackResource/";
-        System.out.println(dirPath);
 
+        System.out.println(backResourceDir);
         //其中getImage表示图片资源访问的前缀。"file:E:/MatrixProject/BackResource/"是服务器文件真实的存储路径
         /**
          * "classpath:/static/","classpath:/templates/"
          */
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:"+dirPath);
+        if (backResourceDir != null && !backResourceDir.isEmpty()) {
+            backResourceDir = backResourceDir.endsWith(File.separator) ? backResourceDir : backResourceDir + File.separator;
+            registry.addResourceHandler("/upload/**").addResourceLocations("file:" + backResourceDir);
+        }
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/","classpath:/templates/");
     }
 }
