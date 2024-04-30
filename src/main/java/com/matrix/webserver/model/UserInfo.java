@@ -1,6 +1,8 @@
 package com.matrix.webserver.model;
 
+import com.matrix.webserver.service.AuthorityService;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +28,6 @@ public class UserInfo implements UserDetails {
     private String uAccount;
     private String uPhone;
     private String uEmail;
-    private int uLevel;
     private int uStatus;
     private String uAddressIp;
 

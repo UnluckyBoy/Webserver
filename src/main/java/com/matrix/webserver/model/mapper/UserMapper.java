@@ -2,7 +2,6 @@ package com.matrix.webserver.model.mapper;
 
 import com.matrix.webserver.model.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
 package com.matrix.webserver.controller;
 
+import com.matrix.webserver.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,9 @@ public class OpenApiHandelController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AuthorityService authorityService;
+
     @RequestMapping("/test")
     public ResponseEntity<Map<String, Object>> getData(@RequestParam("password") String password) {
         // 准备返回的数据
@@ -35,6 +39,11 @@ public class OpenApiHandelController {
 
     @RequestMapping("/index")
     public String Index(){
-        return "/view/index";
+        return "index";
+    }
+
+    @RequestMapping("/authority")
+    public void getAuthority(@RequestParam("account") String account){
+        System.out.println("用户权限:"+authorityService.queryAuthority(account));
     }
 }

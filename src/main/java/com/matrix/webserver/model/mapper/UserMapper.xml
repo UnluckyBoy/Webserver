@@ -14,11 +14,10 @@
             uHead,
             uPhone,
             uEmail,
-            uLevel,
             uStatus,
             uAddressIp
         FROM
-            user_info_data
+            user_info_table
         WHERE
             uAccount = #{account};
     </select>
