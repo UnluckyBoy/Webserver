@@ -2,9 +2,12 @@ package com.matrix.webserver.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @ClassName UserInfo
@@ -33,7 +36,16 @@ public class UserInfo implements UserDetails {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> authorities = getUserAuthorities();
+        return authorities;
+        //return null;
+    }
+    private List<SimpleGrantedAuthority> getUserAuthorities() {
+        // 获取用户的权限
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        // 添加其他权限...
+        return authorities;
     }
 
     /*密码*/

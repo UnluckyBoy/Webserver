@@ -2,25 +2,26 @@ package com.matrix.webserver.configs;
 
 import com.matrix.webserver.configs.securityHandel.ServerAuthenticationFailureHandler;
 import com.matrix.webserver.configs.securityHandel.ServerAuthenticationSuccessHandler;
-import com.matrix.webserver.service.UserService;
+import com.matrix.webserver.service.UserInfoService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName SecurityConfig
@@ -34,12 +35,14 @@ public class SecurityConfig {
     AuthenticationManager authenticationManager;
 
     /*注入定义的登录响应方法*/
-    @Resource
+    @Autowired
     private ServerAuthenticationSuccessHandler serverAuthenticationSuccessHandler;
-    @Resource
+    @Autowired
     private ServerAuthenticationFailureHandler serverAuthenticationFailureHandler;
-    @Resource
-    private UserService userService;
+    @Autowired
+    private UserInfoService userInfoService;
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     /**
      * PasswordEncoder
@@ -87,9 +90,27 @@ public class SecurityConfig {
 
     @Bean
     AuthenticationManager authenticationManager() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userService);
-        ProviderManager pm = new ProviderManager(daoAuthenticationProvider);
-        return pm;
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userInfoService);
+        return new ProviderManager(authenticationProvider);
     }
+
+//    @Bean
+//    public AuthenticationManager authenticationManager() {
+//        List<AuthenticationProvider> providerList = new ArrayList<>();
+//        providerList.add(daoAuthenticationProvider());
+//        //providerList.add(mobileAuthenticationProvider());
+//        //providerList.add(thirdAuthenticationProvider());
+//
+//        ProviderManager providerManager = new ProviderManager(providerList);
+//        providerManager.setAuthenticationEventPublisher(new DefaultAuthenticationEventPublisher(applicationEventPublisher));
+//        return providerManager;
+//    }
+//    @Bean
+//    DaoAuthenticationProvider daoAuthenticationProvider() {
+//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+//        daoAuthenticationProvider.setUserDetailsService(userInfoService);
+//        return daoAuthenticationProvider;
+//    }
 }

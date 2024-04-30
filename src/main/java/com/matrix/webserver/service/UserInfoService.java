@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * 用户服务逻辑
  */
 @Service
-public class UserService implements UserDetailsService {
+public class UserInfoService implements UserDetailsService {
 
     @Autowired
     UserMapper userMapper;
