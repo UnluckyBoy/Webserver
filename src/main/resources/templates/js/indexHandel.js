@@ -1,4 +1,12 @@
 $(document).ready(function() {
+    initIndexData();
+    dropdownHandel();
+});
+
+/**
+ * 加载用户信息
+ */
+function initIndexData(){
     $.ajax({
         url:'/api/userInfo',/* /check */
         type: 'POST',
@@ -14,4 +22,14 @@ $(document).ready(function() {
             console.error("AJAX请求失败: " +error);
         }
     });
-});
+}
+
+/**
+ * 初始化下拉框
+ */
+function dropdownHandel(){
+    $('#handImage').click(function() {
+        $(this).next('.matrix-dropdown-menu').toggle();
+        return !$(this).next('.matrix-dropdown-menu').is(':hidden');
+    });
+}
