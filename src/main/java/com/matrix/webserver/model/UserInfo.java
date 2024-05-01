@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName UserInfo
@@ -30,6 +31,7 @@ public class UserInfo implements UserDetails {
     private String uEmail;
     private int uStatus;
     private String uAddressIp;
+    private List<String> authorities;
 
     /**
      * 存放当前用户的角色以及权限
@@ -37,16 +39,7 @@ public class UserInfo implements UserDetails {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities = getUserAuthorities();
-        return authorities;
-        //return null;
-    }
-    private List<SimpleGrantedAuthority> getUserAuthorities() {
-        // 获取用户的权限
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        // 添加其他权限...
-        return authorities;
+        return this.authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     /*密码*/

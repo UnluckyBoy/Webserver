@@ -2,11 +2,11 @@
 /*导航栏通过JQuery渲染*/
 
 // 权限全局变量
-var globalAuthority;
+// var globalAuthority;
 
 $(document).ready(function() {
     initIndexData();
-    getAuthority();
+    //getAuthority();
 });
 
 /**
@@ -22,6 +22,7 @@ function initIndexData(){
                 console.log(data);
                 $("#handImage").attr('src', '/upload'+data.handleData.uHead);
                 $("#uName").text(data.handleData.uName)
+                createHtmlView(data.handleData.authorities);
             }
         },
         error: function(xhr, status, error) {
@@ -33,29 +34,28 @@ function initIndexData(){
 /**
  * 获取权限
  */
-function getAuthority(){
-    $.ajax({
-        url:'/api/authority',/* /check */
-        type: 'POST',
-        dataType: 'json',
-        success: function(data) {
-            if(data.handleType){
-                console.log(data);
-                globalAuthority=data.handleData[0].authority_code;
-                createHtmlView();
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX请求失败: " +error);
-        }
-    });
-}
+// function getAuthority(){
+//     $.ajax({
+//         url:'/api/authority',/* /check */
+//         type: 'POST',
+//         dataType: 'json',
+//         success: function(data) {
+//             if(data.handleType){
+//                 console.log(data);
+//                 globalAuthority=data.handleData[0].authority_code;
+//                 createHtmlView();
+//             }
+//         },
+//         error: function(xhr, status, error) {
+//             console.error("AJAX请求失败: " +error);
+//         }
+//     });
+// }
 
 /**
  * 创建视图html
  */
-function createHtmlView(){
-    console.log("createHtmlView: " +globalAuthority);
+function createHtmlView(authorities){
     // 动态创建导航菜单
     var wrapHTML = '<div class="menu">';
     // 创建菜单项函数
@@ -71,24 +71,31 @@ function createHtmlView(){
             '</a>' +
             '</div>';
     }
-    switch (globalAuthority){
-        case '5226320001':
-            // 使用函数创建菜单项:图标,Title,连接
-            wrapHTML += createMenuItem('fa-plus', '门诊挂号', '');/*fa-home*/
-            wrapHTML +=createMenuItem("fa-stethoscope","门诊医生","#")
-            wrapHTML += createMenuItem('fa-user-plus', '门诊护士', '#');
-            wrapHTML += createMenuItem('fa-user-md', '住院医生', '#');
-            wrapHTML += createMenuItem('fa-user-plus', '住院护士', '#');
-            wrapHTML += createMenuItem('fa-bed', '住院管理', '#');
-            break;
-        case '5226320002':
-            wrapHTML +=createMenuItem("fa-stethoscope","门诊医生","#")
-            wrapHTML += createMenuItem('fa-user-md', '住院医生', '#');
-            break;
-        case '5226320003':
-            wrapHTML += createMenuItem('fa-user-plus', '门诊护士', '#');
-            wrapHTML += createMenuItem('fa-user-plus', '住院护士', '#');
-            break;
+    for (var item of authorities) {
+        switch (item){
+            case '5226320001':
+                // 使用函数创建菜单项:图标,Title,连接
+                wrapHTML += createMenuItem('fa-plus', '预约挂号', '');/*fa-home*/
+                wrapHTML +=createMenuItem("fa-stethoscope","门诊医生","#")
+                wrapHTML += createMenuItem('fa-user-md', '住院医生', '#');
+                wrapHTML += createMenuItem('fa-user-plus', '住院护士', '#');
+                wrapHTML += createMenuItem('fa-bed', '住院管理', '#');
+                //wrapHTML += createMenuItem('fa-user-plus', '门诊护士', '#');
+                wrapHTML += createMenuItem('fa-clipboard', '药库管理', '#');
+                wrapHTML += createMenuItem('fa-archive', '药房管理', '#');
+                wrapHTML += createMenuItem('fa-bar-chart', '统计分析', '#');
+                break;
+            case '5226320002':
+                wrapHTML += createMenuItem('fa-plus', '预约挂号', '');
+                break;
+            case '5226320003':
+                wrapHTML +=createMenuItem("fa-stethoscope","门诊医生","#")
+                wrapHTML += createMenuItem('fa-user-md', '住院医生', '#');
+                break;
+            case '5226320004':
+                wrapHTML += createMenuItem('fa-user-plus', '住院护士', '#');
+                break;
+        }
     }
 
     wrapHTML += '</div>'; // 结束menu的div

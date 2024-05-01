@@ -1,7 +1,6 @@
 package com.matrix.webserver.model;
 
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 
 /**
  * @ClassName AuthorityInfo
