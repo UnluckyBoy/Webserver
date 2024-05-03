@@ -32,10 +32,6 @@ public class WebServerController {
     }
     @RequestMapping("/login")
     public String Login(){
-//        Authentication authenticationRequest =
-//                UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(), loginRequest.password());
-//        Authentication authenticationResponse =
-//                this.authenticationManager.authenticate(authenticationRequest);
         return "login";
     }
 
