@@ -1,3 +1,39 @@
+/*定义颜色动画*/
+@keyframes bgAnimation {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+/*定义关闭,开启动画*/
+@keyframes open {
+    0% {
+        /*top: -100vh;*/
+        left: -100%;
+    }
+    100% {
+        /*top: 0;*/
+        left: 0;
+    }
+}
+@keyframes close {
+    0% {
+        /*top: 0;*/
+        left: 0;
+        visibility: visible;
+    }
+    100% {
+        /*top: 100vh;*/
+        left: 100%;
+        visibility: visible;
+    }
+}
+
 *,
 *:before,
 *:after {
@@ -12,18 +48,6 @@ body, html {
     overflow: hidden;
 }
 
-/*定义动画*/
-@keyframes bgAnimation {
-    0%{
-        background-position: 0% 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0% 50%;
-    }
-}
 *{
     margin: 0;
     padding: 0;
@@ -118,7 +142,7 @@ body, html {
     transition: 0.5s;
 }
 .nav:hover .line{
-    width: 230px;
+    width: 190px;
 }
 .title{
     width: 60px;
@@ -244,15 +268,15 @@ a{
     width: 100%;
     height: 100vh;
     display: flex;
-    padding-left: 110px; /* 在左边添加内边距 */
+    padding-left: 112px; /* 在左边添加内边距 */
     box-sizing: border-box; /* 确保padding不会增加元素宽度 */
     flex-direction: column; /* 明确指定为垂直布局 */
-    /*overflow-y: auto; !* 如果需要，添加垂直滚动条 *!*/
-    background: rgba(27, 27, 27, 0.6);
+    background: white;/*rgba(27, 27, 27, 0.6)*/
+    overflow: hidden;
 }
 .main-sub-child-title{
     width: 100%;
-    height: 60px;
+    height: 42px;/*60px*/
     background: #57aaff;
     border-radius: 6px;
     margin-top: 0;
@@ -263,9 +287,12 @@ a{
 .main-sub-child-body{
     width: 100%;
     height: 100vh;
-    /*background: rgba(255,255,255,0.8);*/
     background: white;
+    display: flex;
     border-radius: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;/*防止子布局使用:absolute时超过边界*/
 }
 .main-sub-child-title,
 .main-sub-child-body {
@@ -279,8 +306,9 @@ a{
 .page-view {
     width: 100%;
     height: 100vh;
-    background: var(--b);
+    background: var(--view-back);
     position: absolute;
+    box-sizing: border-box;
 }
 .open {
     visibility: visible;
@@ -290,27 +318,53 @@ a{
     visibility: hidden;
     animation: ease 0.5s close;
 }
-@keyframes open {
-    0% {
-        /*top: -100vh;*/
-        left: -100%;
-    }
-    100% {
-        /*top: 0;*/
-        left: 0;
-    }
+.sub-child-view{
+    width: 100%;
+    height: 32px;
+    background: #57aaff;
+    border-radius: 6px;
+    margin-top: 0px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    /*margin-left: 2px;*/
 }
-@keyframes close {
-    0% {
-        /*top: 0;*/
-        left: 0;
-        visibility: visible;
-    }
-    100% {
-        /*top: 100vh;*/
-        left: 100%;
-        visibility: visible;
-    }
+.sub-child-body{
+    width: 100%;
+    height: 100vh;
+    background: white;
+    margin-top: 0px;
+    box-sizing: border-box;
+    display: flex;
+    /*border-radius: 6px;*/
+    /*overflow-y: scroll; !* 始终显示垂直滚动条 *!*/
+}
+.info-view{
+    width: 100%;
+    height: 200px;
+    background: #d0f5ca;
+    margin-top: 1px;
+    box-sizing: border-box;
+    display: flex;
+    /*border-radius: 6px;*/
+    border:1px solid #0c0101;
+    margin-left: 2px;
+    margin-right: 2px;
+    flex-direction: column;
+}
+/*自定义滚动条*/
+.page-view::-webkit-scrollbar {
+    width: 10px; /* 滚动条的宽度 */
+}
+.page-view::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 滚动条轨道的颜色 */
+}
+.page-view::-webkit-scrollbar-thumb {
+    background: #888; /* 滚动条滑块的颜色 */
+}
+.page-view::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 滚动条滑块在鼠标悬停时的颜色 */
 }
 
 /* 下拉菜单触发器样式 */
@@ -369,12 +423,104 @@ a{
     transition: opacity 0.3s ease;
 }
 
-input,
-button {
+/*input,*/
+/*button {*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    background: none;*/
+/*    font-family: Verdana, Geneva, Tahoma, sans-serif*/
+/*}*/
+/*input{*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    margin-top: 5px;*/
+/*    font-size: 16px;*/
+/*    border-bottom: 1px solid rgba(109, 93, 93, 0.4);*/
+/*    text-align: center;*/
+/*    !*font-family: Verdana, Geneva, Tahoma, sans-serif;*!*/
+/*    padding-bottom: 5px;*/
+/*}*/
+/*input{*/
+/*    !*display: block;*!*/
+/*    margin: 0 auto;*/
+/*    width: 260px;*/
+/*    height: 36px;*/
+/*    border-radius: 30px;*/
+/*    color: #fff;*/
+/*    !*font-size: 15px;*!*/
+/*    cursor: pointer;*/
+/*}*/
+/*button {*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*    width: 260px;*/
+/*    height: 36px;*/
+/*    border-radius: 30px;*/
+/*    color: #fff;*/
+/*    font-size: 15px;*/
+/*    cursor: pointer;*/
+/*}*/
+.global-input,
+.main-button{
     border: none;
     outline: none;
     background: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+.global-input{
+    display: block;
+    /*width: 100%;*/
+    margin-top: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+    text-align: center;
+    padding-bottom: 5px;
+}
+.global-input{
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+.main-button {
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+.name-input{
+    width: 64px;
+}
+.birthday-input{
+    width: 86px;
+}
+/* 输入框下方显示选项列表的容器样式 */
+#dropdown-select-container {
+    position: relative;
+    display: inline-block;
+}
+/* 输入框的样式 */
+#dropdown-select-input {
+    width: 68px; /* 根据需要调整宽度 */
+}
+/* 模拟下拉列表选项的样式 */
+.dropdown-option {
+    display: none; /* 默认隐藏 */
+    padding: 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    margin-top: 2px;
+    cursor: pointer;
+}
+/* 选中时的样式 */
+.dropdown-option.active {
+    display: block;
 }
 
 .cont {
@@ -382,17 +528,10 @@ button {
     position: relative;
     width: 900px;
     height: 550px;
-    /*毛玻璃*/
-    /*
-    background:rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur();
-    */
     background:linear-gradient(125deg,#7377e7,#455de7,#4499fa,#f373f3,#b224ef);
     background-size: 500%;
     animation: bgAnimation 15s linear infinite;
 }
-
 .form {
     position: relative;
     width: 640px;
@@ -401,64 +540,28 @@ button {
     -webkit-transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
 }
-
 .form {
     transition: transform 1.2s ease-in-out;
 }
-
 .form {
     transition: transform 1.2s ease-in-out;
 }
-
 h2 {
     width: 100%;
     font-size: 30px;
     text-align: center;
 }
-
 label {
     width: 260px;
     margin: 25px auto;
     text-align: center;
     display: block;
 }
-
 label span {
     font-size: 14px;
     font-weight: 600;
     color: #2c255e;
     text-transform: uppercase;
-}
-
-input{
-    display: block;
-    width: 100%;
-    margin-top: 5px;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(109, 93, 93, 0.4);
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom: 5px;
-}
-input{
-    display: block;
-    margin: 0 auto;
-    width: 260px;
-    height: 36px;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-}
-button {
-    display: block;
-    margin: 0 auto;
-    width: 260px;
-    height: 36px;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
 }
 .submit-global {
     margin-top: 40px;
@@ -770,7 +873,6 @@ button {
     /* 根据需要设置背景色 */
     background-color: rgba(255,255,255,0);
     /* 添加一些样式以区分未被选中的 checkbox */
-    /*background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 10h20v2H0z"/></svg>');*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -808,7 +910,21 @@ button {
     display: inline-block; /* 默认为 inline-block，但在 flex 容器内不需要 */
     font-size: 14px; /* 字体大小 */
 }
-.matrix-button:hover{
+.sub-matrix-button{
+    width: 42px;
+    height: 26px;
+    padding: 0px 0px; /* 内边距 */
+    margin: 0px 2px; /* 外边距，用于在按钮之间添加间距 */
+    border: none; /* 去除边框 */
+    border-radius: 4px; /* 圆角 */
+    background-color: rgba(255,255,255,0.4); /* 背景色 */
+    color: black; /* 文字颜色 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 去除下划线 */
+    display: inline-block; /* 默认为 inline-block，但在 flex 容器内不需要 */
+    font-size: 14px; /* 字体大小 */
+}
+.matrix-button,.sub-matrix-button:hover{
     background-color: #3fd1f8;
 }
 .matrix-button-notActive{
@@ -817,8 +933,44 @@ button {
 .matrix-button-active{
     background-color: #3166db;
 }
+.left-label{
+    padding: 0;
+    margin: 0;
+    border: none;
+    margin-left: 2px;
+}
 
 /*文字效果*/
+.default-text{
+    color: black;
+}
+.blue-text{
+    color: #06b9ee;
+}
 .primary-text{
     color: lightblue;
+}
+.success-text{
+    color: #7df566;
+}
+.danger-text{
+    color: orangered;
+}
+.warn-text{
+    color: orange;
+}
+.center-text{
+    text-align: center;
+}
+.small-text{
+    font-size: small;
+}
+.medium-text{
+    font-size: medium;
+}
+.large-text{
+    font-size: large;
+}
+.bold-text{
+    font-weight: bold;
 }

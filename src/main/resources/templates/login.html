@@ -19,18 +19,16 @@
     <div class="cont">
         <div class="form sign-in">
             <h2>登录</h2>
-<!--            <form action="/login" method="post">-->
-<!--            </form>-->
             <label>
                 <span>请输入账户</span>
-                <input type="text" name="account" id="account">
+                <input class="global-input" type="text" name="account" id="account">
             </label>
             <label>
                 <span>请输入密码</span>
-                <input type="password" name="password" id="password">
+                <input class="global-input" type="password" name="password" id="password">
             </label>
             <!--登录按钮-->
-            <button class="submit-global" type="button" id="login-btn">登录</button>
+            <button class="main-button submit-global" type="button" id="login-btn">登录</button>
             <div>
                 <p class="forgot-pass">忘记密码？</p>
                 <a href="" id="login"></a>
@@ -62,28 +60,24 @@
             <div class="form sign-up">
                 <h2>注册</h2>
                 <div>
-<!--                    <label>-->
-<!--                        <span>名称</span>-->
-<!--                        <input type="text" id="re_name">-->
-<!--                    </label>-->
                     <label>
                         <span>账户</span>
-                        <input type="text" id="re_account">
+                        <input class="global-input" type="text" id="re_account">
                     </label>
                     <label>
                         <span>密码</span>
-                        <input type="password" id="re_password">
+                        <input class="global-input" type="password" id="re_password">
                     </label>
                     <label>
                         <span>密码验证</span>
-                        <input type="password" id="re_confirm_pass">
+                        <input class="global-input" type="password" id="re_confirm_pass">
                     </label>
                     <label class="checkbox" for="agreement">
                         <input type="checkbox" id="agreement" name="agreement" required>
                         <span>我已阅读并同意注册协议</span>
                     </label>
                 </div>
-                <button class="submit-regis" type="button" id="register-btn">注册</button>
+                <button class="main-button submit-regis" type="button" id="register-btn">注册</button>
             </div>
         </div>
     </div>

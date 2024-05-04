@@ -26,11 +26,9 @@ function openPage(index) {
     let $lis = $("#button-parent-view").children();
     for (let i = 0; i < $lis.length; i++) {
         let pageId = "page" + (i + 1);
-        // 使用classList.toggle()简化操作
+        /*使用classList.toggle()简化操作*/
         document.getElementById(pageId).classList.toggle("open", index === i);
         document.getElementById(pageId).classList.toggle("close", index !== i);
-        // $('#'+pageId).classList.toggleClass("open", index === i);
-        // $('#'+pageId).classList.toggleClass("close", index !== i);
         $lis[i].classList.toggle("matrix-button-active", index === i);
         $lis[i].classList.toggle("matrix-button-notActive", index !== i);
     }

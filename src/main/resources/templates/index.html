@@ -7,6 +7,9 @@
     <link type="text/css" rel="stylesheet" href="css/server_styles.css">
     <!--CDN图标库-->
     <link type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+    <!--图标库-->
+<!--    <script type="module" src="./js/ionicons.esm@7.1.0.js"></script>-->
+<!--    <script nomodule src="./js/ionicons@7.1.0.js"></script>-->
 </head>
 <body>
 <!--    <header>-->
@@ -48,49 +51,136 @@
         <div class="main-sub-view">
             <div class="main-sub-child-title" id="button-parent-view">
                 <button class="matrix-button matrix-button-active">窗口挂号</button>
-                <button class="matrix-button matrix-button-notActive">患者注册</button>
-                <button class="matrix-button matrix-button-notActive">预约挂号</button>
+                <button class="matrix-button matrix-button-notActive">预约登记</button>
+                <button class="matrix-button matrix-button-notActive">信息注册</button>
                 <button class="matrix-button matrix-button-notActive">信息修正</button>
-                <button class="matrix-button matrix-button-notActive">医保信息</button>
+                <button class="matrix-button matrix-button-notActive">退号管理</button>
+                <button class="matrix-button matrix-button-notActive">单据补打</button>
             </div>
             <div class="main-sub-child-body" id="main-sub-child-body">
-                <div id="page1" class="page-view open" style="--b:rgba(255,0,0,0.2)">
+                <div id="page1" class="page-view open" style="--view-back:rgba(255,0,0,0.2)">
+                    <div class="sub-child-view"><!--sub-child-view,-->
+                        <button class="sub-matrix-button">查询</button>
+                        <button class="sub-matrix-button">保存</button>
+                        <button class="sub-matrix-button">退号</button>
+                    </div>
+                    <div class="sub-child-body">
+                        <div class="info-view">
+                            <span class="default-text">患者信息</span>
+                            <div class="left-label">
+                                <span class="small-text default-text">就诊卡号</span>
+                                <input class="default-text" type="text" id="insurance-id">
+                                <span class="small-text default-text">预约日期</span>
+                                <input class="default-text" type="date" id="appointment-date"><br>
+                                <span class="small-text default-text bold-text">姓名:<span class="center-text danger-text">*</span></span>
+                                <input class="name-input default-text" type="text" id="patient-name">
+                                <span class="small-text default-text bold-text">性别:<span class="center-text danger-text">*</span></span>
+                                <select class="default-text" id="patient-gender">
+                                    <option class="default-text" value="male">男</option>
+                                    <option class="default-text" value="female">女</option>
+                                </select>
+                                <span class="small-text default-text bold-text">身份证号:<span class="center-text danger-text">*</span></span>
+                                <input class="default-text" type="text" id="patient-identity-card">
+                                <span class="small-text default-text">拼音代码:</span>
+                                <input class="name-input default-text" type="text" id="patient-name-code" readonly>
+                                <span class="small-text default-text bold-text">出生日期:<span class="center-text danger-text">*</span></span>
+                                <input class="birthday-input default-text" type="text" id="patient-birth" value="0000-00-00">
+                                <span class="small-text default-text">国籍:</span>
+                                <input class="name-input default-text" type="text" id="patient-nationality">
+                                <span class="small-text default-text">籍贯:</span>
+                                <input class="default-text" type="text" id="patient-nativePlace">
+                                <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
+                                <input class="name-input default-text" type="text" id="patient-nation">
+                                <span class="small-text default-text">职业:</span>
+                                <select class="default-text" id="patient-work-occupation">
+                                    <option class="default-text" value="peasantry">农民</option>
+                                    <option class="default-text" value="employee">职工</option>
+                                    <option class="default-text" value="other">其他</option>
+                                </select>
+                                <span class="small-text default-text">婚姻状况:</span>
+                                <select class="default-text" id="patient-maritalStatus">
+                                    <option class="default-text" value="unmarried">未婚</option>
+                                    <option class="default-text" value="married">已婚</option>
+                                    <option class="default-text" value="divorce">离异</option>
+                                </select>
+                                <span class="small-text default-text">电话:</span>
+                                <input class="birthday-input default-text" type="text" id="patient-phone"><br>
+                                <span class="small-text default-text">联系人:</span>
+                                <input class="birthday-input default-text" type="text" id="patient-emergencyContact">
+                                <span class="small-text default-text">联系人关系:</span>
+                                <div id="dropdown-select-container">
+                                    <input list="dropdown-select-list" class="default-text" id="dropdown-select-input" type="text"><!--placeholder="请选择"-->
+                                    <datalist id="dropdown-select-list">
+                                        <option value="父子"></option>
+                                        <option value="母子"></option>
+                                        <option value="兄弟"></option>
+                                        <option value="夫妻"></option>
+                                        <option value="同事"></option>
+                                        <option value="其他"></option>
+                                    </datalist>
+                                    <!-- 模拟的下拉列表选项 -->
+                                    <div class="dropdown-option" data-value="父子"></div>
+                                    <div class="dropdown-option" data-value="母子"></div>
+                                    <div class="dropdown-option" data-value="兄弟"></div>
+                                    <div class="dropdown-option" data-value="夫妻"></div>
+                                    <div class="dropdown-option" data-value="同事"></div>
+                                    <div class="dropdown-option" data-value="其他"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="page2" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">
 
                 </div>
-                <div id="page2" class="page-view close" style="--b:rgba(0,102,255,0.2)">
+                <div id="page3" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
 
                 </div>
-                <div id="page3" class="page-view close" style="--b:rgba(85,0,255,0.2)">
+                <div id="page4" class="page-view close" style="--view-back:rgba(85,255,0,0.2)">
 
                 </div>
-                <div id="page4" class="page-view close" style="--b:rgba(85,255,0,0.2)">
+                <div id="page5" class="page-view close" style="--view-back:rgba(200,120,0,0.2)">
 
                 </div>
-                <div id="page5" class="page-view close" style="--b:rgba(85,10,0,0.2)">
+                <div id="page6" class="page-view close" style="--view-back:rgba(10,180,100,0.2)">
 
                 </div>
             </div>
         </div>
     </div>
 <!--<script>-->
-<!--    let lis = document.getElementById("button-parent-view").children;-->
-<!--    for (let i = 0 ; i < lis.length ; i ++) {-->
-<!--        lis[i].setAttribute("onclick","openPage(" + i + ")")-->
-<!--    }-->
-<!--    function openPage(index) {-->
-<!--        for (let i = 0 ; i < lis.length ; i ++) {-->
-<!--            if (lis[i] === lis[index]) {-->
-<!--                document.getElementById("page" + (i + 1)).classList.replace("close","open");-->
-<!--                lis[i].classList.replace("no-checked","checked");-->
-<!--            } else {-->
-<!--                document.getElementById("page" + (i + 1)).classList.replace("open","close");-->
-<!--                lis[i].classList.replace("checked","no-checked");-->
-<!--            }-->
+<!--    // 监听输入框的focus事件以显示选项列表-->
+<!--    $('#dropdown-select-input').on('focus', function() {-->
+<!--        $('.dropdown-option').hide().removeClass('active'); // 隐藏所有选项-->
+<!--        var inputValue = $(this).val().trim(); // 获取输入框的值-->
+<!--        // 如果输入框有值且不是选项列表中的值，则不显示选项列表-->
+<!--        if (inputValue && !$('#dropdown-select-list option[value="' + inputValue + '"]').length) {-->
+<!--            return;-->
 <!--        }-->
-<!--    }-->
+<!--        // 显示与输入框值匹配的选项（如果需要模糊匹配，可以修改此逻辑）-->
+<!--        $('.dropdown-option').each(function() {-->
+<!--            if ($(this).data('value').indexOf(inputValue) === 0) {-->
+<!--                $(this).show().addClass('active');-->
+<!--            }-->
+<!--        });-->
+<!--        // 监听选项的点击事件以设置输入框的值-->
+<!--        $('.dropdown-option.active').on('click', function() {-->
+<!--            $('#dropdown-select-input').val($(this).data('value')).trigger('input'); // 更新输入框的值并触发input事件（如果需要）-->
+<!--            $('.dropdown-option').hide().removeClass('active'); // 隐藏所有选项-->
+<!--        });-->
+<!--        // 监听输入框的blur事件以隐藏选项列表（如果需要）-->
+<!--        $(this).on('blur', function() {-->
+<!--            $('.dropdown-option').hide().removeClass('active');-->
+<!--        });-->
+<!--        // 监听键盘事件以处理Enter键等（如果需要）-->
+<!--        // ...-->
+<!--    });-->
+<!--    // 初始时也可以触发一次focus事件来显示选项列表（如果需要）-->
+<!--    // $('#patient-relationship-input').trigger('focus');-->
 <!--</script>-->
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="js/initMainBar.js"></script>
 <script type="text/javascript" src="js/indexHandel.js"></script>
+<script type="text/javascript" src="js/matrix-custom-handle.js"></script>
 </body>
 </html>
