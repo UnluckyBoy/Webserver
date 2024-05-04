@@ -46,22 +46,49 @@
 
         <!-- 首页内容 -->
         <div class="main-sub-view">
-            <div class="main-sub-child-title">
-                <button class="matrix-button">患者注册</button>
-                <button class="matrix-button">窗口挂号</button>
-                <button class="matrix-button">预约挂号</button>
-                <button class="matrix-button">信息修正</button>
-                <button class="matrix-button">医保信息</button>
-                <button class="matrix-button">患者注册</button>
-                <button class="matrix-button">窗口挂号</button>
-                <button class="matrix-button">预约挂号</button>
-                <button class="matrix-button">信息修正</button>
+            <div class="main-sub-child-title" id="button-parent-view">
+                <button class="matrix-button matrix-button-active">窗口挂号</button>
+                <button class="matrix-button matrix-button-notActive">患者注册</button>
+                <button class="matrix-button matrix-button-notActive">预约挂号</button>
+                <button class="matrix-button matrix-button-notActive">信息修正</button>
+                <button class="matrix-button matrix-button-notActive">医保信息</button>
             </div>
-            <div class="main-sub-child-body">
-                <label>测试内容</label>
+            <div class="main-sub-child-body" id="main-sub-child-body">
+                <div id="page1" class="page-view open" style="--b:rgba(255,0,0,0.2)">
+
+                </div>
+                <div id="page2" class="page-view close" style="--b:rgba(0,102,255,0.2)">
+
+                </div>
+                <div id="page3" class="page-view close" style="--b:rgba(85,0,255,0.2)">
+
+                </div>
+                <div id="page4" class="page-view close" style="--b:rgba(85,255,0,0.2)">
+
+                </div>
+                <div id="page5" class="page-view close" style="--b:rgba(85,10,0,0.2)">
+
+                </div>
             </div>
         </div>
     </div>
+<!--<script>-->
+<!--    let lis = document.getElementById("button-parent-view").children;-->
+<!--    for (let i = 0 ; i < lis.length ; i ++) {-->
+<!--        lis[i].setAttribute("onclick","openPage(" + i + ")")-->
+<!--    }-->
+<!--    function openPage(index) {-->
+<!--        for (let i = 0 ; i < lis.length ; i ++) {-->
+<!--            if (lis[i] === lis[index]) {-->
+<!--                document.getElementById("page" + (i + 1)).classList.replace("close","open");-->
+<!--                lis[i].classList.replace("no-checked","checked");-->
+<!--            } else {-->
+<!--                document.getElementById("page" + (i + 1)).classList.replace("open","close");-->
+<!--                lis[i].classList.replace("checked","no-checked");-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="js/initMainBar.js"></script>
 <script type="text/javascript" src="js/indexHandel.js"></script>

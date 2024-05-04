@@ -6,7 +6,8 @@
 
 $(document).ready(function() {
     initIndexData();
-    //getAuthority();
+
+    dropdownHandel();
 });
 
 /**
@@ -32,25 +33,14 @@ function initIndexData(){
 }
 
 /**
- * 获取权限
+ * 初始化下拉框
  */
-// function getAuthority(){
-//     $.ajax({
-//         url:'/api/authority',/* /check */
-//         type: 'POST',
-//         dataType: 'json',
-//         success: function(data) {
-//             if(data.handleType){
-//                 console.log(data);
-//                 globalAuthority=data.handleData[0].authority_code;
-//                 createHtmlView();
-//             }
-//         },
-//         error: function(xhr, status, error) {
-//             console.error("AJAX请求失败: " +error);
-//         }
-//     });
-// }
+function dropdownHandel(){
+    $('#handImage').click(function() {
+        $(this).next('.matrix-dropdown-menu').toggle();
+        return !$(this).next('.matrix-dropdown-menu').is(':hidden');
+    });
+}
 
 /**
  * 创建视图html
@@ -66,12 +56,11 @@ function createHtmlView(authorities){
             '<div class="light"></div>' +
             '<div class="l-icon"><span class="fa ' + iconClass + '"></span></div>' +
             '<div class="con">' + title + '</div>' +
-            // '<div class="r-icon"></div>' +
             '</div>' +
             '</a>' +
             '</div>';
     }
-    for (var item of authorities) {
+    for (let item of authorities) {
         switch (item){
             case '5226320001':
                 // 使用函数创建菜单项:图标,Title,连接
@@ -99,7 +88,6 @@ function createHtmlView(authorities){
     }
 
     wrapHTML += '</div>'; // 结束menu的div
-    //wrapHTML += '</div>'; // 结束nav的div
     // 将动态生成的HTML插入到wrap元素中
     $('#main-bar-menu').html(wrapHTML);
 }
