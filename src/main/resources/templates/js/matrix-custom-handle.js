@@ -1,10 +1,10 @@
 $(document).ready(function() {
     // 监听输入框的focus事件以显示选项列表
-    $('#dropdown-select-input').on('focus', function() {
+    $('#emergencyContact-relationship').on('focus', function() {
         showOptions();
     });
     // 监听输入框的blur事件以隐藏选项列表
-    $('#dropdown-select-input').on('blur', function() {
+    $('#emergencyContact-relationship').on('blur', function() {
         hideOptions();
     });
     // 初始化选项(如果需要)

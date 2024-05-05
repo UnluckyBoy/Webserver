@@ -38,7 +38,13 @@ public class TimeUtil {
         }
     }
 
-    public static String formatTime(String time){
+    /**
+     * 去掉时间格式
+     * yyyy-MM-dd变成YYYYMMDD
+     * @param time
+     * @return
+     */
+    public static String timeToString(String time){
         return time.replaceAll("[- :]","");//通过replaceAll将"-"、" "、":"替换为""
     }
 
@@ -47,7 +53,7 @@ public class TimeUtil {
      * @param time
      * @return
      */
-    public static LocalDate setTime(String time){
+    private static LocalDate setTime(String time){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(time, formatter);
         return date;

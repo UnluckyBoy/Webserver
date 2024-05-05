@@ -1,6 +1,16 @@
 // document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function() {
     viewHandel();
+
+    // 获取时间
+    $('#registration-time-btn').click(function() {
+        // 获取当前日期和时间
+        //var now = new Date();
+        // 格式化日期和时间"YYYY-MM-DD HH:mm:ss"
+        //var formattedDateTime = now.toISOString().slice(0, 19).replace('T', ' ');
+        // 设置到input元素的value中
+        $('#registration-time').val(getCurrentTime());
+    });
 });
 
 /**

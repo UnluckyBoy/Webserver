@@ -1,6 +1,8 @@
 package com.matrix.webserver.controller;
 
 import com.matrix.webserver.service.AuthorityService;
+import com.matrix.webserver.tools.TimeUtil;
+import com.matrix.webserver.tools.UUIDNumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,11 +31,18 @@ public class OpenApiHandelController {
     @Autowired
     private AuthorityService authorityService;
 
-    @RequestMapping("/test")
+    @RequestMapping("/test_password")
     public ResponseEntity<Map<String, Object>> getData(@RequestParam("password") String password) {
         // 准备返回的数据
         Map<String, Object> data = new HashMap<>();
         data.put("password", passwordEncoder.encode(password));
+        return ResponseEntity.ok(data);
+    }
+    @RequestMapping("/test_id")
+    public ResponseEntity<Map<String, Object>> getID(@RequestParam("birthday") String birthday) {
+        // 准备返回的数据
+        Map<String, Object> data = new HashMap<>();
+        data.put("password",TimeUtil.timeToString(TimeUtil.GetTime(true))+birthday+ UUIDNumberUtil.randUUIDNumber());
         return ResponseEntity.ok(data);
     }
 
