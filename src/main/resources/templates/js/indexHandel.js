@@ -1,45 +1,38 @@
+/**
+ * index页面处理逻辑
+ */
 // document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function() {
-    viewHandel();
+    sub_btn_view_Click();
 
-    // 获取时间
+    // 挂号日期按钮获取时间逻辑
     $('#registration-time-btn').click(function() {
         // 获取当前日期和时间
-        //var now = new Date();
-        // 格式化日期和时间"YYYY-MM-DD HH:mm:ss"
-        //var formattedDateTime = now.toISOString().slice(0, 19).replace('T', ' ');
-        // 设置到input元素的value中
         $('#registration-time').val(getCurrentTime());
     });
 });
 
-/**
- * 主界面UI切换逻辑
- */
-function viewHandel(){
-    /*获取按钮数*/
-    //let lis = document.getElementById("button-parent-view").children;
-    let $lis = $("#button-parent-view").children();
-    // 遍历所有子元素并添加点击事件
-    for (let i = 0; i < $lis.length; i++) {
-        $lis[i].addEventListener('click', function() {
-            openPage(i);
+function sub_btn_view_Click(){
+    let $btn=$('#page1').children(0).children();
+    $btn.each(function(i, btn) { //使用.each()遍历jQuery对象
+        // 使用$(btn)将原生的DOM元素转换成jQuery对象
+        $(btn).on('click', function() {
+            //console.log('点击了按钮,其ID为:', this.id);
+            switch (this.id){
+                case 'gh_add':
+                    //console.log('点击"新增"按钮', this.id);
+                    //location.reload();
+                    break;
+                case 'gh_query':
+                    console.log('点击"查询"按钮', this.id);
+                    break;
+                case 'gh_save':
+                    console.log('点击"保存"按钮', this.id);
+                    break;
+                case 'gh_cancel':
+                    console.log('点击"退号"按钮', this.id);
+                    break;
+            }
         });
-    }
-}
-/**
- * 打开页面逻辑
- * @param index
- */
-function openPage(index) {
-    /*获取按钮数*/
-    let $lis = $("#button-parent-view").children();
-    for (let i = 0; i < $lis.length; i++) {
-        let pageId = "page" + (i + 1);
-        /*使用classList.toggle()简化操作*/
-        document.getElementById(pageId).classList.toggle("open", index === i);
-        document.getElementById(pageId).classList.toggle("close", index !== i);
-        $lis[i].classList.toggle("matrix-button-active", index === i);
-        $lis[i].classList.toggle("matrix-button-notActive", index !== i);
-    }
+    });
 }
