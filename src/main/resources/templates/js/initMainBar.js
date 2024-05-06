@@ -1,12 +1,9 @@
 //确保DOM完全加载后再执行JQuery代码
 /*导航栏通过JQuery渲染*/
-
 // 权限全局变量
 // var globalAuthority;
-
 $(document).ready(function() {
     initIndexData();
-
     dropdownHandel();
 });
 

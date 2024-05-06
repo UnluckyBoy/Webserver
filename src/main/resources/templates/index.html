@@ -40,14 +40,13 @@
                     <h2 class="primary-text" id="uName" th:text="${null?:'Admin'}"></h2>
                 </div>
             </div>
-
             <div class="line"></div>
             <div id="main-bar-menu">
                 <!--使用JQuery动态加载导航栏菜单-->
             </div>
         </div>
 
-        <!-- 首页内容 -->
+        <!-- 页面主体内容 -->
         <div class="main-sub-view">
             <div class="main-sub-child-title" id="button-parent-view">
                 <button class="matrix-button matrix-button-active">窗口挂号</button>
@@ -57,13 +56,13 @@
                 <button class="matrix-button matrix-button-notActive">退号管理</button>
                 <button class="matrix-button matrix-button-notActive">单据补打</button>
             </div>
-            <div class="main-sub-child-body" id="main-sub-registration-body"><!--main-sub-child-body-->
+            <div class="main-sub-child-body">
                 <div id="page1" class="page-view open" style="--view-back:rgba(255,0,0,0.2)">
-                    <div class="sub-btn-view">
-                        <button class="sub-matrix-button">新增</button>
-                        <button class="sub-matrix-button">查询</button>
-                        <button class="sub-matrix-button">保存</button>
-                        <button class="sub-matrix-button">退号</button>
+                    <div class="sub-btn-view" id="gh-btn-view">
+                        <button class="sub-matrix-button" id="gh_add">新增</button>
+                        <button class="sub-matrix-button" id="gh_query">查询</button>
+                        <button class="sub-matrix-button" id="gh_save">保存</button>
+                        <button class="sub-matrix-button" id="gh_cancel">退号</button>
                     </div>
                     <div class="sub-child-body">
                         <div class="info-view">
@@ -117,7 +116,7 @@
                                 <input class="birthday-input default-text" type="text" id="patient-emergencyContact">
                                 <span class="small-text default-text">联系人关系:</span>
                                 <div id="dropdown-select-container">
-                                    <input list="dropdown-select-list" class="default-text" id="emergencyContact-relationship" type="text"><!--placeholder="请选择"-->
+                                    <input list="dropdown-select-list" class="default-text" id="emergencyContact-relationship" type="text">
                                     <datalist id="dropdown-select-list">
                                         <option value="父子"></option>
                                         <option value="母子"></option>
@@ -236,9 +235,15 @@
         </div>
     </div>
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+<!--加载导航栏-->
 <script type="text/javascript" src="js/initMainBar.js"></script>
-<script type="text/javascript" src="js/indexHandel.js"></script>
-<script type="text/javascript" src="js/matrix-custom-handle.js"></script>
+<!--自定义下拉框逻辑-->
+<script type="text/javascript" src="js/custom-dropdown-select-handle.js"></script>
+<!--时间逻辑-->
 <script type="application/javascript" src="js/TimeTools.js"></script>
+<!--页面主体响应逻辑-->
+<script type="text/javascript" src="js/main-body-view-handle.js"></script>
+<!--index逻辑处理-->
+<script type="text/javascript" src="js/indexHandel.js"></script>
 </body>
 </html>

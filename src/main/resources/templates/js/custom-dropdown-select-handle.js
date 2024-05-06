@@ -1,3 +1,18 @@
+/**
+ * 自定义下拉框逻辑
+ * 使用时:加入如下
+ */
+/*
+<div id="dropdown-select-container">
+    <input list="dropdown-select-list" class="default-text" id="emergencyContact-relationship" type="text">
+    <datalist id="dropdown-select-list">
+        <option value="XXX"></option>
+        //...
+    </datalist>
+    <div class="dropdown-option" data-value="XXX"></div>
+    //...
+</div>
+ */
 $(document).ready(function() {
     // 监听输入框的focus事件以显示选项列表
     $('#emergencyContact-relationship').on('focus', function() {
