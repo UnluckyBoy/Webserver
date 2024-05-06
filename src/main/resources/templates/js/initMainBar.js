@@ -24,7 +24,7 @@ function initIndexData(){
             }
         },
         error: function(xhr, status, error) {
-            console.error("AJAX请求失败: " +error);
+            console.error("请求失败: " +error);
         }
     });
 }

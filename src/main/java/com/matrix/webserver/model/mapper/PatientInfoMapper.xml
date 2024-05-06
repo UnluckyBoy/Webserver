@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.matrix.webserver.model.mapper.PatientInfoMapper">
+    <!--查询逻辑-->
+    <select id="queryPatient" parameterType="String" resultType="PatientInfo">
+        SELECT
+            patient_id,
+            patient_name,
+            patient_gender,
+            patient_idCard,
+            patient_birth,
+            create_time,
+            patient_nationality,
+            patient_nativePlace,
+            patient_nation,
+            patient_occupation,
+            patient_maritalStatus,
+            patient_phone,
+            patient_age,
+            poverty_sign,
+            patient_emergencyContact,
+            patient_relationship,
+            patient_contactPhone,
+            patient_homeAddress,
+            patient_workAddress,
+            nowAddress_province,
+            nowAddress_town,
+            nowAddress_prefecture,
+            child_sign,
+            guardian_name,
+            guardian_idCard,
+            guardian_phone
+        FROM
+            patient_info_table
+        WHERE
+            (patient_name =#{keyParam})
+           OR (patient_idCard =#{keyParam});
+    </select>
+</mapper>

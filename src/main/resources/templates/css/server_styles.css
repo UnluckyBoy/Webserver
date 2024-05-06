@@ -323,7 +323,7 @@ a{
     height: 32px;
     background: #57aaff;
     border-radius: 6px;
-    margin-top: 0px;
+    margin-top: 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -334,7 +334,7 @@ a{
     width: 100%;
     height: 100vh;
     background: white;
-    margin-top: 0px;
+    margin-top: 0;
     box-sizing: border-box;
     display: flex;
     /*flex-wrap: wrap;*/
@@ -349,8 +349,11 @@ a{
     box-sizing: border-box;
     display: flex;
     border:1px solid #0c0101;
-    margin-left: 2px;
-    margin-right: 2px;
+    border-radius: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left: 0;
+    margin-right: 0;
     flex-direction: column;
 }
 /*自定义滚动条*/
@@ -422,44 +425,10 @@ a{
     /* 动画效果，如淡入淡出 */
     transition: opacity 0.3s ease;
 }
-
-/*input,*/
-/*button {*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    background: none;*/
-/*    font-family: Verdana, Geneva, Tahoma, sans-serif*/
-/*}*/
-/*input{*/
-/*    display: block;*/
-/*    width: 100%;*/
-/*    margin-top: 5px;*/
-/*    font-size: 16px;*/
-/*    border-bottom: 1px solid rgba(109, 93, 93, 0.4);*/
-/*    text-align: center;*/
-/*    !*font-family: Verdana, Geneva, Tahoma, sans-serif;*!*/
-/*    padding-bottom: 5px;*/
-/*}*/
-/*input{*/
-/*    !*display: block;*!*/
-/*    margin: 0 auto;*/
-/*    width: 260px;*/
-/*    height: 36px;*/
-/*    border-radius: 30px;*/
-/*    color: #fff;*/
-/*    !*font-size: 15px;*!*/
-/*    cursor: pointer;*/
-/*}*/
-/*button {*/
-/*    display: block;*/
-/*    margin: 0 auto;*/
-/*    width: 260px;*/
-/*    height: 36px;*/
-/*    border-radius: 30px;*/
-/*    color: #fff;*/
-/*    font-size: 15px;*/
-/*    cursor: pointer;*/
-/*}*/
+.input-rm-bg{
+    border: none;
+    outline: none;
+}
 .global-input,
 .main-button{
     border: none;
@@ -905,7 +874,7 @@ label span {
 }
 .matrix-button,
 .sub-matrix-button,
-.matrix-getTime-button{
+.matrix-auto-button{
     padding: 0 0; /* 内边距 */
     margin: 0 2px; /* 外边距，用于在按钮之间添加间距 */
     border: none; /* 去除边框 */
@@ -925,7 +894,7 @@ label span {
     width: 42px;
     height: 26px;
 }
-.matrix-getTime-button{
+.matrix-auto-button{
     /*width: 64px;*/
     height: 20px;
 }
@@ -935,7 +904,7 @@ label span {
 .sub-matrix-button:hover{
     background-color: #3fd1f8;
 }
-.matrix-getTime-button:hover{
+.matrix-auto-button:hover{
     background-color: #3fd1f8;
 }
 .matrix-button-notActive{
@@ -946,9 +915,81 @@ label span {
 }
 .left-label{
     padding: 0;
-    margin: 0;
     border: none;
-    margin-left: 2px;
+    margin: 0 0 0 2px;
+}
+
+/**
+*弹窗效果
+*隐藏弹窗,直到需要显示时
+ */
+.modal {
+    display: none; /*默认隐藏*/
+    position: fixed;
+    z-index: 1; /*最上层*/
+    padding-top: 100px; /*位置*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /*如果需要,启用滚动*/
+    background-color: rgb(0,0,0); /*背景色*/
+    background-color: rgba(0,0,0,0.4);
+}
+/* 弹窗内容 */
+.modal-body {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%; /*根据屏幕大小*/
+    max-width: 800px; /*最大宽度*/
+    height: 80%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /*居中*/
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center; !* 垂直居中 *!*/
+    /*justify-content: center; !* 水平居中（如果是水平方向的内容）*!*/
+}
+.modal-body-title{
+    width: 100%;
+    height: 36px;
+    margin-top: 0;
+    text-align: center;
+}
+.modal-body-main{
+    flex: 1;
+    width: 100%;
+    padding: 10px 20px;
+    background: #d0f5ca;
+}
+.modal-body-foot{
+    width: 100%;
+    height: 36px;
+    margin-bottom: 0;
+    text-align: center;
+}
+/* 弹窗关闭按钮 */
+.model-close{
+    /*float: right;*/
+    width: 22px;
+    height: 22px;
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 22px; /* 垂直居中单行文本 */
+    text-align: center; /* 水平居中单行文本 */
+    margin-left: auto; /* 将元素推送到右侧 */
+}
+.model-close:hover,
+.model-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /*文字效果*/

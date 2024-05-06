@@ -2,8 +2,10 @@ package com.matrix.webserver.controller;
 
 import com.google.gson.Gson;
 import com.matrix.webserver.model.AuthorityInfo;
+import com.matrix.webserver.model.PatientInfo;
 import com.matrix.webserver.model.UserInfo;
 import com.matrix.webserver.service.AuthorityService;
+import com.matrix.webserver.service.PatientInfoService;
 import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName DataHandelController
@@ -34,6 +38,8 @@ import java.util.List;
 public class DataHandelController {
     @Autowired
     private AuthorityService authorityService;
+    @Autowired
+    private PatientInfoService patientInfoService;
 
     private static Gson gson=new Gson();//Json数据对象
 
@@ -67,6 +73,21 @@ public class DataHandelController {
             System.out.println("返回信息:"+gson.toJson(WebServerResponse.success("请求成功",authorityInfoList)));
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.success("请求成功",authorityInfoList)));
+        }
+    }
+
+    @RequestMapping("/patientInfo")
+    public void getPatient(@RequestParam("patient") String patient,
+                           Authentication authentication,HttpServletResponse response) throws IOException{
+        PatientInfo patientInfo=patientInfoService.queryPatient(patient);
+        // 准备返回的数据
+        if(patientInfo==null){
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("请求失败")));
+        }else{
+            System.out.println("返回信息:"+gson.toJson(WebServerResponse.success("请求成功",patientInfo)));
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success("请求成功",patientInfo)));
         }
     }
 
