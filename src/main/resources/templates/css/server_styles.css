@@ -463,11 +463,14 @@ a{
     font-size: 15px;
     cursor: pointer;
 }
-.name-input{
+.large-input{
+    width: 86px;
+}
+.medium-input{
     width: 64px;
 }
-.birthday-input{
-    width: 86px;
+.short-input{
+    width: 32px;
 }
 /* 输入框下方显示选项列表的容器样式 */
 #dropdown-select-container {
