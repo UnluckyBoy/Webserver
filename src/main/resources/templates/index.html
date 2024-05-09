@@ -76,10 +76,6 @@
                             <input class="input-rm-bg medium-input default-text bold-text" type="text" id="patient-name" readonly>
                             <span class="small-text default-text bold-text">性别:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg short-input default-text bold-text" type="text" id="patient-gender" readonly>
-<!--                            <select class="input-rm-bg default-text" id="patient-gender">-->
-<!--                                <option class="default-text" value="男">男</option>-->
-<!--                                <option class="default-text" value="女">女</option>-->
-<!--                            </select>-->
                             <span class="small-text default-text bold-text">身份证号:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg default-text" type="text" id="patient-idCard" readonly>
                             <span class="small-text default-text">拼音代码:</span>
@@ -95,51 +91,19 @@
                             <br>
                             <span class="small-text default-text">职业:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-occupation" readonly>
-<!--                            <select class="input-rm-bg default-text" id="patient-occupation">-->
-<!--                                <option class="default-text" value="农民">农民</option>-->
-<!--                                <option class="default-text" value="职工">职工</option>-->
-<!--                                <option class="default-text" value="其他">其他</option>-->
-<!--                            </select>-->
                             <span class="small-text default-text">婚姻状况:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-maritalStatus" readonly>
-<!--                            <select class="input-rm-bg default-text" id="patient-maritalStatus">-->
-<!--                                <option class="default-text" value="未婚">未婚</option>-->
-<!--                                <option class="default-text" value="已婚">已婚</option>-->
-<!--                                <option class="default-text" value="离异">离异</option>-->
-<!--                            </select>-->
                             <span class="small-text default-text">电话:</span>
                             <input class="input-rm-bg large-input default-text" type="text" id="patient-phone" readonly>
                             <span class="small-text default-text">年龄:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-age" readonly>
                             <span class="small-text default-text bold-text">贫困户:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg short-input default-text" type="text" id="poverty-sign" readonly>
-<!--                            <select class="input-rm-bg default-text" id="poverty-sign">-->
-<!--                                <option class="default-text" value="否">否</option>-->
-<!--                                <option class="default-text" value="是">是</option>-->
-<!--                            </select>-->
                             <br>
                             <span class="small-text default-text">联系人:</span>
                             <input class="input-rm-bg large-input default-text" type="text" id="patient-emergencyContact" readonly>
                             <span class="small-text default-text">联系人关系:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="emergencyContact-relationship" readonly>
-<!--                            <div id="dropdown-select-container">-->
-<!--                                <input list="dropdown-select-list" class="input-rm-bg default-text" id="emergencyContact-relationship" type="text">-->
-<!--                                <datalist id="dropdown-select-list">-->
-<!--                                    <option value="父子"></option>-->
-<!--                                    <option value="母子"></option>-->
-<!--                                    <option value="兄弟"></option>-->
-<!--                                    <option value="夫妻"></option>-->
-<!--                                    <option value="同事"></option>-->
-<!--                                    <option value="其他"></option>-->
-<!--                                </datalist>-->
-<!--                                &lt;!&ndash; 模拟的下拉列表选项 &ndash;&gt;-->
-<!--                                <div class="dropdown-option" data-value="父子"></div>-->
-<!--                                <div class="dropdown-option" data-value="母子"></div>-->
-<!--                                <div class="dropdown-option" data-value="兄弟"></div>-->
-<!--                                <div class="dropdown-option" data-value="夫妻"></div>-->
-<!--                                <div class="dropdown-option" data-value="同事"></div>-->
-<!--                                <div class="dropdown-option" data-value="其他"></div>-->
-<!--                            </div>-->
                             <span class="small-text default-text">联系人电话:</span>
                             <input class="input-rm-bg large-input default-text" type="text" id="patient-contactPhone" readonly>
                             <br>
@@ -154,16 +118,18 @@
                             <span class="small-text default-text">市(州、区)</span>
                             <input class="input-rm-bg default-text" type="text" id="nowAddress-prefecture" readonly>
                             <span class="small-text default-text">县</span><br>
-                            <div class="checkbox" for="child-sign">
-                                <span class="small-text danger-text bold-text">儿童标志</span>
-                                <input type="checkbox" id="child-sign" name="child-sign" required>
-                            </div>
+<!--                            <div class="checkbox" for="child-sign">-->
+<!--                                <span class="small-text danger-text bold-text">儿童标志</span>-->
+<!--                                <input type="checkbox" id="child-sign" name="child-sign" required>-->
+<!--                            </div>-->
+                            <span class="small-text danger-text bold-text">儿童标志</span>
+                            <input class="input-rm-bg short-input default-text" type="text" id="child-sign" readonly>
                             <span class="small-text default-text">监护人姓名:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="guardian-name">
+                            <input class="input-rm-bg medium-input default-text" type="text" id="guardian-name" readonly>
                             <span class="small-text default-text">监护人身份证号:</span>
-                            <input class="input-rm-bg default-text" type="text" id="guardian-idCard">
+                            <input class="input-rm-bg default-text" type="text" id="guardian-idCard" readonly>
                             <span class="small-text default-text">监护人联系电话:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="guardian-phone"><br>
+                            <input class="input-rm-bg large-input default-text" type="text" id="guardian-phone" readonly><br>
                         </div>
                         <br>
                         <span class="default-text bold-text">挂号费用</span>
