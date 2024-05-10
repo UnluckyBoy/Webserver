@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.matrix.webserver.model.AuthorityInfo;
 import com.matrix.webserver.model.PatientInfo;
 import com.matrix.webserver.model.UserInfo;
+import com.matrix.webserver.model.mapper.GhDataMapper;
 import com.matrix.webserver.service.AuthorityService;
 import com.matrix.webserver.service.PatientInfoService;
+import com.matrix.webserver.tools.TimeUtil;
 import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,6 +43,8 @@ public class DataHandelController {
     private AuthorityService authorityService;
     @Autowired
     private PatientInfoService patientInfoService;
+    @Autowired
+    private GhDataMapper ghDataMapper;
 
     private static Gson gson=new Gson();//Json数据对象
 
@@ -88,6 +93,21 @@ public class DataHandelController {
             System.out.println("返回信息:"+gson.toJson(WebServerResponse.success("请求成功",patientInfo)));
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.success("请求成功",patientInfo)));
+        }
+    }
+
+    @RequestMapping("/gh_update_data")
+    public void ghUpdateHandle(@RequestBody Map<String, Object> requestBody,
+                               HttpServletResponse response) throws IOException{
+        requestBody.put("gh_number", TimeUtil.timeToString(TimeUtil.GetTime(false))+String.format("%06d", (ghDataMapper.get_gh_count()+1)));
+        System.out.println("requestBody:"+requestBody.toString());
+        boolean resultAdd=ghDataMapper.gh_add(requestBody);
+        if(resultAdd){
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success()));
+        }else{
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure()));
         }
     }
 

@@ -43,6 +43,14 @@ public class WebServerResponse {
         resultResponse.setHandleData(object);
         return resultResponse;
     }
+    public static WebServerResponse failure(){
+        WebServerResponse resultResponse=new WebServerResponse();
+        resultResponse.setHandleType(false);
+        resultResponse.setHandleCode(404);
+        resultResponse.setHandleMessage("内部错误");
+        resultResponse.setHandleData(null);
+        return resultResponse;
+    }
     public static WebServerResponse failure(AuthenticationException exception){
         WebServerResponse resultResponse=new WebServerResponse();
         resultResponse.setHandleType(false);

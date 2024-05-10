@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.matrix.webserver.model.mapper.GhDataMapper">
+    <!--查询逻辑-->
+    <select id="get_gh_count" resultType="int">
+        SELECT
+            count( 1 )
+        FROM
+            gh_data_table
+        WHERE
+            cancel_sign = '否'
+          AND receive_sign = '否'
+          AND DATE(gh_createTime) = CURDATE();
+    </select>
+    <!--插入逻辑-->
+    <insert id="gh_add" parameterType="java.util.Map">
+        INSERT INTO gh_data_table
+            (gh_number,gh_type,insurance_type,expense_type,patient_id,operator_account,
+             gh_createTime,gh_department,receive_physician,exigency_sign,repeated_sign)
+        VALUES
+            (#{gh_number},#{gh_type},#{insurance_type},#{expense_type},#{patient_id},#{operator_account},
+             #{gh_createTime},#{gh_department},#{receive_physician},#{exigency_sign},#{repeated_sign});
+    </insert>
+</mapper>

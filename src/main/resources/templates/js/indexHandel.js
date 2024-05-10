@@ -25,15 +25,15 @@ $(document).ready(function() {
             switch (this.id){
                 case 'gh_add':
                     //console.log('点击"新增"按钮', this.id);
-                    //location.reload();
-                    clearPage1ViewElement();
+                    add_Patient();
                     break;
                 case 'gh_query':
                     console.log('点击"查询"按钮', this.id);
                     break;
                 case 'gh_save':
                     console.log('点击"保存"按钮', this.id);
-                    console.log("患者ID:"+globalPatient.patient_id);
+                    //console.log("患者ID:"+globalPatient.patient_id);
+                    update_gh_handle();
                     break;
                 case 'gh_cancel':
                     console.log('点击"退号"按钮', this.id);
@@ -43,20 +43,48 @@ $(document).ready(function() {
     });
 
     /**
-     * 获取组件
+     * 挂号
      */
-    function clearPage1ViewElement(){
+    function add_Patient(){
         showModal();
         $('#read-idCard-btn').on('click',function (){
             if($('#read-idCard-input').val().trim()!==''){
                 console.log("身份证号:",$('#read-idCard-input').val());
                 getPatientInfoHandle($('#read-idCard-input').val());
-                //hideModal();
             }else{
                 alert("身份证为空");
             }
         });
     }
+    /*清空组件*/
+    function clearPage1ViewElement(){
+        $('#patient-name').val('');
+        $('#patient-gender').val('');
+        $('#patient-idCard').val('');
+        $('#patient-birth').val('');
+        $('#patient-nationality').val('');
+        $('#patient-nativePlace').val('');
+        $('#patient-nation').val('');
+        $('#patient-occupation').val('');
+        $('#patient-maritalStatus').val('');
+        $('#patient-phone').val('');
+        $('#patient-age').val('');
+        $('#poverty-sign').val('');
+        $('#patient-emergencyContact').val('');
+        $('#emergencyContact-relationship').val('');
+        $('#patient-contactPhone').val('');
+        $('#patient-homeAddress').val('');
+        $('#patient-workAddress').val('');
+        $('#nowAddress-province').val('');
+        $('#nowAddress-town').val('');
+        $('#nowAddress-prefecture').val('');
+        $('#child-sign').val('');
+        $('#guardian-name').val('');
+        $('#guardian-idCard').val('');
+        $('#guardian-phone').val('');
+    }
+
+    /*查询用户信息*/
     function getPatientInfoHandle(patient){
         $.ajax({
             url:'/api/patientInfo',
@@ -69,9 +97,7 @@ $(document).ready(function() {
                     hideModal();//隐藏弹窗
                     globalPatient=data.handleData;
                     /*绑定信息*/
-                    //$("#insurance-id").val(globalPatient.);
-                    //$("#appointment-date").val();
-                    $("#patient-name").val(globalPatient.patient_name);
+                    $('#patient-name').val(globalPatient.patient_name);
                     $('#patient-gender').val(globalPatient.patient_gender);
                     $('#patient-idCard').val(globalPatient.patient_idCard);
                     $('#patient-birth').val(globalPatient.patient_birth);
@@ -99,6 +125,59 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 console.error("请求失败: " +error);
+            }
+        });
+    }
+    /*挂号逻辑*/
+    function update_gh_handle(){
+        var gh_type=$('#registration-type').val().trim();
+        var insurance_type=$('#insurance-type').val().trim();
+        var expense_type=$('#registration-variety').val().trim();
+        //var patient_id=globalPatient.patient_id;
+        //var operator_account=$('#uName').text();
+        var gh_createTime=$('#registration-time').val().trim();
+        var gh_department=$('#registration-department').val().trim();
+        var receive_physician=$('#receive_physician').val().trim();
+        var exigency_sign,repeated_sign;
+        //var isChecked=$('#reexamination').prop('checked');
+        if($('#reexamination').prop('checked')){
+            exigency_sign='是';
+        }else{
+            exigency_sign='否';
+        }
+        if($('#emergency-treatment').prop('checked')){
+            repeated_sign='是';
+        }else{
+            repeated_sign='否';
+        }
+        if(gh_createTime===''){/*如果没有在前端点击获取日期，则自动补全*/
+            gh_createTime=getCurrentTime();
+        }
+
+        // 封装数据
+        var requestBody = {
+            gh_type:gh_type,
+            insurance_type: insurance_type,
+            expense_type: expense_type,
+            patient_id: globalPatient.patient_id,
+            operator_account: $('#uName').text(),
+            gh_createTime: gh_createTime,
+            gh_department: gh_department,
+            receive_physician: receive_physician,
+            exigency_sign: exigency_sign,
+            repeated_sign: repeated_sign
+        };
+        $.ajax({
+            url: '/api/gh_update_data',  // 替换为实际的 Spring Boot 后端端点
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(requestBody),
+            success: function(response) {
+                console.log('数据成功发送到后端',response);
+                clearPage1ViewElement();//清空用户信息
+            },
+            error: function(error) {
+                console.error('发送数据到后端时出错', error);
             }
         });
     }

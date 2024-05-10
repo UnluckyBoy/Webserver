@@ -118,11 +118,7 @@
                             <span class="small-text default-text">市(州、区)</span>
                             <input class="input-rm-bg default-text" type="text" id="nowAddress-prefecture" readonly>
                             <span class="small-text default-text">县</span><br>
-<!--                            <div class="checkbox" for="child-sign">-->
-<!--                                <span class="small-text danger-text bold-text">儿童标志</span>-->
-<!--                                <input type="checkbox" id="child-sign" name="child-sign" required>-->
-<!--                            </div>-->
-                            <span class="small-text danger-text bold-text">儿童标志</span>
+                            <span class="small-text danger-text bold-text">儿童</span>
                             <input class="input-rm-bg short-input default-text" type="text" id="child-sign" readonly>
                             <span class="small-text default-text">监护人姓名:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="guardian-name" readonly>
@@ -156,7 +152,7 @@
                             </select>
                             <button class="matrix-auto-button center-text" id="registration-time-btn">挂号日期</button>
                             <input class="input-rm-bg default-text" type="text" id="registration-time">
-                            <button class="matrix-auto-button blue-text bold-text center-text">预约</button>
+<!--                            <button class="matrix-auto-button blue-text bold-text center-text">预约</button>-->
                             <br>
                             <span class="small-text default-text bold-text">挂号科室:<span class="center-text danger-text">*</span></span>
                             <select class="input-rm-bg default-text" id="registration-department">
@@ -170,19 +166,23 @@
                                 <option class="default-text" value="内二科">内二科</option>
                             </select>
                             <span class="small-text default-text">接诊医生:</span>
-                            <select class="input-rm-bg default-text" id="registration-physician">
+                            <select class="input-rm-bg default-text" id="receive_physician">
                                 <option class="default-text" value="张医师">张医师</option>
                                 <option class="default-text" value="李医师">李医师</option>
                                 <option class="default-text" value="王医师">王医师</option>
                             </select>
+<!--                            <span class="small-text blue-text bold-text">复诊</span>-->
+<!--                            <input type="checkbox" id="reexamination" name="agreement" required>-->
+<!--                            <span class="small-text blue-text bold-text">急诊</span>-->
+<!--                            <input type="checkbox" id="emergency-treatment" name="agreement" required>-->
                             <div class="inline-elements">
                                 <div class="checkbox" for="reexamination">
                                     <span class="small-text blue-text bold-text">复诊</span>
-                                    <input type="checkbox" id="reexamination" name="agreement" required>
+                                    <input type="checkbox" id="reexamination" name="reexamination" required>
                                 </div>
                                 <div class="checkbox" for="emergency-treatment">
                                     <span class="small-text blue-text bold-text">急诊</span>
-                                    <input type="checkbox" id="emergency-treatment" name="agreement" required>
+                                    <input type="checkbox" id="emergency-treatment" name="emergency-treatment" required>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +303,7 @@
         </div>
     </div>
 </div>
-<!-- 弹窗 -->
+<!-- 新增挂号弹窗 -->
 <div class="modal" id="modal">
     <div class="modal-body">
         <span class="model-close">&times;</span>
