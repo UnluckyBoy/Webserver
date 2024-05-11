@@ -177,7 +177,7 @@ $(document).ready(function() {
                     console.log('数据成功发送到后端',response);
                     clearPage1ViewElement();//清空用户信息
                     /*打印*/
-                    //window.print();
+                    window.print();
                 }else{
                     alert("异常:"+response.handleMessage);
                 }

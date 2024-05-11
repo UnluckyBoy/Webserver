@@ -104,9 +104,9 @@ public class DataHandelController {
         System.out.println("requestBody:"+requestBody.toString());
         boolean resultAdd=ghDataMapper.gh_add(requestBody);
         if(resultAdd){
-            String temp=PrintTool.doPrintHandle();
+            //String temp=PrintTool.doPrintHandle();
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.success(temp)));
+            response.getWriter().write(gson.toJson(WebServerResponse.success("挂号成功")));
         }else{
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.failure("挂号失败")));

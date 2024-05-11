@@ -33,6 +33,25 @@
         visibility: visible;
     }
 }
+/*打印样式*/
+/* 这些样式将用于打印 */
+@media print {
+    body {
+        font-size: 12pt; /* 通常使用pt单位以适应打印 */
+        color: #000; /* 打印时通常使用黑色字体 */
+        background-color: #fff !important; /* 确保背景色为白色，以防打印背景图 */
+    }
+    /* 隐藏不需要打印的元素 */
+    .no-print, .no-print * {
+        display: none !important;
+    }
+    /* 可能需要调整布局，比如移除边距和填充 */
+    .container {
+        margin: 0;
+        padding: 0;
+    }
+    /* ... 其他打印样式 ... */
+}
 
 *,
 *:before,
@@ -881,7 +900,7 @@ label span {
     padding: 0 0; /* 内边距 */
     margin: 0 2px; /* 外边距，用于在按钮之间添加间距 */
     border: none; /* 去除边框 */
-    border-radius: 4px; /* 圆角 */
+    border-radius: 2px; /* 圆角 */
     background-color: rgba(255,255,255,0.4); /* 背景色 */
     color: black; /* 文字颜色 */
     text-align: center; /* 文字居中 */
@@ -914,7 +933,7 @@ label span {
     background-color: rgba(255,255,255,0.4);
 }
 .matrix-button-active{
-    background-color: #3166db;
+    background-color: #3d56ae;
 }
 .left-label{
     padding: 0;
