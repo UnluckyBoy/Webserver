@@ -7,6 +7,7 @@ import com.matrix.webserver.model.UserInfo;
 import com.matrix.webserver.model.mapper.GhDataMapper;
 import com.matrix.webserver.service.AuthorityService;
 import com.matrix.webserver.service.PatientInfoService;
+import com.matrix.webserver.tools.PrintTool;
 import com.matrix.webserver.tools.TimeUtil;
 import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.http.HttpServletResponse;
@@ -103,11 +104,12 @@ public class DataHandelController {
         System.out.println("requestBody:"+requestBody.toString());
         boolean resultAdd=ghDataMapper.gh_add(requestBody);
         if(resultAdd){
+            String temp=PrintTool.doPrintHandle();
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.success()));
+            response.getWriter().write(gson.toJson(WebServerResponse.success(temp)));
         }else{
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.failure()));
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("挂号失败")));
         }
     }
 

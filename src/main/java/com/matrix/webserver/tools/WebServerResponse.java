@@ -35,6 +35,14 @@ public class WebServerResponse {
         resultResponse.setHandleData(null);
         return resultResponse;
     }
+    public static WebServerResponse success(String message){
+        WebServerResponse resultResponse=new WebServerResponse();
+        resultResponse.setHandleType(true);
+        resultResponse.setHandleCode(200);
+        resultResponse.setHandleMessage(message);
+        resultResponse.setHandleData(null);
+        return resultResponse;
+    }
     public static WebServerResponse success(String message,Object object){
         WebServerResponse resultResponse=new WebServerResponse();
         resultResponse.setHandleType(true);

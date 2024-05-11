@@ -173,8 +173,14 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(requestBody),
             success: function(response) {
-                console.log('数据成功发送到后端',response);
-                clearPage1ViewElement();//清空用户信息
+                if(response.handleType){
+                    console.log('数据成功发送到后端',response);
+                    clearPage1ViewElement();//清空用户信息
+                    /*打印*/
+                    //window.print();
+                }else{
+                    alert("异常:"+response.handleMessage);
+                }
             },
             error: function(error) {
                 console.error('发送数据到后端时出错', error);
