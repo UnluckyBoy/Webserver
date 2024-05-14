@@ -31,7 +31,7 @@ $(document).ready(function() {
                     console.log('点击"查询"按钮', this.id);
                     break;
                 case 'gh_save':
-                    console.log('点击"保存"按钮', this.id);
+                    //console.log('点击"保存"按钮', this.id);
                     //console.log("患者ID:"+globalPatient.patient_id);
                     update_gh_handle();
                     break;
@@ -133,13 +133,10 @@ $(document).ready(function() {
         var gh_type=$('#registration-type').val().trim();
         var insurance_type=$('#insurance-type').val().trim();
         var expense_type=$('#registration-variety').val().trim();
-        //var patient_id=globalPatient.patient_id;
-        //var operator_account=$('#uName').text();
         var gh_createTime=$('#registration-time').val().trim();
         var gh_department=$('#registration-department').val().trim();
         var receive_physician=$('#receive_physician').val().trim();
         var exigency_sign,repeated_sign;
-        //var isChecked=$('#reexamination').prop('checked');
         if($('#reexamination').prop('checked')){
             exigency_sign='是';
         }else{
@@ -154,37 +151,43 @@ $(document).ready(function() {
             gh_createTime=getCurrentTime();
         }
 
-        // 封装数据
-        var requestBody = {
-            gh_type:gh_type,
-            insurance_type: insurance_type,
-            expense_type: expense_type,
-            patient_id: globalPatient.patient_id,
-            operator_account: $('#uName').text(),
-            gh_createTime: gh_createTime,
-            gh_department: gh_department,
-            receive_physician: receive_physician,
-            exigency_sign: exigency_sign,
-            repeated_sign: repeated_sign
-        };
-        $.ajax({
-            url: '/api/gh_update_data',  // 替换为实际的 Spring Boot 后端端点
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(requestBody),
-            success: function(response) {
-                if(response.handleType){
-                    console.log('数据成功发送到后端',response);
-                    clearPage1ViewElement();//清空用户信息
-                    /*打印*/
-                    window.print();
-                }else{
-                    alert("异常:"+response.handleMessage);
+        /*检查挂号之前是否获取了患者信息*/
+        if(globalPatient==null){
+            alert("请新增患者信息!")
+        }else{
+            // 封装数据
+            var requestBody = {
+                gh_type:gh_type,
+                insurance_type: insurance_type,
+                expense_type: expense_type,
+                patient_id: globalPatient.patient_id,
+                operator_account: $('#uName').text(),
+                gh_createTime: gh_createTime,
+                gh_department: gh_department,
+                receive_physician: receive_physician,
+                exigency_sign: exigency_sign,
+                repeated_sign: repeated_sign
+            };
+            $.ajax({
+                url: '/api/gh_update_data',  // 替换为实际的 Spring Boot 后端端点
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(requestBody),
+                success: function(response) {
+                    if(response.handleType){
+                        console.log('数据成功发送到后端',response);
+                        clearPage1ViewElement();//清空用户信息
+                        /*打印*/
+                        // window.print();
+                        gh_print(requestBody);
+                    }else{
+                        alert("异常:"+response.handleMessage);
+                    }
+                },
+                error: function(error) {
+                    console.error('发送数据到后端时出错', error);
                 }
-            },
-            error: function(error) {
-                console.error('发送数据到后端时出错', error);
-            }
-        });
+            });
+        }
     }
 });

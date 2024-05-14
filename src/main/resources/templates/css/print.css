@@ -1,0 +1,25 @@
+/*打印样式*/
+/* 这些样式将用于打印 */
+@media print {
+    body * {
+        font-size: 12pt; /* 通常使用pt单位以适应打印 */
+        color: #000; /* 打印时通常使用黑色字体 */
+        background-color: #fff !important; /* 确保背景色为白色，以防打印背景图 */
+        /*visibility: hidden; !* 隐藏所有元素 *!*/
+    }
+    /* 隐藏不需要打印的元素 */
+    .no-print,.no-print * {
+        display: none !important;
+    }
+    .print-area {
+        /* 这里可以添加额外的打印样式 */
+    }
+    /* 隐藏所有链接 */
+    a[href]:after {
+        content: none !important;
+    }
+    /* 隐藏页脚或其他不需要打印的元素 */
+    .footer,.other-unwanted-elements {
+        display: none !important;
+    }
+}

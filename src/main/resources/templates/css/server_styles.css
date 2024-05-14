@@ -33,25 +33,6 @@
         visibility: visible;
     }
 }
-/*打印样式*/
-/* 这些样式将用于打印 */
-@media print {
-    body {
-        font-size: 12pt; /* 通常使用pt单位以适应打印 */
-        color: #000; /* 打印时通常使用黑色字体 */
-        background-color: #fff !important; /* 确保背景色为白色，以防打印背景图 */
-    }
-    /* 隐藏不需要打印的元素 */
-    .no-print, .no-print * {
-        display: none !important;
-    }
-    /* 可能需要调整布局，比如移除边距和填充 */
-    .container {
-        margin: 0;
-        padding: 0;
-    }
-    /* ... 其他打印样式 ... */
-}
 
 *,
 *:before,
