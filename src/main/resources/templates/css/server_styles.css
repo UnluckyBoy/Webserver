@@ -872,7 +872,8 @@ label span {
 /*同一水平上*/
 .inline-elements {
     display: flex;
-    align-items: center; /* 垂直居中 */
+    align-items: center;
+    justify-content:flex-start;
     margin: 2px;
 }
 .matrix-button,
@@ -948,10 +949,11 @@ label span {
     width: 80%; /*根据屏幕大小*/
     max-width: 800px; /*最大宽度*/
     height: 80%;
+    max-height: 420px;
     position: relative;
-    top: 50%;
+    top: 36%;
     transform: translateY(-50%); /*居中*/
-    border-radius: 6px;
+    border-radius: 2px;
     display: flex;
     flex-direction: column;
     /*align-items: center; !* 垂直居中 *!*/
@@ -1016,6 +1018,10 @@ label span {
 }
 .center-text{
     text-align: center;
+}
+.center-item{
+    /*父布局必须为display:flex;*/
+    align-items: center;
 }
 .small-text{
     font-size: small;

@@ -5,21 +5,31 @@
         font-size: 12pt; /* 通常使用pt单位以适应打印 */
         color: #000; /* 打印时通常使用黑色字体 */
         background-color: #fff !important; /* 确保背景色为白色，以防打印背景图 */
-        /*visibility: hidden; !* 隐藏所有元素 *!*/
     }
-    /* 隐藏不需要打印的元素 */
-    .no-print,.no-print * {
-        display: none !important;
+    title {
+        display: none;
     }
-    .print-area {
-        /* 这里可以添加额外的打印样式 */
+    /*隐藏页面右下角的页码*/
+    .page-break {
+        display: none;
     }
-    /* 隐藏所有链接 */
-    a[href]:after {
-        content: none !important;
+    /*移除页边距,避免页面内容在打印时被截断*/
+    @page {
+        margin: 0;
+        size: auto;/*自动大小,可改变大小*/
     }
-    /* 隐藏页脚或其他不需要打印的元素 */
-    .footer,.other-unwanted-elements {
-        display: none !important;
+    .print-area,
+    .print-area * {
+        display:flex;/*控制内部元素中心对齐:text-align: center*/
+        flex-direction: column;
+        visibility: visible; /* 显示打印区域的元素 */
+    }
+    .print-area > :first-child {
+        /*仅应用于.print-area的直接子元素中的第一个*/
+        margin-top: 20%;
+    }
+    .not-print,
+    .not-print * {
+        display: none; /* 隐藏打印区域的元素 */
     }
 }

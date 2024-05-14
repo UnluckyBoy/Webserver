@@ -179,7 +179,7 @@ $(document).ready(function() {
                         clearPage1ViewElement();//清空用户信息
                         /*打印*/
                         // window.print();
-                        gh_print(requestBody);
+                        gh_print(globalPatient,requestBody);
                     }else{
                         alert("异常:"+response.handleMessage);
                     }
