@@ -50,7 +50,7 @@ public class DataHandelController {
     private static Gson gson=new Gson();//Json数据对象
 
     /**
-     * 获取认证用户信息
+     * 获取认证用户信息并返回
      * @param authentication
      * @param response
      * @throws IOException
@@ -68,6 +68,12 @@ public class DataHandelController {
         }
     }
 
+    /**
+     * 权限获取
+     * @param authentication
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/authority")
     public void getAuthority(Authentication authentication,HttpServletResponse response) throws IOException{
         UserInfo userInfo=getUserInfo(authentication);
@@ -82,6 +88,13 @@ public class DataHandelController {
         }
     }
 
+    /**
+     * 患者信息查询
+     * @param patient
+     * @param authentication
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/patientInfo")
     public void getPatient(@RequestParam("patient") String patient,
                            Authentication authentication,HttpServletResponse response) throws IOException{
@@ -97,6 +110,12 @@ public class DataHandelController {
         }
     }
 
+    /**
+     * 挂号信息回写插值
+     * @param requestBody
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/gh_update_data")
     public void ghUpdateHandle(@RequestBody Map<String, Object> requestBody,
                                HttpServletResponse response) throws IOException{
@@ -106,7 +125,7 @@ public class DataHandelController {
         if(resultAdd){
             //String temp=PrintTool.doPrintHandle();
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.success("挂号成功")));
+            response.getWriter().write(gson.toJson(WebServerResponse.success("挂号成功",requestBody)));
         }else{
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.failure("挂号失败")));

@@ -878,6 +878,8 @@ label span {
 }
 .matrix-button,
 .sub-matrix-button,
+.confirm-button,
+.cancel-button,
 .matrix-auto-button{
     padding: 0 0; /* 内边距 */
     margin: 0 2px; /* 外边距，用于在按钮之间添加间距 */
@@ -888,7 +890,7 @@ label span {
     text-align: center; /* 文字居中 */
     text-decoration: none; /* 去除下划线 */
     display: inline-block; /* 默认为 inline-block，但在 flex 容器内不需要 */
-    font-size: 14px; /* 字体大小 */
+    font-size: 15px; /* 字体大小 */
 }
 .matrix-button{
     width: 64px;
@@ -899,18 +901,32 @@ label span {
     height: 26px;
 }
 .matrix-auto-button{
-    /*width: 64px;*/
     height: 20px;
 }
+.confirm-button{
+    width: 36px;
+    height: 24px;
+}
+.cancel-button{
+    width: 36px;
+    height: 24px;
+}
 .matrix-button:hover{
-    background-color: #3fd1f8;
+    background-color: #1eb1f3;
 }
 .sub-matrix-button:hover{
-    background-color: #3fd1f8;
+    background-color: #1eb1f3;
 }
 .matrix-auto-button:hover{
-    background-color: #3fd1f8;
+    background-color: #1eb1f3;
 }
+.confirm-button:hover{
+    background-color: #1eb1f3;
+}
+.cancel-button:hover{
+    background-color: #1eb1f3;
+}
+
 .matrix-button-notActive{
     background-color: rgba(255,255,255,0.4);
 }
@@ -942,7 +958,8 @@ label span {
 }
 /* 弹窗内容 */
 .modal-body {
-    background-color: #fefefe;
+    /*background-color: #fefefe;*/
+    background: #d0f5ca;
     margin: auto;
     padding: 0;
     border: 1px solid #888;
@@ -956,29 +973,27 @@ label span {
     border-radius: 2px;
     display: flex;
     flex-direction: column;
-    /*align-items: center; !* 垂直居中 *!*/
-    /*justify-content: center; !* 水平居中（如果是水平方向的内容）*!*/
-}
-.modal-body-title{
-    width: 100%;
-    height: 36px;
-    margin-top: 0;
-    text-align: center;
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 上下两端对齐，这样close按钮在中间，confirm-btn在底部 */
+    padding: 10px; /* 考虑到close按钮的位置，可能需要调整内边距 */
 }
 .modal-body-main{
     flex: 1;
     width: 100%;
     padding: 10px 20px;
-    background: #d0f5ca;
+    /*background: #d0f5ca;*/
+    background: none;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
 }
-.modal-body-foot{
-    width: 100%;
-    height: 36px;
-    margin-bottom: 0;
-    text-align: center;
+.modal-body-center-item{
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中(单行)*/
 }
 /* 弹窗关闭按钮 */
-.model-close{
+.modal-close{
     /*float: right;*/
     width: 22px;
     height: 22px;
@@ -990,8 +1005,27 @@ label span {
     text-align: center; /* 水平居中单行文本 */
     margin-left: auto; /* 将元素推送到右侧 */
 }
-.model-close:hover,
-.model-close:focus {
+.modal-foot{
+    display: flex;
+    justify-content: space-between; /* 让两个按钮分别位于左边和右边 */
+    align-items: center; /* 如果需要垂直居中按钮 */
+    padding: 10px; /* 为按钮添加一些内边距 */
+    width: 100%; /* 确保底部栏占据整个modal-body的宽度 */
+}
+.confirm{
+    align-self: flex-start; /* 水平方向上对齐到右下角 */
+    margin-top: auto; /*使用margin-top: auto将按钮推到容器底部 */
+}
+.cancel{
+    align-self: flex-end;
+    margin-top: auto;
+}
+.foot-center-btn{
+    /*align-self:center;*/
+    margin-top: auto;
+}
+.modal-close:hover,
+.modal-close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

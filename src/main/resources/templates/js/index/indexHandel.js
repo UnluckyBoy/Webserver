@@ -1,7 +1,6 @@
 /**
  * index页面处理逻辑
  */
-// document.addEventListener('DOMContentLoaded', function() {
 var globalPatient;
 $(document).ready(function() {
     //sub_btn_view_Click();
@@ -12,11 +11,7 @@ $(document).ready(function() {
         $('#registration-time').val(getCurrentTime());
     });
 
-    /**
-     * 按钮响应逻辑
-     */
-    // function sub_btn_view_Click(){
-    // }
+    /*按钮响应逻辑*/
     let $btn=$('#page1').children(0).children();
     $btn.each(function(i, btn) { //使用.each()遍历jQuery对象
         // 使用$(btn)将原生的DOM元素转换成jQuery对象
@@ -28,7 +23,7 @@ $(document).ready(function() {
                     add_Patient();
                     break;
                 case 'gh_query':
-                    console.log('点击"查询"按钮', this.id);
+                    //console.log('点击"查询"按钮', this.id);
                     break;
                 case 'gh_save':
                     //console.log('点击"保存"按钮', this.id);
@@ -36,23 +31,28 @@ $(document).ready(function() {
                     update_gh_handle();
                     break;
                 case 'gh_cancel':
-                    console.log('点击"退号"按钮', this.id);
+                    //console.log('点击"退号"按钮', this.id);
                     break;
             }
         });
     });
 
-    /**
-     * 挂号
-     */
+    /*挂号逻辑函数*/
     function add_Patient(){
         showModal();
         $('#read-idCard-btn').on('click',function (){
             if($('#read-idCard-input').val().trim()!==''){
-                console.log("身份证号:",$('#read-idCard-input').val());
+                //console.log("身份证号:",$('#read-idCard-input').val());
                 getPatientInfoHandle($('#read-idCard-input').val());
             }else{
-                alert("身份证为空");
+                //alert("身份证为空");
+                confirm_model("身份证为空,请检查输入!", function(confirmed) {
+                    if (confirmed) {
+                        $('#read-idCard-input').val('');
+                    } else {
+                        $('#read-idCard-input').val('');
+                    }
+                });
             }
         });
     }
@@ -93,7 +93,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 if(data.handleType){
-                    console.log(data);
+                    //console.log(data);
                     hideModal();//隐藏弹窗
                     globalPatient=data.handleData;
                     /*绑定信息*/
@@ -121,6 +121,20 @@ $(document).ready(function() {
                     $('#guardian-name').val(globalPatient.guardian_name);
                     $('#guardian-idCard').val(globalPatient.guardian_idCard);
                     $('#guardian-phone').val(globalPatient.guardian_phone);
+                }else{
+                    /*患者尚未注册,询问是否跳转注册*/
+                    confirm_cancel_model("患者尚未注册,是否前往注册?", function(confirmed) {
+                        if (confirmed) {
+                            console.log("用户点击了确定");
+                            hideModal();
+                            openPage(2);
+                            $('#read-idCard-input').val('');
+                        } else {
+                            console.log("用户取消了操作");
+                            hideModal();
+                            $('#read-idCard-input').val('');
+                        }
+                    });
                 }
             },
             error: function(xhr, status, error) {
@@ -175,17 +189,16 @@ $(document).ready(function() {
                 data: JSON.stringify(requestBody),
                 success: function(response) {
                     if(response.handleType){
-                        console.log('数据成功发送到后端',response);
+                        //console.log('数据成功发送到后端',response);
                         clearPage1ViewElement();//清空用户信息
-                        /*打印*/
-                        // window.print();
-                        gh_print(globalPatient,requestBody);
+                        gh_print(globalPatient,response.handleData);/*打印*/
                     }else{
                         alert("异常:"+response.handleMessage);
                     }
                 },
                 error: function(error) {
-                    console.error('发送数据到后端时出错', error);
+                    //console.error('发送数据到后端时出错:', error);
+                    alert('发送数据到后端时出错:'+error);
                 }
             });
         }

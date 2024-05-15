@@ -17,7 +17,7 @@ function initIndexData(){
         dataType: 'json',
         success: function(data) {
             if(data.handleType){
-                console.log(data);
+                //console.log(data);
                 $("#handImage").attr('src', '/upload'+data.handleData.uHead);
                 $("#uName").text(data.handleData.uName)
                 createHtmlView(data.handleData.authorities);
@@ -25,6 +25,7 @@ function initIndexData(){
         },
         error: function(xhr, status, error) {
             console.error("请求失败: " +error);
+            alert("请求失败: " +error);
         }
     });
 }

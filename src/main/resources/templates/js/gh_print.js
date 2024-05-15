@@ -8,14 +8,6 @@ function gh_print(Param1,Param2){
         '<div class="print-area">' +
             '<div class="center-item">'+
                 '<p class="center-text bold-text large-text">挂号单</p><br>' +
-                // '<div class="inline-elements">'+
-                //     '<p class="center-text">患者:'+ Param1.patient_name +
-                //     '<p class="center-text">性别:'+Param1.patient_gender+'</p>' +
-                // '</div>'+
-                // '<div class="inline-elements">'+
-                //     '<p class="center-text">年龄:'+Param1.patient_age+'</p>' +
-                //     '<p class="center-text">科室:'+ Param2.gh_department+'</p>'+
-                // '</div>'+
                 '<p class="center-text">患者:'+ Param1.patient_name +
                 '<p class="center-text">性别:'+Param1.patient_gender+'</p>' +
                 '<p class="center-text">年龄:'+Param1.patient_age+'</p>' +
@@ -25,7 +17,7 @@ function gh_print(Param1,Param2){
             '</div>'+
         '</div>';
     document.body.innerHTML=printHead+printArea+printFoot; //把需要打印的指定内容赋给body.innerHTML
-    JsBarcode("#barcode", Param1.patient_idCard, {
+    JsBarcode("#barcode", Param2.gh_number, {
         format: "CODE128",  /*条形码格式,可以根据需要选择*/
         lineColor: "#000000", /*条形颜色*/
         width: 2,/*条形宽度*/
