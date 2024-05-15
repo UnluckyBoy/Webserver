@@ -167,7 +167,8 @@ $(document).ready(function() {
 
         /*检查挂号之前是否获取了患者信息*/
         if(globalPatient==null){
-            alert("请新增患者信息!")
+            //alert("请新增患者信息!");
+            model_unCallback("请新增患者信息!");
         }else{
             // 封装数据
             var requestBody = {
