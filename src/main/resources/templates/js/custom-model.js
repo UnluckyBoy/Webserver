@@ -9,7 +9,7 @@ function confirm_cancel_model(message, callback) {
     $('#confirm-modal').remove();
     let modalHTML =
         '<div class="modal" id="confirm-modal">' +
-            '<div class="modal-body">' +
+            '<div class="modal-body-small">' +
                 '<span class="modal-close" id="confirm-close">&times;</span>' +
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
@@ -61,7 +61,7 @@ function confirm_model(message, callback) {
     $('#confirm-modal').remove();
     let modalHTML =
         '<div class="modal" id="confirm-modal">' +
-            '<div class="modal-body">' +
+            '<div class="modal-body-small">' +
                 '<span class="modal-close" id="confirm-close">&times;</span>' +
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
@@ -106,7 +106,7 @@ function model_unCallback(message) {
     $('#confirm-modal').remove();
     let modalHTML =
         '<div class="modal" id="confirm-modal">' +
-            '<div class="modal-body">' +
+            '<div class="modal-body-small">' +
                 '<span class="modal-close" id="confirm-close">&times;</span>' +
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +

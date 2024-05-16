@@ -8,6 +8,10 @@
     <link type="text/css" rel="stylesheet" media="print" href="css/print.css">
     <!--CDN图标库-->
     <link type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="css/JqueryUi_1.13.3/jquery-ui.min.css" rel="stylesheet">
+    <!--数据表样式-->
+    <link href="css/jqgrid/ui.jqgrid.css" rel="stylesheet">
 </head>
 <body>
 <!--    <header>-->
@@ -150,7 +154,7 @@
                             </select>
                             <button class="matrix-auto-button center-text" id="registration-time-btn">挂号日期</button>
                             <input class="input-rm-bg default-text" type="text" id="registration-time">
-<!--                            <button class="matrix-auto-button blue-text bold-text center-text">预约</button>-->
+                            <!--                            <button class="matrix-auto-button blue-text bold-text center-text">预约</button>-->
                             <br>
                             <span class="small-text default-text bold-text">挂号科室:<span class="center-text danger-text">*</span></span>
                             <select class="input-rm-bg default-text" id="registration-department">
@@ -183,7 +187,9 @@
                     </div>
 
                     <!--其他视图-->
+                    <div class="other-view">
 
+                    </div>
                 </div>
             </div>
             <div id="page2" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">
@@ -243,7 +249,7 @@
                             <input class="input-rm-bg large-input default-text" type="text" id="create-patient-emergencyContact">
                             <span class="small-text default-text">联系人关系:</span>
                             <div id="dropdown-select-container">
-                                <input list="dropdown-select-list" class="input-rm-bg default-text" id="create-emergencyContact-relationship" type="text">
+                                <input list="dropdown-select-list" class="input-rm-bg medium-input default-text" id="create-emergencyContact-relationship" type="text">
                                 <datalist id="dropdown-select-list">
                                     <option value="父子"></option>
                                     <option value="母子"></option>
@@ -330,5 +336,10 @@
 <script type="application/javascript" src="js/gh_print.js"></script>
 <!--条形码库-->
 <script type="application/javascript" src="js/JsBarcode.all.min.js"></script>
+<!--JQueryGrid表格-->
+<!--<script type="application/javascript" src="js/jqgrid/i18n/grid.locale-cn.js"></script>-->
+<!--<script type="application/javascript" src="js/jqgrid/jquery.jqGrid.min.js"></script>-->
+<!--<script type="application/javascript" src="js/JqueryUi_1.13.3/jquery-ui.min.js"></script>-->
+
 </body>
 </html>

@@ -55,9 +55,8 @@ body, html {
     color: rgba(255, 255, 255, 0.6);
 }
 .wrap{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    /*height: 100%;*/
     /*内容水平、垂直居中显示、flex布局*/
     /*background: url(../img/background_1.png) center no-repeat;*/
     background-size: cover;
@@ -66,7 +65,6 @@ body, html {
     justify-content: left;/*靠左显示*/
     flex-direction: row; /* 明确指定行方向 */
     overflow: hidden; /* 隐藏任何溢出的内容 */
-    /*padding: 2px;*/
 }
 .nav{
     width: 110px; /* 占据整个视口宽度:width: 100vw*/
@@ -293,6 +291,7 @@ a{
     box-sizing: border-box;
     overflow: hidden;
     position: relative;/*防止子布局使用:absolute时超过边界*/
+    flex-wrap: wrap; /* 根据需要设置是否换行 */
 }
 .main-sub-child-title,
 .main-sub-child-body {
@@ -337,37 +336,58 @@ a{
     margin-top: 0;
     box-sizing: border-box;
     display: flex;
-    /*flex-wrap: wrap;*/
     flex-direction: column;
     /*overflow-y: scroll; !* 始终显示垂直滚动条 *!*/
 }
-.info-view{
-    width: 100%;
-    height: 320px;
+.info-view,
+.other-view{
     background: #d0f5ca;
     margin-top: 1px;
     box-sizing: border-box;
     display: flex;
-    border:1px solid #0c0101;
-    border-radius: 6px;
+    border-radius: 2px;
     padding-left: 4px;
     padding-right: 4px;
     margin-left: 0;
     margin-right: 0;
     flex-direction: column;
+    overflow:auto;
+}
+.info-view{
+    width: 100%;
+    height: 50%;
+    border:1px solid #0c0101;
+}
+.other-view{
+    width: 100%;
+    height: 100vh;
 }
 /*自定义滚动条*/
-.page-view::-webkit-scrollbar {
+.info-view::-webkit-scrollbar {
     width: 10px; /* 滚动条的宽度 */
+    border-radius: 6px;
 }
-.page-view::-webkit-scrollbar-track {
-    background: #f1f1f1; /* 滚动条轨道的颜色 */
+.info-view::-webkit-scrollbar-track {
+    background: #d1dbd1; /* 滚动条轨道的颜色 */
 }
-.page-view::-webkit-scrollbar-thumb {
-    background: #888; /* 滚动条滑块的颜色 */
+.info-view::-webkit-scrollbar-thumb {
+    background: #b5f8b5; /* 滚动条滑块的颜色 */
 }
-.page-view::-webkit-scrollbar-thumb:hover {
-    background: #555; /* 滚动条滑块在鼠标悬停时的颜色 */
+.info-view::-webkit-scrollbar-thumb:hover {
+    background: #347e34; /* 滚动条滑块在鼠标悬停时的颜色 */
+}
+.info-view::-webkit-scrollbar {
+    width: 10px; /* 滚动条的宽度 */
+    border-radius: 6px;
+}
+.other-view::-webkit-scrollbar-track {
+    background: #d1dbd1; /* 滚动条轨道的颜色 */
+}
+.other-view::-webkit-scrollbar-thumb {
+    background: #b5f8b5; /* 滚动条滑块的颜色 */
+}
+.other-view::-webkit-scrollbar-thumb:hover {
+    background: #347e34; /* 滚动条滑块在鼠标悬停时的颜色 */
 }
 
 /* 下拉菜单触发器样式 */
@@ -957,16 +977,13 @@ label span {
     background-color: rgba(0,0,0,0.4);
 }
 /* 弹窗内容 */
-.modal-body {
+.modal-body,
+.modal-body-medium,
+.modal-body-small{
     /*background-color: #fefefe;*/
     background: #d0f5ca;
     margin: auto;
-    padding: 0;
     border: 1px solid #888;
-    width: 80%; /*根据屏幕大小*/
-    max-width: 800px; /*最大宽度*/
-    height: 80%;
-    max-height: 420px;
     position: relative;
     top: 36%;
     transform: translateY(-50%); /*居中*/
@@ -974,8 +991,26 @@ label span {
     display: flex;
     flex-direction: column;
     align-items: center; /* 垂直居中 */
-    justify-content: space-between; /* 上下两端对齐，这样close按钮在中间，confirm-btn在底部 */
-    padding: 10px; /* 考虑到close按钮的位置，可能需要调整内边距 */
+    justify-content: space-between; /* 上下两端对齐,close按钮在中间,confirm-btn在底部 */
+    padding: 10px; /* 考虑到close按钮的位置,可能需要调整内边距 */
+}
+.modal-body{
+    width: 80%; /*根据屏幕大小*/
+    max-width: 800px; /*最大宽度*/
+    height: 80%;
+    max-height: 420px;
+}
+.modal-body-medium{
+    width: 68%;
+    max-width: 480px;
+    height: 68%;
+    max-height: 260px;
+}
+.modal-body-small{
+    width: 50%;
+    max-width: 400px;
+    height: 50%;
+    max-height: 210px;
 }
 .modal-body-main{
     flex: 1;
