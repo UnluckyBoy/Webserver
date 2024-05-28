@@ -45,8 +45,7 @@ $(document).ready(function() {
                 //console.log("身份证号:",$('#read-idCard-input').val());
                 getPatientInfoHandle($('#read-idCard-input').val());
             }else{
-                //alert("身份证为空");
-                confirm_model("身份证为空,请检查输入!", function(confirmed) {
+                nullBtn_confirm_model("身份证为空,请检查输入!", function(confirmed) {
                     if (confirmed) {
                         $('#read-idCard-input').val('');
                     } else {

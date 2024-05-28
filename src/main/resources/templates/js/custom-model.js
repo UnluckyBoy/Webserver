@@ -98,6 +98,47 @@ function confirm_model(message, callback) {
 }
 
 /**
+ * 无按钮带回调
+ * @param message
+ * @param callback
+ */
+function nullBtn_confirm_model(message, callback) {
+    // 移除已存在的模态框(防止重复添加)
+    $('#confirm-modal').remove();
+    let modalHTML =
+        '<div class="modal" id="confirm-modal">' +
+            '<div class="modal-body-small">' +
+                '<span class="modal-close" id="confirm-close">&times;</span>' +
+                '<div class="modal-body-main modal-body-center-item">' +
+                    '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
+                '</div>' +
+                // '<div class="modal-foot">'+
+                //     '<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
+                // '</div>'+
+            '</div>' +
+        '</div>';
+    // 将模态框添加到body中
+    $('body').append(modalHTML);
+    let confirmModal = $("#confirm-modal");
+    let closeBtn = $("#confirm-close");
+    // 显示弹窗的函数
+    function confirm_showModal() {
+        confirmModal.css("display", "block");
+    }
+    // 函数调用隐藏
+    function confirm_hideModal() {
+        confirmModal.css("display", "none");
+    }
+    // 按钮隐藏弹窗的函数
+    closeBtn.on("click", function() {
+        confirm_hideModal();
+        callback(true);
+    });
+    // 显示模态框
+    confirm_showModal();
+}
+
+/**
  * 不回调弹窗
  * @param message
  */
