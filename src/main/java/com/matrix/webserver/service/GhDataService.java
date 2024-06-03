@@ -1,7 +1,9 @@
 package com.matrix.webserver.service;
 
+import com.matrix.webserver.model.CurrentDayGhInfo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,4 +15,5 @@ import java.util.Map;
 public interface GhDataService {
     int get_gh_count();
     boolean gh_add(Map<String,Object> map);
+    List<CurrentDayGhInfo> get_current_day_gh();
 }

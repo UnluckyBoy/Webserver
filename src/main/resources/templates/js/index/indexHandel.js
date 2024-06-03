@@ -10,7 +10,6 @@ $(document).ready(function() {
         // 获取当前日期和时间
         $('#registration-time').val(getCurrentTime());
     });
-
     /*按钮响应逻辑*/
     let $btn=$('#page1').children(0).children();
     $btn.each(function(i, btn) { //使用.each()遍历jQuery对象
@@ -36,6 +35,24 @@ $(document).ready(function() {
             }
         });
     });
+    /*按钮响应逻辑*/
+
+    /*弹窗逻辑*/
+    let modal = $("#modal");
+    let closeBtn = $(".modal-close").first();
+    /*显示弹窗的函数*/
+    function showModal() {
+        modal.css("display", "block");
+    }
+    /*函数调用隐藏*/
+    function hideModal() {
+        modal.css("display", "none");
+    }
+    /*按钮隐藏弹窗的函数*/
+    closeBtn.on("click", function() {
+        modal.css("display", "none");
+    });
+    /*弹窗逻辑*/
 
     /*挂号逻辑函数*/
     function add_Patient(){
@@ -45,7 +62,7 @@ $(document).ready(function() {
                 //console.log("身份证号:",$('#read-idCard-input').val());
                 getPatientInfoHandle($('#read-idCard-input').val());
             }else{
-                nullBtn_confirm_model("身份证为空,请检查输入!", function(confirmed) {
+                nullBtn_confirm_model('身份证为空,请检查输入!', function(confirmed) {
                     if (confirmed) {
                         $('#read-idCard-input').val('');
                     } else {
@@ -122,14 +139,14 @@ $(document).ready(function() {
                     $('#guardian-phone').val(globalPatient.guardian_phone);
                 }else{
                     /*患者尚未注册,询问是否跳转注册*/
-                    confirm_cancel_model("患者尚未注册,是否前往注册?", function(confirmed) {
+                    confirm_cancel_model('患者尚未注册,是否前往注册?', function(confirmed) {
                         if (confirmed) {
-                            console.log("用户点击了确定");
+                            //console.log("用户点击了确定");
                             hideModal();
                             openPage(2);
                             $('#read-idCard-input').val('');
                         } else {
-                            console.log("用户取消了操作");
+                            //console.log("用户取消了操作");
                             hideModal();
                             $('#read-idCard-input').val('');
                         }
@@ -137,7 +154,8 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr, status, error) {
-                console.error("请求失败: " +error);
+                //console.error("请求失败: " +error);
+                model_unCallback('发送数据到后端时出错:'+error);
             }
         });
     }
@@ -167,7 +185,7 @@ $(document).ready(function() {
         /*检查挂号之前是否获取了患者信息*/
         if(globalPatient==null){
             //alert("请新增患者信息!");
-            model_unCallback("请新增患者信息!");
+            model_unCallback('请新增患者信息!');
         }else{
             // 封装数据
             var requestBody = {
@@ -198,9 +216,70 @@ $(document).ready(function() {
                 },
                 error: function(error) {
                     //console.error('发送数据到后端时出错:', error);
-                    alert('发送数据到后端时出错:'+error);
+                    //alert('发送数据到后端时出错:'+error);
+                    model_unCallback('发送数据到后端时出错:'+error);
                 }
             });
         }
     }
+
+    /*表格逻辑*/
+    $.ajax({
+        url:'/api/gh_current_day',/* /check */
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            if(data.handleType){
+                // 初始填充表格
+                //console.log("获取的数据:"+data.handleData)
+                bindTableData(data.handleData);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("请求失败: " +error);
+            model_unCallback("请求失败: " +error);
+        }
+    });
+    // 函数：填充表格数据
+    function bindTableData(data) {
+        var tableBody = $('#gh_data_table_body'); // 获取tbody元素
+        // 清空tbody中的现有内容
+        tableBody.empty();
+        // 遍历数据数组
+        $.each(data, function(index, item) {
+            // 创建一个新的tr元素
+            var row = $('<tr>');
+            // 为每个属性创建td元素并添加到tr中
+            row.append($('<td>').text(item.gh_number));
+            row.append($('<td>').text(item.expense_type));
+            row.append($('<td>').text(item.patient_id));
+            row.append($('<td>').text(item.patient_name));
+            row.append($('<td>').text(item.gh_createTime));
+            row.append($('<td>').text(item.gh_department));
+            // 将tr添加到tbody中
+            tableBody.append(row);
+        })
+    }
+    //实现查找功能
+    document.getElementById('searchInput').addEventListener('input', function() {
+        var filter = this.value.toUpperCase(); // 获取输入框的值并转为大写
+        var table = document.getElementById('gh_data_table');
+        var thead = table.getElementsByTagName('thead')[0]; // 获取表头
+        var tbody = table.getElementsByTagName('tbody')[0]; // 获取表格主体
+        var trs = tbody ? tbody.getElementsByTagName('tr') : []; // 只获取数据行
+        // 遍历数据行,隐藏不包含查找文本的行
+        for (var i = 0; i < trs.length; i++) {
+            var tds = trs[i].getElementsByTagName('td');
+            var found = false;
+            for (var j = 0; j < tds.length; j++) {
+                if (tds[j].textContent.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+            trs[i].style.display = found ? '' : 'none'; // 根据是否找到文本显示或隐藏行
+        }
+        //确保表头始终可见
+        thead.style.display = 'table-header-group';
+    });
 });

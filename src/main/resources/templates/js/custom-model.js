@@ -112,9 +112,9 @@ function nullBtn_confirm_model(message, callback) {
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
-                // '<div class="modal-foot">'+
+                '<div class="modal-foot">'+
                 //     '<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
-                // '</div>'+
+                '</div>'+
             '</div>' +
         '</div>';
     // 将模态框添加到body中
@@ -153,23 +153,23 @@ function model_unCallback(message) {
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
                     '<div class="modal-foot">'+
-                    '<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
+                    //'<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
                 '</div>'+
             '</div>' +
         '</div>';
     $('body').append(modalHTML);
     let confirmModal = $("#confirm-modal");
     let closeBtn = $("#confirm-close");
-    let confirmBtn = $("#confirm-btn");
+    //let confirmBtn = $("#confirm-btn");
     function confirm_showModal() {
         confirmModal.css("display", "block");
     }
     function confirm_hideModal() {
         confirmModal.css("display", "none");
     }
-    confirmBtn.on('click', function() {
-        confirm_hideModal();
-    });
+    // confirmBtn.on('click', function() {
+    //     confirm_hideModal();
+    // });
     closeBtn.on("click", function() {
         confirm_hideModal();
     });

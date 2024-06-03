@@ -2,6 +2,7 @@ package com.matrix.webserver.controller;
 
 import com.google.gson.Gson;
 import com.matrix.webserver.model.AuthorityInfo;
+import com.matrix.webserver.model.CurrentDayGhInfo;
 import com.matrix.webserver.model.PatientInfo;
 import com.matrix.webserver.model.UserInfo;
 import com.matrix.webserver.model.mapper.GhDataMapper;
@@ -129,6 +130,19 @@ public class DataHandelController {
         }else{
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.failure("挂号失败")));
+        }
+    }
+
+    @RequestMapping("/gh_current_day")
+    public void ghCurrentDayData(HttpServletResponse response) throws IOException{
+        List<CurrentDayGhInfo> result=ghDataMapper.get_current_day_gh();
+        System.out.println("当日挂号数据:"+result.toString());
+        if(result.size()>0){
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success("获取数据成功",result)));
+        }else{
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("获取数据失败")));
         }
     }
 

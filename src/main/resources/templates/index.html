@@ -90,7 +90,7 @@
                             <input class="input-rm-bg default-text" type="text" id="patient-nativePlace" readonly>
                             <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-nation" readonly>
-                            <br>
+                            <!--<br>-->
                             <span class="small-text default-text">职业:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-occupation" readonly>
                             <span class="small-text default-text">婚姻状况:</span>
@@ -188,7 +188,23 @@
 
                     <!--其他视图-->
                     <div class="other-view">
-
+                        <div class="other-view-child" id="gh_data_table_view">
+                            <input class="default-text large-input" type="text" id="searchInput" placeholder="查询">
+                            <table class="data-table-view" id="gh_data_table">
+                                <thead>
+                                <tr>
+                                    <th>挂号单号</th>
+                                    <th>挂号类型</th>
+                                    <th>患者ID</th>
+                                    <th>患者姓名</th>
+                                    <th>挂号日期</th>
+                                    <th>挂号科室</th>
+                                </tr>
+                                </thead>
+                                <tbody id="gh_data_table_body">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -328,7 +344,6 @@
 <!--页面主体响应逻辑-->
 <script type="application/javascript" src="js/index/main-body-view-handle.js"></script>
 <!--自定义弹窗响应逻辑-->
-<script type="application/javascript" src="js/model-handle.js"></script>
 <script type="application/javascript" src="js/custom-model.js"></script>
 <!--index逻辑处理-->
 <script type="application/javascript" src="js/index/indexHandel.js"></script>

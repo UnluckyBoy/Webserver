@@ -276,7 +276,7 @@ a{
     width: 100%;
     height: 42px;/*60px*/
     background: #57aaff;
-    border-radius: 6px;
+    border-radius: 2px;
     margin-top: 0;
     display: flex; /* 添加 flex 布局 */
     align-items: center; /* 垂直居中内容*/
@@ -287,7 +287,7 @@ a{
     height: 100vh;
     background: white;
     display: flex;
-    border-radius: 6px;
+    border-radius: 2px;
     box-sizing: border-box;
     overflow: hidden;
     position: relative;/*防止子布局使用:absolute时超过边界*/
@@ -321,7 +321,7 @@ a{
     width: 100%;
     height: 32px;
     background: #57aaff;
-    border-radius: 6px;
+    border-radius: 2px;
     margin-top: 0;
     box-sizing: border-box;
     display: flex;
@@ -337,7 +337,6 @@ a{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    /*overflow-y: scroll; !* 始终显示垂直滚动条 *!*/
 }
 .info-view,
 .other-view{
@@ -355,12 +354,16 @@ a{
 }
 .info-view{
     width: 100%;
-    height: 50%;
+    /*height: 50%;*/
     border:1px solid #0c0101;
+    min-height: 260px;
 }
 .other-view{
-    width: 100%;
-    height: 100vh;
+    /* flex-grow设置为1,使其占据剩余空间 */
+    flex-grow: 1;
+}
+.other-view-child{
+    margin: 4px 0;
 }
 /*自定义滚动条*/
 .info-view::-webkit-scrollbar {
@@ -371,24 +374,25 @@ a{
     background: #d1dbd1; /* 滚动条轨道的颜色 */
 }
 .info-view::-webkit-scrollbar-thumb {
-    background: #b5f8b5; /* 滚动条滑块的颜色 */
+    background: #4d94ff; /* 滚动条滑块的颜色 */
 }
 .info-view::-webkit-scrollbar-thumb:hover {
     background: #347e34; /* 滚动条滑块在鼠标悬停时的颜色 */
 }
-.info-view::-webkit-scrollbar {
-    width: 10px; /* 滚动条的宽度 */
+.other-view::-webkit-scrollbar {
+    width: 10px;
     border-radius: 6px;
 }
 .other-view::-webkit-scrollbar-track {
-    background: #d1dbd1; /* 滚动条轨道的颜色 */
+    background: #d1dbd1;
 }
 .other-view::-webkit-scrollbar-thumb {
-    background: #b5f8b5; /* 滚动条滑块的颜色 */
+    background: #0053c6;
 }
 .other-view::-webkit-scrollbar-thumb:hover {
-    background: #347e34; /* 滚动条滑块在鼠标悬停时的颜色 */
+    background: #347e34;
 }
+
 
 /* 下拉菜单触发器样式 */
 .matrix-dropdown-toggle {
@@ -1064,6 +1068,19 @@ label span {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+/*表格样式*/
+.data-table-view {
+    width: 100%; /* 确保表格宽度占满容器 */
+    border-collapse: collapse; /* 合并相邻的边框 */
+}
+
+.data-table-view th,
+.data-table-view td {
+    padding: 8px; /* 单元格内边距 */
+    text-align: center; /* 文本左对齐 */
+    border-bottom: 1px solid #a9a9a9; /* 底部边框 */
+    color: black;
 }
 
 /*文字效果*/

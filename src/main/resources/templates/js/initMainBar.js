@@ -25,7 +25,8 @@ function initIndexData(){
         },
         error: function(xhr, status, error) {
             console.error("请求失败: " +error);
-            alert("请求失败: " +error);
+            //alert("请求失败: " +error);
+            model_unCallback("请求失败: " +error);
         }
     });
 }

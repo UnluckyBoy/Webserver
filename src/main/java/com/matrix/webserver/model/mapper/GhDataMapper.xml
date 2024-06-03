@@ -14,6 +14,22 @@
           AND receive_sign = '否'
           AND DATE(gh_createTime) = CURDATE();
     </select>
+    <select id="get_current_day_gh" resultType="CurrentDayGhInfo">
+        SELECT
+            gh_data_table.gh_number,
+            gh_data_table.expense_type,
+            gh_data_table.patient_id,
+            patient_info_table.patient_name,
+            gh_data_table.gh_createTime,
+            gh_data_table.gh_department
+        FROM
+            gh_data_table
+                INNER JOIN patient_info_table ON gh_data_table.patient_id = patient_info_table.patient_id
+        WHERE
+            gh_data_table.expired_sign = '是'
+          AND DATE( gh_data_table.gh_createTime ) = CURDATE();
+    </select>
+
     <!--插入逻辑-->
     <insert id="gh_add" parameterType="java.util.Map">
         INSERT INTO gh_data_table

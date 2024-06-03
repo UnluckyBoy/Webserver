@@ -1,10 +1,12 @@
 package com.matrix.webserver.service.Impl;
 
+import com.matrix.webserver.model.CurrentDayGhInfo;
 import com.matrix.webserver.model.mapper.GhDataMapper;
 import com.matrix.webserver.service.GhDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,5 +27,10 @@ public class GhDataServiceImpl implements GhDataService {
     @Override
     public boolean gh_add(Map<String, Object> map) {
         return ghDataMapper.gh_add(map);
+    }
+
+    @Override
+    public List<CurrentDayGhInfo> get_current_day_gh() {
+        return ghDataMapper.get_current_day_gh();
     }
 }
