@@ -487,6 +487,9 @@ a{
     font-size: 15px;
     cursor: pointer;
 }
+.big-large-input{
+    width: 128px;
+}
 .large-input{
     width: 86px;
 }
