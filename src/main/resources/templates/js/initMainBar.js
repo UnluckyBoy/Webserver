@@ -63,7 +63,7 @@ function createHtmlView(authorities){
         switch (item){
             case '5226320001':
                 // 使用函数创建菜单项:图标,Title,连接
-                wrapHTML += createMenuItem('fa-plus', '预约挂号', '');/*fa-home*/
+                wrapHTML += createMenuItem('fa-plus', '预约挂号', '/hosRegis');/*fa-home*/
                 wrapHTML +=createMenuItem("fa-stethoscope","门诊医生","#")
                 wrapHTML += createMenuItem('fa-user-md', '住院医生', '#');
                 wrapHTML += createMenuItem('fa-user-plus', '住院护士', '#');

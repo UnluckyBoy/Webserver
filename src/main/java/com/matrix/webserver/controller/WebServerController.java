@@ -34,6 +34,10 @@ public class WebServerController {
     public String Login(){
         return "login";
     }
+    @RequestMapping("/hosRegis")
+    public String HosRegis(){
+        return "hosRegis";
+    }
 
     @RequestMapping("/errorPage")
     public String errorPage(){
