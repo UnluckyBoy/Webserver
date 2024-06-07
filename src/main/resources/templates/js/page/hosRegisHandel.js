@@ -143,7 +143,7 @@ $(document).ready(function() {
                         if (confirmed) {
                             //console.log("用户点击了确定");
                             hideModal();
-                            openPage(2);
+                            openPage(1);
                             $('#read-idCard-input').val('');
                         } else {
                             //console.log("用户取消了操作");
@@ -211,7 +211,7 @@ $(document).ready(function() {
                         clearPage1ViewElement();//清空用户信息
                         gh_print(globalPatient,response.handleData);/*打印*/
                     }else{
-                        alert("异常:"+response.handleMessage);
+                        model_unCallback("异常:"+response.handleMessage);
                     }
                 },
                 error: function(error) {

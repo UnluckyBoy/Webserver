@@ -52,17 +52,17 @@
     <div class="main-sub-view">
         <div class="main-sub-child-title" id="button-parent-view">
             <button class="matrix-button matrix-button-active">窗口挂号</button>
-            <button class="matrix-button matrix-button-notActive">预约登记</button>
             <button class="matrix-button matrix-button-notActive">信息注册</button>
             <button class="matrix-button matrix-button-notActive">信息修正</button>
             <button class="matrix-button matrix-button-notActive">退号管理</button>
             <button class="matrix-button matrix-button-notActive">单据补打</button>
+            <button class="matrix-button matrix-button-notActive">预约登记</button>
         </div>
         <div class="main-sub-child-body" id="main-sub-registration-body"><!--main-sub-child-body-->
             <div id="page1" class="page-view open" style="--view-back:rgba(255,0,0,0.2)">
                 <div class="sub-btn-view" id="gh-btn-view">
                     <button class="sub-matrix-button" id="gh_add">新增</button>
-                    <button class="sub-matrix-button" id="gh_query">查询</button>
+                    <button class="sub-matrix-button" id="gh_query">预约</button>
                     <button class="sub-matrix-button" id="gh_save">挂号</button>
                     <button class="sub-matrix-button" id="gh_cancel">退号</button>
                 </div>
@@ -208,12 +208,10 @@
                     </div>
                 </div>
             </div>
-            <div id="page2" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">
-
-            </div>
-            <div id="page3" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
+            <div id="page2" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
                 <div class="sub-btn-view" id="create-btn-view">
                     <button class="sub-matrix-button" id="create_save">保存</button>
+                    <button class="sub-matrix-button" id="update_save">修改</button>
                 </div>
                 <div class="sub-child-body">
                     <div class="info-view">
@@ -310,6 +308,9 @@
                     </div>
                 </div>
             </div>
+            <div id="page3" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">
+
+            </div>
             <div id="page4" class="page-view close" style="--view-back:rgba(85,255,0,0.2)">
 
             </div>
@@ -341,12 +342,12 @@
 <script type="application/javascript" src="js/custom-dropdown-select-handle.js"></script>
 <!--时间逻辑-->
 <script type="application/javascript" src="js/TimeTools.js"></script>
-<!--页面主体响应逻辑-->
-<script type="application/javascript" src="js/index/main-body-view-handle.js"></script>
+<!--挂号页面主体响应逻辑-->
+<script type="application/javascript" src="js/page/main-body-view-handle.js"></script>
 <!--自定义弹窗响应逻辑-->
 <script type="application/javascript" src="js/custom-model.js"></script>
 <!--index逻辑处理-->
-<script type="application/javascript" src="js/index/indexHandel.js"></script>
+<script type="application/javascript" src="js/page/hosRegisHandel.js"></script>
 <!--打印逻辑处理-->
 <script type="application/javascript" src="js/gh_print.js"></script>
 <!--条形码库-->
