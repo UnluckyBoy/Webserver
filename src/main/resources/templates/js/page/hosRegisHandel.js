@@ -1,5 +1,5 @@
 /**
- * index页面处理逻辑
+ * 挂号页面处理逻辑
  */
 var globalPatient;
 $(document).ready(function() {
@@ -21,12 +21,13 @@ $(document).ready(function() {
                     //console.log('点击"新增"按钮', this.id);
                     add_Patient();
                     break;
-                case 'gh_query':
-                    //console.log('点击"查询"按钮', this.id);
+                case 'gh_appointment':
+                    /*appointment-预约*/
+                    console.log('预约');
+                    gh_Hiprint();
                     break;
                 case 'gh_save':
-                    //console.log('点击"保存"按钮', this.id);
-                    //console.log("患者ID:"+globalPatient.patient_id);
+                    /*挂号*/
                     update_gh_handle();
                     break;
                 case 'gh_cancel':
@@ -181,7 +182,6 @@ $(document).ready(function() {
         if(gh_createTime===''){/*如果没有在前端点击获取日期，则自动补全*/
             gh_createTime=getCurrentTime();
         }
-
         /*检查挂号之前是否获取了患者信息*/
         if(globalPatient==null){
             //alert("请新增患者信息!");
@@ -209,7 +209,7 @@ $(document).ready(function() {
                     if(response.handleType){
                         //console.log('数据成功发送到后端',response);
                         clearPage1ViewElement();//清空用户信息
-                        gh_print(globalPatient,response.handleData);/*打印*/
+                        gh_print_styles(globalPatient,response.handleData);/*打印*/
                     }else{
                         model_unCallback("异常:"+response.handleMessage);
                     }
@@ -223,7 +223,7 @@ $(document).ready(function() {
         }
     }
 
-    /*表格逻辑*/
+    /*当日挂号表格逻辑*/
     $.ajax({
         url:'/api/gh_current_day',/* /check */
         type: 'POST',
@@ -236,7 +236,7 @@ $(document).ready(function() {
             }
         },
         error: function(xhr, status, error) {
-            console.error("请求失败: " +error);
+            //console.error("请求失败: " +error);
             model_unCallback("请求失败: " +error);
         }
     });

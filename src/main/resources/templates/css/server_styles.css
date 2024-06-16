@@ -361,9 +361,32 @@ a{
 .other-view{
     /* flex-grow设置为1,使其占据剩余空间 */
     flex-grow: 1;
+    border:1px solid #0c0101;
+}
+.other-view-child,
+.other-view-child-full{
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 2px;
+    margin: 2px 4px;
+    flex-direction: column;
+    overflow:auto;
 }
 .other-view-child{
-    margin: 4px 0;
+    width: 100%;
+    min-height: 36px;
+}
+.other-view-child-full{
+    flex-grow: 1;
+}
+.horizontal-element{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+.hide-element{
+    display: none;
 }
 /*自定义滚动条*/
 .info-view::-webkit-scrollbar {

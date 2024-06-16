@@ -20,11 +20,12 @@
             gh_data_table.expense_type,
             gh_data_table.patient_id,
             patient_info_table.patient_name,
-            gh_data_table.gh_createTime,
+            /*gh_data_table.gh_createTime,*/
+            DATE(gh_data_table.gh_createTime) as gh_createTime,
             gh_data_table.gh_department
         FROM
             gh_data_table
-                INNER JOIN patient_info_table ON gh_data_table.patient_id = patient_info_table.patient_id
+            INNER JOIN patient_info_table ON gh_data_table.patient_id = patient_info_table.patient_id
         WHERE
             gh_data_table.expired_sign = '是'
           AND DATE( gh_data_table.gh_createTime ) = CURDATE();
