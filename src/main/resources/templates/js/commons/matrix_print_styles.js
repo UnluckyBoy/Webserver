@@ -29,11 +29,12 @@ function gh_print_styles(Param1, Param2){
 }
 
 /*测试hiprint*/
-function gh_Hiprint(){
+function gh_print(Param1, Param2){
     var printTemplate = new hiprint.PrintTemplate({ template: JSON.parse($('#print_textarea').val()) });
     console.log('打印格式；'+$('#print_textarea').val());
-    var $html = printTemplate.getHtml([{patient_name: '测试患者',patient_gender: '男',
-        patient_age: '27',gh_department: '疼痛科',gh_createTime: '2024-06-16 13:44:25', gh_number: '20240615000001' }]);
+    var $html = printTemplate.getHtml([{patient_name: Param1.patient_name,patient_gender: Param1.patient_gender,
+        patient_age: Param1.patient_age,gh_department: Param2.gh_department,gh_createTime: Param2.gh_createTime,
+        gh_number: Param2.gh_number }]);
     printTemplate.printByHtml($html);
 
     // $('#barcode_button_preview').click(function () {

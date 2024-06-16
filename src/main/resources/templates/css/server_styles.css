@@ -379,9 +379,15 @@ a{
 .other-view-child-full{
     flex-grow: 1;
 }
-.horizontal-element{
+.horizontal-element-flex-start{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+.horizontal-element-center{
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 4px;
 }
@@ -976,7 +982,9 @@ label span {
 .cancel-button:hover{
     background-color: #1eb1f3;
 }
-
+.matrix-button-hide{
+    display: none
+}
 .matrix-button-notActive{
     background-color: rgba(255,255,255,0.4);
 }

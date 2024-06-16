@@ -12,10 +12,14 @@ import lombok.Data;
 public class CurrentDayGhInfo {
     private String gh_number;
     private String expense_type;
+    private String gh_type;
     private String patient_id;
     private String patient_name;
     private String gh_createTime;
     private String gh_department;
+    private String cancel_sign;
+    private String gh_fee_sign;
+    private String receive_sign;
 
     public String getGh_number() {
         return gh_number;
@@ -31,6 +35,14 @@ public class CurrentDayGhInfo {
 
     public void setExpense_type(String expense_type) {
         this.expense_type = expense_type;
+    }
+
+    public String getGh_type() {
+        return gh_type;
+    }
+
+    public void setGh_type(String gh_type) {
+        this.gh_type = gh_type;
     }
 
     public String getPatient_id() {
@@ -63,5 +75,29 @@ public class CurrentDayGhInfo {
 
     public void setGh_department(String gh_department) {
         this.gh_department = gh_department;
+    }
+
+    public String getCancel_sign() {
+        return cancel_sign;
+    }
+
+    public void setCancel_sign(String cancel_sign) {
+        this.cancel_sign = cancel_sign;
+    }
+
+    public String getGh_fee_sign() {
+        return gh_fee_sign;
+    }
+
+    public void setGh_fee_sign(String gh_fee_sign) {
+        this.gh_fee_sign = gh_fee_sign;
+    }
+
+    public String getReceive_sign() {
+        return receive_sign;
+    }
+
+    public void setReceive_sign(String receive_sign) {
+        this.receive_sign = receive_sign;
     }
 }

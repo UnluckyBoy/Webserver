@@ -4,6 +4,7 @@
 var globalPatient;
 $(document).ready(function() {
     //sub_btn_view_Click();
+    init_currentDay_datas();
 
     // 挂号日期按钮获取时间逻辑
     $('#registration-time-btn').click(function() {
@@ -24,7 +25,6 @@ $(document).ready(function() {
                 case 'gh_appointment':
                     /*appointment-预约*/
                     console.log('预约');
-                    gh_Hiprint();
                     break;
                 case 'gh_save':
                     /*挂号*/
@@ -209,7 +209,8 @@ $(document).ready(function() {
                     if(response.handleType){
                         //console.log('数据成功发送到后端',response);
                         clearPage1ViewElement();//清空用户信息
-                        gh_print_styles(globalPatient,response.handleData);/*打印*/
+                        //gh_print_styles(globalPatient,response.handleData);/*打印*/
+                        gh_print(globalPatient,response.handleData);
                     }else{
                         model_unCallback("异常:"+response.handleMessage);
                     }
@@ -223,7 +224,10 @@ $(document).ready(function() {
         }
     }
 
-    /*当日挂号表格逻辑*/
+});
+
+/*当日挂号表格逻辑*/
+function init_currentDay_datas(){
     $.ajax({
         url:'/api/gh_current_day',/* /check */
         type: 'POST',
@@ -249,13 +253,38 @@ $(document).ready(function() {
         $.each(data, function(index, item) {
             // 创建一个新的tr元素
             var row = $('<tr>');
+
+            // 初始化颜色变量
+            let textColor = 'black';
+            if (item.cancel_sign === '是') {
+                textColor = 'orangered';
+            }else if (item.receive_sign === '是') {
+                textColor = '#06b9ee';
+            }
+
+            // 为复选框添加点击事件处理程序
+            var checkbox = $('<input type="checkbox">').on('change', function() {
+                var cancelBtn=$('#gh_cancel');
+                cancelBtn.toggle();
+                // this 指向被点击的复选框
+                var parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
+                var ghNumberCell = parentRow.find('td:eq(1)'); // 找到第二个td元素（索引从0开始）
+                var ghNumber = ghNumberCell.text(); // 获取第二个td元素的文本内容，即gh_number
+                //model_unCallback('你选择了gh_number为：' + ghNumber);
+            });
+
             // 为每个属性创建td元素并添加到tr中
-            row.append($('<td>').text(item.gh_number));
-            row.append($('<td>').text(item.expense_type));
-            row.append($('<td>').text(item.patient_id));
-            row.append($('<td>').text(item.patient_name));
-            row.append($('<td>').text(item.gh_createTime));
-            row.append($('<td>').text(item.gh_department));
+            row.append($('<td>').append(checkbox));
+            row.append($('<td>').text(item.gh_number).css('color',textColor));/*.addClass(textColor)没起作用*/
+            row.append($('<td>').text(item.expense_type).css('color',textColor));
+            row.append($('<td>').text(item.gh_type).css('color',textColor));
+            row.append($('<td>').text(item.patient_id).css('color',textColor));
+            row.append($('<td>').text(item.patient_name).css('color',textColor));
+            row.append($('<td>').text(item.gh_createTime).css('color',textColor));
+            row.append($('<td>').text(item.gh_department).css('color',textColor));
+            row.append($('<td>').text(item.cancel_sign).css('color',textColor));
+            row.append($('<td>').text(item.gh_fee_sign).css('color',textColor));
+            row.append($('<td>').text(item.receive_sign).css('color',textColor));
             // 将tr添加到tbody中
             tableBody.append(row);
         })
@@ -282,4 +311,4 @@ $(document).ready(function() {
         //确保表头始终可见
         thead.style.display = 'table-header-group';
     });
-});
+}

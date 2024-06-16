@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首页</title>
+    <title>挂号管理</title>
     <link type="text/css" rel="stylesheet" href="css/server_styles.css">
     <link type="text/css" rel="stylesheet" media="print" href="css/print.css">
     <link type="text/css" rel="stylesheet" media="print" href="css/content/bootstrap.min.css">
@@ -67,7 +67,7 @@
                     <button class="sub-matrix-button" id="gh_add">新增</button>
                     <button class="sub-matrix-button" id="gh_appointment">预约</button>
                     <button class="sub-matrix-button" id="gh_save">挂号</button>
-                    <button class="sub-matrix-button" id="gh_cancel">退号</button>
+                    <button class="sub-matrix-button matrix-button-hide" id="gh_cancel">退号</button>
                 </div>
                 <div class="sub-child-body">
                     <div class="info-view">
@@ -90,7 +90,7 @@
                             <span class="small-text default-text">国籍:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-nationality" readonly>
                             <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text" type="text" id="patient-nativePlace" readonly>
+                            <input class="input-rm-bg default-text medium-input" type="text" id="patient-nativePlace" readonly>
                             <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-nation" readonly>
                             <!--<br>-->
@@ -157,7 +157,6 @@
                             </select>
                             <button class="matrix-auto-button center-text" id="registration-time-btn">挂号日期</button>
                             <input class="input-rm-bg default-text" type="text" id="registration-time">
-                            <!--                            <button class="matrix-auto-button blue-text bold-text center-text">预约</button>-->
                             <br>
                             <span class="small-text default-text bold-text">挂号科室:<span class="center-text danger-text">*</span></span>
                             <select class="input-rm-bg default-text" id="registration-department">
@@ -192,10 +191,15 @@
                     <!--其他视图-->
                     <div class="other-view">
                         <div class="other-view-child">
-                            <strong class="default-text center-text">当日挂号</strong>
+                            <strong class="default-text center-text bold-text large-text">当日挂号详情</strong>
+                            <div class="horizontal-element-center">
+                                <p class="danger-text center-text bold-text small-text">红色-已退号</p>
+                                <p class="default-text center-text bold-text small-text">,</p>
+                                <p class="blue-text center-text bold-text small-text">蓝色-已接诊</p>
+                            </div>
                         </div>
                         <div class="other-view-child-full" id="gh_data_table_view">
-                            <div class="horizontal-element default-text">
+                            <div class="horizontal-element-flex-start default-text">
                                 <input class="default-text big-large-input" type="text" id="searchInput" placeholder="查询">
                                 <input class="default-text" type="date" id="startTime">至
                                 <input class="default-text" type="date" id="endTime">
@@ -203,12 +207,17 @@
                             <table class="data-table-view" id="gh_data_table">
                                 <thead>
                                 <tr>
+                                    <th></th>
                                     <th>挂号单号</th>
                                     <th>挂号类型</th>
+                                    <th>费用类型</th>
                                     <th>患者ID</th>
                                     <th>患者姓名</th>
                                     <th>挂号日期</th>
                                     <th>挂号科室</th>
+                                    <th>退号标志</th>
+                                    <th>挂号收费</th>
+                                    <th>接诊标志</th>
                                 </tr>
                                 </thead>
                                 <tbody id="gh_data_table_body">
@@ -243,10 +252,9 @@
                             <span class="small-text default-text">国籍:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-nationality" value="中国">
                             <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text" type="text" id="create-patient-nativePlace">
+                            <input class="input-rm-bg default-text medium-input" type="text" id="create-patient-nativePlace">
                             <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-nation">
-                            <br>
                             <span class="small-text default-text">职业:</span>
                             <select class="input-rm-bg default-text" id="create-patient-occupation">
                                 <option class="default-text" value="农民">农民</option>
@@ -361,11 +369,11 @@
 <script type="application/javascript" src="js/commons/custom-dropdown-select-handle.js"></script>
 <!--时间逻辑-->
 <script type="application/javascript" src="js/commons/TimeTools.js"></script>
-<!--挂号页面主体响应逻辑-->
+<!--页面主体响应逻辑-->
 <script type="application/javascript" src="js/page/main-body-view-handle.js"></script>
 <!--自定义弹窗响应逻辑-->
 <script type="application/javascript" src="js/commons/custom-model.js"></script>
-<!--index逻辑处理-->
+<!--页面逻辑处理-->
 <script type="application/javascript" src="js/page/hosRegisHandel.js"></script>
 <!--hiprint插件核心插件库-->
 <!--polyfill.min.js解决浏览器兼容性问题v6.26.0-->
