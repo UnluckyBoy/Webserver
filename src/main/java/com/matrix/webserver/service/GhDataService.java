@@ -16,4 +16,5 @@ public interface GhDataService {
     int get_gh_count();
     boolean gh_add(Map<String,Object> map);
     List<CurrentDayGhInfo> get_current_day_gh();
+    boolean cancel_regis(Map<String,Object> map);
 }

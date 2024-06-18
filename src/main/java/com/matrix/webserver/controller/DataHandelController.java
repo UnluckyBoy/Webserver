@@ -133,6 +133,11 @@ public class DataHandelController {
         }
     }
 
+    /**
+     * 当日挂号数据
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/gh_current_day")
     public void ghCurrentDayData(HttpServletResponse response) throws IOException{
         List<CurrentDayGhInfo> result=ghDataMapper.get_current_day_gh();
@@ -143,6 +148,25 @@ public class DataHandelController {
         }else{
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.failure("获取数据失败")));
+        }
+    }
+
+    /**
+     * 退号处理
+     * @param requestBody
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/gh_cancel")
+    public void ghCancel(@RequestBody Map<String, Object> requestBody,HttpServletResponse response) throws IOException{
+        System.out.println("推号数据:"+requestBody.toString());
+        boolean result_cancel=ghDataMapper.cancel_regis(requestBody);
+        if(result_cancel){
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success("退号成功！")));
+        }else{
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("此条目已退！")));
         }
     }
 

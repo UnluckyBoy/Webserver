@@ -67,7 +67,7 @@
                     <button class="sub-matrix-button" id="gh_add">新增</button>
                     <button class="sub-matrix-button" id="gh_appointment">预约</button>
                     <button class="sub-matrix-button" id="gh_save">挂号</button>
-                    <button class="sub-matrix-button matrix-button-hide" id="gh_cancel">退号</button>
+                    <button class="sub-matrix-button matrix-element-hide" id="gh_cancel">退号</button>
                 </div>
                 <div class="sub-child-body">
                     <div class="info-view">
@@ -230,7 +230,7 @@
             <div id="page2" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
                 <div class="sub-btn-view" id="create-btn-view">
                     <button class="sub-matrix-button" id="create_save">保存</button>
-                    <button class="sub-matrix-button" id="update_save">修改</button>
+                    <button class="sub-matrix-button matrix-element-hide" id="update_save">修改</button>
                 </div>
                 <div class="sub-child-body">
                     <div class="info-view">
@@ -353,7 +353,7 @@
         </div>
     </div>
 </div>
-<textarea class="form-control hide-element" rows="10" id="print_textarea">
+<textarea class="form-control matrix-element-hide" rows="10" id="print_textarea">
     {"panels":[{"index":0,"name":1,"height":120,"width":190,"paperHeader":55,"paperFooter":325,"printElements":[{"options":{"left":150,"top":60,"height":46,"width":220,"title":"XXX医院","right":370,"bottom":106,"vCenter":260,"hCenter":83,"coordinateSync":false,"widthHeightSync":false,"fontFamily":"Microsoft YaHei","fontSize":28,"fontWeight":"bold","letterSpacing":3,"textAlign":"center","textContentVerticalAlign":"middle","textContentWrap":"nowrap","lineHeight":30,"qrCodeLevel":0},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":200,"top":112.5,"height":21,"width":128,"title":"患者","right":241.74609375,"bottom":80.49609375,"vCenter":219.99609375,"hCenter":69.99609375,"field":"patient_name","testData":"测试患者","coordinateSync":false,"widthHeightSync":false,"fontFamily":"Microsoft YaHei","fontSize":12,"fontWeight":"bold","letterSpacing":0.75,"textAlign":"center","textContentVerticalAlign":"middle","qrCodeLevel":0},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":200,"top":135,"height":21,"width":128,"title":"性别","right":241.5,"bottom":90.99609375,"vCenter":219.75,"hCenter":80.49609375,"field":"patient_gender","testData":"男","coordinateSync":false,"widthHeightSync":false,"fontFamily":"Microsoft YaHei","fontSize":12,"fontWeight":"bold","letterSpacing":0.75,"textAlign":"center","textContentVerticalAlign":"middle","qrCodeLevel":0},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":200,"top":157.5,"height":21,"width":128,"title":"年龄","right":241.5,"bottom":90.99609375,"vCenter":219.75,"hCenter":80.49609375,"field":"patient_age","testData":"27","coordinateSync":false,"widthHeightSync":false,"fontFamily":"Microsoft YaHei","fontSize":12,"fontWeight":"bold","letterSpacing":0.75,"textAlign":"center","textContentVerticalAlign":"middle","qrCodeLevel":0},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":200,"top":180,"height":21,"width":128,"title":"科室","right":241.5,"bottom":90.99609375,"vCenter":219.75,"hCenter":80.49609375,"field":"gh_department","testData":"疼痛科","coordinateSync":false,"widthHeightSync":false,"fontFamily":"Microsoft YaHei","fontSize":12,"fontWeight":"bold","letterSpacing":0.75,"textAlign":"center","textContentVerticalAlign":"middle","qrCodeLevel":0},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":157.5,"top":202.5,"height":21,"width":210,"title":"挂号时间","right":243.4921875,"bottom":169.5,"vCenter":221.7421875,"hCenter":159,"field":"gh_createTime","testData":"2024-06-16 13:44:25","coordinateSync":false,"widthHeightSync":false,"fontFamily":"Microsoft YaHei","fontSize":12,"fontWeight":"bold","letterSpacing":0.75,"textAlign":"center","textContentVerticalAlign":"middle","qrCodeLevel":0},"printElementType":{"title":"文本","type":"text"}},{"options":{"left":170,"top":227.5,"height":48,"width":188,"title":"序号","barcodeType":"code128","testData":"20240615000001","right":357.4921875,"bottom":226.74609375,"vCenter":263.7421875,"hCenter":200.49609375,"field":"gh_number","barWidth":"2","barAutoWidth":"false","coordinateSync":false,"widthHeightSync":false},"printElementType":{"title":"条形码","type":"barcode"}},{"options":{"left":465,"top":252.5,"height":68,"width":68,"title":"XXX医院","qrcodeType":"qrcode","qrCodeLevel":0,"coordinateSync":false,"widthHeightSync":false,"hideTitle":true,"testData":"XXX医院","right":533,"bottom":317.99609375,"vCenter":499,"hCenter":283.99609375},"printElementType":{"title":"二维码","type":"qrcode"}}],"paperNumberLeft":517.5,"paperNumberTop":340,"paperNumberDisabled":true,"paperNumberContinue":true,"orient":1,"watermarkOptions":{"content":"vue-plugin-hiprint","rotate":25,"timestamp":true,"format":"YYYY-MM-DD HH:mm","fillStyle":"rgba(184, 184, 184, 0.3)","fontSize":"14px","width":200,"height":200},"panelLayoutOptions":{"layoutType":"column","layoutRowGap":0,"layoutColumnGap":0}}]}
 </textarea>
 <!--<div style="padding-top:15px;">-->

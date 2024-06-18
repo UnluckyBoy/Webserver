@@ -33,4 +33,9 @@ public class GhDataServiceImpl implements GhDataService {
     public List<CurrentDayGhInfo> get_current_day_gh() {
         return ghDataMapper.get_current_day_gh();
     }
+
+    @Override
+    public boolean cancel_regis(Map<String, Object> map) {
+        return ghDataMapper.cancel_regis(map);
+    }
 }

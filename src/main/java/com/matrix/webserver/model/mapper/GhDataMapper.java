@@ -20,4 +20,5 @@ public interface GhDataMapper {
     int get_gh_count();//查询当日挂号数
     boolean gh_add(Map<String,Object> map);//挂号插入
     List<CurrentDayGhInfo> get_current_day_gh();//当日挂号查询
+    boolean cancel_regis(Map<String,Object> map);//退号
 }

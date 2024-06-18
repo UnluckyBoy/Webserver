@@ -391,9 +391,7 @@ a{
     align-items: center;
     gap: 4px;
 }
-.hide-element{
-    display: none;
-}
+
 /*自定义滚动条*/
 .info-view::-webkit-scrollbar {
     width: 10px; /* 滚动条的宽度 */
@@ -982,8 +980,8 @@ label span {
 .cancel-button:hover{
     background-color: #1eb1f3;
 }
-.matrix-button-hide{
-    display: none
+.matrix-element-hide{
+    display: none;
 }
 .matrix-button-notActive{
     background-color: rgba(255,255,255,0.4);

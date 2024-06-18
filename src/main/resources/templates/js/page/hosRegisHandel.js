@@ -30,9 +30,9 @@ $(document).ready(function() {
                     /*挂号*/
                     update_gh_handle();
                     break;
-                case 'gh_cancel':
-                    //console.log('点击"退号"按钮', this.id);
-                    break;
+                // case 'gh_cancel':
+                //     console.log('点击"退号"按钮', this.id);
+                //     break;
             }
         });
     });
@@ -205,25 +205,26 @@ $(document).ready(function() {
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(requestBody),
+                dataType: 'json',
                 success: function(response) {
                     if(response.handleType){
                         //console.log('数据成功发送到后端',response);
                         clearPage1ViewElement();//清空用户信息
                         //gh_print_styles(globalPatient,response.handleData);/*打印*/
                         gh_print(globalPatient,response.handleData);
+                        init_currentDay_datas();/*挂号后重载数据*/
+                        globalPatient=null;/*置空患者信息*/
                     }else{
                         model_unCallback("异常:"+response.handleMessage);
                     }
                 },
                 error: function(error) {
                     //console.error('发送数据到后端时出错:', error);
-                    //alert('发送数据到后端时出错:'+error);
                     model_unCallback('发送数据到后端时出错:'+error);
                 }
             });
         }
     }
-
 });
 
 /*当日挂号表格逻辑*/
@@ -264,13 +265,16 @@ function init_currentDay_datas(){
 
             // 为复选框添加点击事件处理程序
             var checkbox = $('<input type="checkbox">').on('change', function() {
-                var cancelBtn=$('#gh_cancel');
-                cancelBtn.toggle();
-                // this 指向被点击的复选框
-                var parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
-                var ghNumberCell = parentRow.find('td:eq(1)'); // 找到第二个td元素（索引从0开始）
-                var ghNumber = ghNumberCell.text(); // 获取第二个td元素的文本内容，即gh_number
+                let cancelBtn=$('#gh_cancel');
+                changeCancelBtn(cancelBtn);
+                // this指向被点击复选框
+                let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
+                let ghNumberCell = parentRow.find('td:eq(1)'); // 找到第二个td元素（索引从0开始）
+                let ghNumber = ghNumberCell.text(); // 获取第二个td元素的文本内容，即gh_number
                 //model_unCallback('你选择了gh_number为：' + ghNumber);
+                cancelBtn.on('click', function(){
+                    cancel_regis(ghNumber,getCurrentTime());/*退号*/
+                });
             });
 
             // 为每个属性创建td元素并添加到tr中
@@ -311,4 +315,43 @@ function init_currentDay_datas(){
         //确保表头始终可见
         thead.style.display = 'table-header-group';
     });
+}
+
+/*退号逻辑*/
+function cancel_regis(gh_number,cancel_time){
+    var requestBody = {
+        cancel_operator:$('#uName').text(),
+        cancel_time: cancel_time,
+        gh_number: gh_number
+    };
+    $.ajax({
+        url:'/api/gh_cancel',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(requestBody),
+        dataType: 'json',
+        success: function(data) {
+            if(data.handleType){
+                model_unCallback(data.handleMessage);
+            }else{
+                model_unCallback(data.handleMessage);
+            }
+            init_currentDay_datas();
+            changeCancelBtn($('#gh_cancel'));
+        },
+        error: function(xhr, status, error) {
+            //console.error("请求失败: " +error);
+            model_unCallback("请求失败: " +error);
+        }
+    });
+}
+
+/*切换退号按钮状态*/
+function changeCancelBtn(btn){
+    //let cancelBtn=btn;
+    if (btn.css('display') === 'none') {
+        btn.css('display', 'block');
+    } else {
+        btn.css('display', 'none');
+    }
 }

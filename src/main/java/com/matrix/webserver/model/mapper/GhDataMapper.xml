@@ -44,4 +44,15 @@
             (#{gh_number},#{gh_type},#{insurance_type},#{expense_type},#{patient_id},#{operator_account},
              #{gh_createTime},#{gh_department},#{receive_physician},#{exigency_sign},#{repeated_sign});
     </insert>
+
+    <!--Update逻辑-->
+    <update id="cancel_regis" parameterType="java.util.Map">
+        UPDATE backservice.gh_data_table
+        SET cancel_sign = '是',
+            cancel_operator = #{cancel_operator},
+            cancel_time = #{cancel_time}
+        WHERE
+            gh_number = #{gh_number}
+          AND cancel_sign = '否';
+    </update>
 </mapper>
