@@ -201,8 +201,6 @@
                         <div class="other-view-child-full" id="gh_data_table_view">
                             <div class="horizontal-element-flex-start default-text">
                                 <input class="default-text big-large-input" type="text" id="searchInput" placeholder="查询">
-                                <input class="default-text" type="date" id="startTime">至
-                                <input class="default-text" type="date" id="endTime">
                             </div>
                             <table class="data-table-view" id="gh_data_table">
                                 <thead>
@@ -322,6 +320,42 @@
                             <input class="input-rm-bg default-text" type="text" id="create-guardian-idCard">
                             <span class="small-text default-text">监护人联系电话:</span>
                             <input class="input-rm-bg large-input default-text" type="text" id="create-guardian-phone"><br>
+                        </div>
+                    </div>
+
+                    <div class="other-view">
+                        <div class="other-view-child">
+                            <strong class="primary-text center-text bold-text large-text">当月注册患者详情</strong>
+                        </div>
+                        <div class="other-view-child-full" id="patient_table_view">
+                            <div class="horizontal-element-flex-start default-text">
+                                <input class="default-text big-large-input" type="text" id="searchPatient" placeholder="查询">
+                                <input class="default-text" type="date" id="startTime">至
+                                <input class="default-text" type="date" id="endTime">
+                            </div>
+                            <table class="data-table-view" id="patient_table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>身份证号</th>
+                                    <th>年龄</th>
+                                    <th>注册时间</th>
+                                    <th>籍贯</th>
+                                    <th>民族</th>
+                                    <th>职业</th>
+                                    <th>婚姻状况</th>
+                                    <th>联系电话</th>
+                                    <th>是否贫困户</th>
+                                    <th>家庭地址</th>
+                                    <th>紧急联系人</th>
+                                    <th>联系人电话</th>
+                                </tr>
+                                </thead>
+                                <tbody id="patient_table_body">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
