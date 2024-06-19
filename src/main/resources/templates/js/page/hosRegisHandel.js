@@ -3,8 +3,9 @@
  */
 var globalPatient;
 $(document).ready(function() {
-    //sub_btn_view_Click();
-    init_currentDay_datas();
+    /*加载前提数据*/
+    init_currentDay_datas();/*当日挂号数据*/
+    init_currentMonth_patients();/*近2月注册数据*/
 
     // 挂号日期按钮获取时间逻辑
     $('#registration-time-btn').click(function() {
@@ -321,16 +322,16 @@ function init_currentDay_datas(){
     });
 }
 
-/*当月注册患者信息*/
+/*近2月内注册患者信息*/
 function init_currentMonth_patients() {
     $.ajax({
-        url: '/api/gh_current_day',
+        url: '/api/get_two_month_patients',
         type: 'POST',
         dataType: 'json',
         success: function (data) {
             if (data.handleType) {
                 // 初始填充表格
-                bindTableData(data.handleData);
+                bindPatientData(data.handleData);
             }
         },
         error: function (xhr, status, error) {
@@ -339,23 +340,39 @@ function init_currentMonth_patients() {
         }
     });
     // 函数：填充表格数据
-    function bindTableData(data) {
+    function bindPatientData(data) {
         var tableBody = $('#patient_table_body'); // 获取tbody元素
         tableBody.empty();
         // 遍历数据数组
         $.each(data, function (index, item) {
             // 创建一个新的tr元素
             var row = $('<tr>');
-            row.append($('<td>').text(item.gh_number));
-            row.append($('<td>').text(item.expense_type));
-            row.append($('<td>').text(item.gh_type));
-            row.append($('<td>').text(item.patient_id));
+
+            // 为复选框添加点击事件处理程序
+            var patient_checkbox = $('<input type="checkbox">').on('change', function() {
+                // this指向被点击复选框
+                let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
+                let patient_IDCard_Cell = parentRow.find('td:eq(2)'); // 找到第3个td元素（索引从0开始）
+                let patient_IDCard = patient_IDCard_Cell.text(); // 获取第3个td元素的文本内容
+            });
+
+            // 为每个属性创建td元素并添加到tr中
+            row.append($('<td>').append(patient_checkbox));
             row.append($('<td>').text(item.patient_name));
-            row.append($('<td>').text(item.gh_createTime));
-            row.append($('<td>').text(item.gh_department));
-            row.append($('<td>').text(item.cancel_sign));
-            row.append($('<td>').text(item.gh_fee_sign));
-            row.append($('<td>').text(item.receive_sign));
+            row.append($('<td>').text(item.patient_idCard));
+            row.append($('<td>').text(item.patient_gender));
+            row.append($('<td>').text(item.patient_birth));
+            row.append($('<td>').text(item.patient_age));
+            row.append($('<td>').text(item.patient_occupation));
+            row.append($('<td>').text(item.patient_nation));
+            row.append($('<td>').text(item.create_time));
+            row.append($('<td>').text(item.patient_phone));
+            row.append($('<td>').text(item.patient_homeAddress));
+            row.append($('<td>').text(item.patient_maritalStatus));
+            row.append($('<td>').text(item.poverty_sign));
+            row.append($('<td>').text(item.patient_emergencyContact));
+            row.append($('<td>').text(item.patient_relationship));
+            row.append($('<td>').text(item.guardian_phone));
             // 将tr添加到tbody中
             tableBody.append(row);
         })

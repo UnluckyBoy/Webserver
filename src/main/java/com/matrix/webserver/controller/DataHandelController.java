@@ -1,10 +1,7 @@
 package com.matrix.webserver.controller;
 
 import com.google.gson.Gson;
-import com.matrix.webserver.model.AuthorityInfo;
-import com.matrix.webserver.model.CurrentDayGhInfo;
-import com.matrix.webserver.model.PatientInfo;
-import com.matrix.webserver.model.UserInfo;
+import com.matrix.webserver.model.*;
 import com.matrix.webserver.model.mapper.GhDataMapper;
 import com.matrix.webserver.service.AuthorityService;
 import com.matrix.webserver.service.PatientInfoService;
@@ -167,6 +164,24 @@ public class DataHandelController {
         }else{
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.failure("此条目已退！")));
+        }
+    }
+
+    /**
+     * 近2月内注册的信息
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/get_two_month_patients")
+    public void getTwoMonPatients(HttpServletResponse response) throws IOException{
+        List<PatientView> resultList=patientInfoService.query_near_two_month_patients();
+        System.out.println("当日挂号数据:"+resultList.toString());
+        if(resultList.size()>0){
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success("获取数据成功",resultList)));
+        }else{
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("获取数据失败")));
         }
     }
 

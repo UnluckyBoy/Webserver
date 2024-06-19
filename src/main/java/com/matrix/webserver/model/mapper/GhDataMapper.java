@@ -1,6 +1,7 @@
 package com.matrix.webserver.model.mapper;
 
 import com.matrix.webserver.model.CurrentDayGhInfo;
+import com.matrix.webserver.model.PatientInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;

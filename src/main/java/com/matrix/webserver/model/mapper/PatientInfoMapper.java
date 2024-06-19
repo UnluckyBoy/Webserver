@@ -1,9 +1,12 @@
 package com.matrix.webserver.model.mapper;
 
 import com.matrix.webserver.model.PatientInfo;
+import com.matrix.webserver.model.PatientView;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName PatientInfoMapper
@@ -15,4 +18,5 @@ import org.springframework.stereotype.Service;
 @Repository
 public interface PatientInfoMapper {
     PatientInfo queryPatient(String keyParam);
+    List<PatientView> query_near_two_month_patients();//近2月内注册信息
 }

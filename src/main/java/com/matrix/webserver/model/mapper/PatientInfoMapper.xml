@@ -38,4 +38,27 @@
             (patient_name =#{keyParam})
            OR (patient_idCard =#{keyParam});
     </select>
+    <!--近2月内注册的信息-->
+    <select id="query_near_two_month_patients" resultType="PatientView">
+        SELECT
+            patient_info_table.patient_name,
+            patient_info_table.patient_idCard,
+            patient_info_table.patient_birth,
+            patient_info_table.patient_age,
+            patient_info_table.patient_gender,
+            patient_info_table.patient_occupation,
+            patient_info_table.patient_nation,
+            patient_info_table.create_time,
+            patient_info_table.patient_phone,
+            patient_info_table.patient_homeAddress,
+            patient_info_table.patient_maritalStatus,
+            patient_info_table.poverty_sign,
+            patient_info_table.patient_emergencyContact,
+            patient_info_table.patient_relationship,
+            patient_info_table.guardian_phone
+        FROM
+            patient_info_table
+        WHERE
+            DATE( patient_info_table.create_time ) >= CURDATE() - INTERVAL 2 MONTH;
+    </select>
 </mapper>
