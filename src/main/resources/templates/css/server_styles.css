@@ -374,7 +374,7 @@ a{
 }
 .other-view-child{
     width: 100%;
-    min-height: 36px;
+    min-height: 48px;
 }
 .other-view-child-full{
     flex-grow: 1;
@@ -417,6 +417,19 @@ a{
     background: #0053c6;
 }
 .other-view::-webkit-scrollbar-thumb:hover {
+    background: #347e34;
+}
+.other-view-child-full::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 6px;
+}
+.other-view-child-full::-webkit-scrollbar-track {
+    background: #d1dbd1;
+}
+.other-view-child-full::-webkit-scrollbar-thumb {
+    background: #0053c6;
+}
+.other-view-child-full::-webkit-scrollbar-thumb:hover {
     background: #347e34;
 }
 
@@ -1109,10 +1122,11 @@ label span {
 
 .data-table-view th,
 .data-table-view td {
-    padding: 8px; /* 单元格内边距 */
+    padding: 4px; /* 单元格内边距 */
     text-align: center; /* 文本左对齐 */
     border-bottom: 1px solid #a9a9a9; /* 底部边框 */
     color: black;
+    /*white-space: nowrap; /* 防止文本换行*/
 }
 
 /*文字效果*/

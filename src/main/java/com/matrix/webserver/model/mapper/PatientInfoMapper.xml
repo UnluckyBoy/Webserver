@@ -48,7 +48,8 @@
             patient_info_table.patient_gender,
             patient_info_table.patient_occupation,
             patient_info_table.patient_nation,
-            patient_info_table.create_time,
+            /*patient_info_table.create_time,*/
+            DATE(patient_info_table.create_time) as create_time,
             patient_info_table.patient_phone,
             patient_info_table.patient_homeAddress,
             patient_info_table.patient_maritalStatus,

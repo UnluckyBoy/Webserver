@@ -330,7 +330,6 @@ function init_currentMonth_patients() {
         dataType: 'json',
         success: function (data) {
             if (data.handleType) {
-                // 初始填充表格
                 bindPatientData(data.handleData);
             }
         },
@@ -339,7 +338,7 @@ function init_currentMonth_patients() {
             model_unCallback("请求失败: " + error);
         }
     });
-    // 函数：填充表格数据
+    // 绑定表格数据
     function bindPatientData(data) {
         var tableBody = $('#patient_table_body'); // 获取tbody元素
         tableBody.empty();
@@ -377,6 +376,27 @@ function init_currentMonth_patients() {
             tableBody.append(row);
         })
     }
+    document.getElementById('searchPatient').addEventListener('input', function() {
+        var filter = this.value.toUpperCase(); // 获取输入框的值并转为大写
+        var table = document.getElementById('patient_table');
+        var thead = table.getElementsByTagName('thead')[0]; // 获取表头
+        var tbody = table.getElementsByTagName('tbody')[0]; // 获取表格主体
+        var trs = tbody ? tbody.getElementsByTagName('tr') : []; // 只获取数据行
+        // 遍历数据行,隐藏不包含查找文本的行
+        for (var i = 0; i < trs.length; i++) {
+            var tds = trs[i].getElementsByTagName('td');
+            var found = false;
+            for (var j = 0; j < tds.length; j++) {
+                if (tds[j].textContent.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+            trs[i].style.display = found ? '' : 'none'; // 根据是否找到文本显示或隐藏行
+        }
+        //确保表头始终可见
+        thead.style.display = 'table-header-group';
+    });
 }
 
 /*退号逻辑*/

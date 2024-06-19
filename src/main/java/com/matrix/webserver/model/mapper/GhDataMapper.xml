@@ -23,8 +23,8 @@
             gh_data_table.gh_type,
             gh_data_table.patient_id,
             patient_info_table.patient_name,
-            /*gh_data_table.gh_createTime,*/
-            DATE(gh_data_table.gh_createTime) as gh_createTime,
+            gh_data_table.gh_createTime,
+            /*DATE(gh_data_table.gh_createTime) as gh_createTime,*/
             gh_data_table.gh_department,
             gh_data_table.cancel_sign,
             gh_data_table.gh_fee_sign,
