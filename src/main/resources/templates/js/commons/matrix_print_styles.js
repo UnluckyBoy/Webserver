@@ -28,7 +28,7 @@ function gh_print_styles(Param1, Param2){
     location.reload();
 }
 
-/*测试hiprint*/
+/*hiprint 挂号打印*/
 function gh_print(Param1, Param2){
     var printTemplate = new hiprint.PrintTemplate({ template: JSON.parse($('#print_textarea').val()) });
     console.log('打印格式；'+$('#print_textarea').val());

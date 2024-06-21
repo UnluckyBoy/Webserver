@@ -11,9 +11,10 @@
         FROM
             gh_data_table
         WHERE
-            cancel_sign = '否'
-          AND receive_sign = '否'
-          AND DATE(gh_createTime) = CURDATE();
+            /*cancel_sign = '否'
+	        AND receive_sign = '否'
+	        AND DATE( gh_createTime ) = CURDATE()*/
+            DATE( gh_createTime ) = CURDATE();
     </select>
     <!--当日挂号具体患者-->
     <select id="get_current_day_gh" resultType="CurrentDayGhInfo">

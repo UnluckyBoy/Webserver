@@ -71,33 +71,33 @@ $(document).ready(function() {
             }
         });
     }
-    /*清空组件*/
-    function clearPage1ViewElement(){
-        $('#patient-name').val('');
-        $('#patient-gender').val('');
-        $('#patient-idCard').val('');
-        $('#patient-birth').val('');
-        $('#patient-nationality').val('');
-        $('#patient-nativePlace').val('');
-        $('#patient-nation').val('');
-        $('#patient-occupation').val('');
-        $('#patient-maritalStatus').val('');
-        $('#patient-phone').val('');
-        $('#patient-age').val('');
-        $('#poverty-sign').val('');
-        $('#patient-emergencyContact').val('');
-        $('#emergencyContact-relationship').val('');
-        $('#patient-contactPhone').val('');
-        $('#patient-homeAddress').val('');
-        $('#patient-workAddress').val('');
-        $('#nowAddress-province').val('');
-        $('#nowAddress-town').val('');
-        $('#nowAddress-prefecture').val('');
-        $('#child-sign').val('');
-        $('#guardian-name').val('');
-        $('#guardian-idCard').val('');
-        $('#guardian-phone').val('');
-    }
+    // /*清空组件*/
+    // function clearPage1ViewElement(){
+    //     $('#patient-name').val('');
+    //     $('#patient-gender').val('');
+    //     $('#patient-idCard').val('');
+    //     $('#patient-birth').val('');
+    //     $('#patient-nationality').val('');
+    //     $('#patient-nativePlace').val('');
+    //     $('#patient-nation').val('');
+    //     $('#patient-occupation').val('');
+    //     $('#patient-maritalStatus').val('');
+    //     $('#patient-phone').val('');
+    //     $('#patient-age').val('');
+    //     $('#poverty-sign').val('');
+    //     $('#patient-emergencyContact').val('');
+    //     $('#emergencyContact-relationship').val('');
+    //     $('#patient-contactPhone').val('');
+    //     $('#patient-homeAddress').val('');
+    //     $('#patient-workAddress').val('');
+    //     $('#nowAddress-province').val('');
+    //     $('#nowAddress-town').val('');
+    //     $('#nowAddress-prefecture').val('');
+    //     $('#child-sign').val('');
+    //     $('#guardian-name').val('');
+    //     $('#guardian-idCard').val('');
+    //     $('#guardian-phone').val('');
+    // }
 
     /*查询用户信息*/
     function getPatientInfoHandle(patient){
@@ -218,7 +218,7 @@ $(document).ready(function() {
                 },
                 error: function(error) {
                     //console.error('发送数据到后端时出错:', error);
-                    model_unCallback('发送数据到后端时出错:'+error);
+                    model_unCallback('发送数据到后端时出错:'+error.toString());
                 }
             });
         }
@@ -248,6 +248,7 @@ function init_currentDay_datas(){
         var tableBody = $('#gh_data_table_body'); // 获取tbody元素
         // 清空tbody中的现有内容
         tableBody.empty();
+        var checkedCheckbox = null; // 用于存储当前被选中的复选框
         // 遍历数据数组
         $.each(data, function(index, item) {
             // 创建一个新的tr元素
@@ -260,25 +261,29 @@ function init_currentDay_datas(){
             }else if (item.receive_sign === '是') {
                 textColor = '#06b9ee';
             }
-
             // 为复选框添加点击事件处理程序
             var checkbox = $('<input type="checkbox">').on('change', function() {
                 let cancelBtn=$('#gh_cancel');
-                cancelBtn.toggle();
-                if(cancelBtn.css('display') === 'none'){
-                    nullBtn_confirm_model("此操作违规！",function (){
-                        init_currentDay_datas();
-                    });
-                }else{
+                if (this.checked){
+                    $('input[type="checkbox"]').not(this).prop('disabled', true);
+                    checkedCheckbox = $(this); // 存储当前被选中的复选框
+                    cancelBtn.toggle();
+
                     // this指向被点击复选框
-                    let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
-                    let ghNumberCell = parentRow.find('td:eq(1)'); // 找到第二个td元素（索引从0开始）
-                    let ghNumber = ghNumberCell.text(); // 获取第二个td元素的文本内容，即gh_number
-                    //model_unCallback('你选择了gh_number为：' + ghNumber);
+                    //let parentRow = checkedCheckbox.closest('tr'); // 找到包含复选框的tr元素
+                    //let ghNumberCell = parentRow.find('td:eq(1)'); // 找到第二个td元素（索引从0开始）
+                    //let ghNumber = ghNumberCell.text(); // 获取第二个td元素的文本内容，即gh_number
                     cancelBtn.on('click', function(){
                         cancelBtn.css('display','none');
-                        cancel_regis(ghNumber,getCurrentTime());/*退号*/
+                        cancel_regis(checkedCheckbox.closest('tr').find('td:eq(1)').text(),getCurrentTime());/*退号*/
                     });
+                    //console.log('if:'+checkedCheckbox.closest('tr').find('td:eq(1)').text());
+                }else if (checkedCheckbox && checkedCheckbox[0] === this) {
+                    // 如果当前被禁用的复选框（即之前被选中的）被取消选中
+                    $('input[type="checkbox"]').prop('disabled', false);
+                    checkedCheckbox = null; // 清除存储的复选框
+                    //console.log('else-if:'+checkedCheckbox);
+                    cancelBtn.toggle();
                 }
             });
 
@@ -342,19 +347,35 @@ function init_currentMonth_patients() {
     function bindPatientData(data) {
         var tableBody = $('#patient_table_body'); // 获取tbody元素
         tableBody.empty();
+        var checkedCheckbox = null; // 用于存储当前被选中的复选框
         // 遍历数据数组
         $.each(data, function (index, item) {
             // 创建一个新的tr元素
             var row = $('<tr>');
-
             // 为复选框添加点击事件处理程序
             var patient_checkbox = $('<input type="checkbox">').on('change', function() {
-                // this指向被点击复选框
-                let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
-                let patient_IDCard_Cell = parentRow.find('td:eq(2)'); // 找到第3个td元素（索引从0开始）
-                let patient_IDCard = patient_IDCard_Cell.text(); // 获取第3个td元素的文本内容
-            });
+                let edit_Btn=$('#edit_btn');
+                if (this.checked){
+                    $('input[type="checkbox"]').not(this).prop('disabled', true);
+                    checkedCheckbox = $(this); // 存储当前被选中的复选框
+                    edit_Btn.toggle();
+                    get_patient_data(checkedCheckbox.closest('tr').find('td:eq(2)').text(),getCurrentTime());/*绑定数据*/
 
+                    // this指向被点击复选框
+                    // let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
+                    // let patient_IDCard_Cell = parentRow.find('td:eq(2)'); // 找到第3个td元素（索引从0开始）
+                    // let patient_IDCard = patient_IDCard_Cell.text(); // 获取第3个td元素的文本内容
+                    edit_Btn.on('click', function(){
+                        edit_Btn.css('display','none');
+                    });
+                }else if (checkedCheckbox && checkedCheckbox[0] === this) {
+                    // 如果当前被禁用的复选框（即之前被选中的）被取消选中
+                    $('input[type="checkbox"]').prop('disabled', false);
+                    checkedCheckbox = null; // 清除存储的复选框
+                    edit_Btn.toggle();
+                    clear_create_patient_view();/*清空视图*/
+                }
+            });
             // 为每个属性创建td元素并添加到tr中
             row.append($('<td>').append(patient_checkbox));
             row.append($('<td>').text(item.patient_name));
@@ -430,4 +451,102 @@ function cancel_regis(gh_number,cancel_time){
             });
         }
     });
+}
+
+/*获取用户数据*/
+function get_patient_data(patient){
+    $.ajax({
+        url:'/api/patientInfo',
+        type: 'POST',
+        data:{"patient":patient},
+        dataType: 'json',
+        success: function(data) {
+            if(data.handleType){
+                /*绑定信息*/
+                $('#create-patient-name').val(data.handleData.patient_name);
+                $('#create-patient-gender').val(data.handleData.patient_gender);
+                $('#create-patient-idCard').val(data.handleData.patient_idCard);
+                $('#create-patient-birth').val(data.handleData.patient_birth);
+                $('#create-patient-nationality').val(data.handleData.patient_nationality);
+                $('#create-patient-nativePlace').val(data.handleData.patient_nativePlace);
+                $('#create-patient-nation').val(data.handleData.patient_nation);
+                $('#create-patient-occupation').val(data.handleData.patient_occupation);
+                $('#create-patient-maritalStatus').val(data.handleData.patient_maritalStatus);
+                $('#create-patient-phone').val(data.handleData.patient_phone);
+                $('#create-patient-age').val(data.handleData.patient_age);
+                $('#create-poverty-sign').val(data.handleData.poverty_sign);
+                $('#create-patient-emergencyContact').val(data.handleData.patient_emergencyContact);
+                $('#create-emergencyContact-relationship').val(data.handleData.patient_relationship);
+                $('#create-patient-contactPhone').val(data.handleData.patient_contactPhone);
+                $('#create-patient-homeAddress').val(data.handleData.patient_homeAddress);
+                $('#create-patient-workAddress').val(data.handleData.patient_workAddress);
+                $('#create-nowAddress-province').val(data.handleData.nowAddress_province);
+                $('#create-nowAddress-town').val(data.handleData.nowAddress_town);
+                $('#create-nowAddress-prefecture').val(data.handleData.nowAddress_prefecture);
+                $('#create-child-sign').val(data.handleData.child_sign);
+                $('#create-guardian-name').val(data.handleData.guardian_name);
+                $('#create-guardian-idCard').val(data.handleData.guardian_idCard);
+                $('#create-guardian-phone').val(data.handleData.guardian_phone);
+            }
+        },
+        error: function(xhr, status, error) {
+            //console.error("请求失败: " +error);
+            model_unCallback('发送数据到后端异常:'+error);
+        }
+    });
+}
+
+/*清空挂号组件*/
+function clearPage1ViewElement(){
+    $('#patient-name').val('');
+    $('#patient-gender').val('');
+    $('#patient-idCard').val('');
+    $('#patient-birth').val('');
+    $('#patient-nationality').val('');
+    $('#patient-nativePlace').val('');
+    $('#patient-nation').val('');
+    $('#patient-occupation').val('');
+    $('#patient-maritalStatus').val('');
+    $('#patient-phone').val('');
+    $('#patient-age').val('');
+    $('#poverty-sign').val('');
+    $('#patient-emergencyContact').val('');
+    $('#emergencyContact-relationship').val('');
+    $('#patient-contactPhone').val('');
+    $('#patient-homeAddress').val('');
+    $('#patient-workAddress').val('');
+    $('#nowAddress-province').val('');
+    $('#nowAddress-town').val('');
+    $('#nowAddress-prefecture').val('');
+    $('#child-sign').val('');
+    $('#guardian-name').val('');
+    $('#guardian-idCard').val('');
+    $('#guardian-phone').val('');
+}
+/*清空注册视图组件数据*/
+function clear_create_patient_view(){
+    $('#create-patient-name').val('');
+    $('#create-patient-gender').val('');
+    $('#create-patient-idCard').val('');
+    $('#create-patient-birth').val('');
+    $('#create-patient-nationality').val('');
+    $('#create-patient-nativePlace').val('');
+    $('#create-patient-nation').val('');
+    $('#create-patient-occupation').val('');
+    $('#create-patient-maritalStatus').val('');
+    $('#create-patient-phone').val('');
+    $('#create-patient-age').val('');
+    $('#create-poverty-sign').val('');
+    $('#create-patient-emergencyContact').val('');
+    $('#create-emergencyContact-relationship').val('');
+    $('#create-patient-contactPhone').val('');
+    $('#create-patient-homeAddress').val('');
+    $('#create-patient-workAddress').val('');
+    $('#create-nowAddress-province').val('');
+    $('#create-nowAddress-town').val('');
+    $('#create-nowAddress-prefecture').val('');
+    $('#create-child-sign').val('');
+    $('#create-guardian-name').val('');
+    $('#create-guardian-idCard').val('');
+    $('#create-guardian-phone').val('');
 }
