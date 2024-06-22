@@ -7,6 +7,7 @@ import com.matrix.webserver.service.AuthorityService;
 import com.matrix.webserver.service.PatientInfoService;
 import com.matrix.webserver.tools.PrintTool;
 import com.matrix.webserver.tools.TimeUtil;
+import com.matrix.webserver.tools.UUIDNumberUtil;
 import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -165,6 +167,25 @@ public class DataHandelController {
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.failure("此条目已退！")));
         }
+    }
+
+
+    @RequestMapping("/regis_patient")
+    public void regisPatient(@RequestBody Map<String, Object> requestBody,HttpServletResponse response) throws IOException, SQLException {
+        requestBody.put("patient_id",
+                TimeUtil.timeToString(TimeUtil.GetTime(true))+
+                        requestBody.get("birth").toString().replace("-","")+ UUIDNumberUtil.randUUIDNumber());
+        System.out.println("推号数据:"+requestBody.toString());
+        boolean result_regis=patientInfoService.regis_patient(requestBody);
+        if(result_regis){
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success("患者注册成功！")));
+        }else{
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("患者注册失败！")));
+        }
+        //response.setContentType("application/json;charset=UTF-8");
+        //response.getWriter().write(gson.toJson(WebServerResponse.failure("患者注册失败！")));
     }
 
     /**

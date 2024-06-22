@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName PatientInfoServiceImpl
@@ -26,5 +27,10 @@ public class PatientInfoServiceImpl implements PatientInfoService {
     @Override
     public List<PatientView> query_near_two_month_patients() {
         return patientInfoMapper.query_near_two_month_patients();
+    }
+
+    @Override
+    public boolean regis_patient(Map<String, Object> map) {
+        return patientInfoMapper.regis_patient(map);
     }
 }

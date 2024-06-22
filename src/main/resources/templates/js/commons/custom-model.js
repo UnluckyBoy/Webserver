@@ -113,7 +113,7 @@ function nullBtn_confirm_model(message, callback) {
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
                 '<div class="modal-foot">'+
-                //     '<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
+                    //'<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
                 '</div>'+
             '</div>' +
         '</div>';

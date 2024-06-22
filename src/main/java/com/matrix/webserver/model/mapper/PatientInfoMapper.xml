@@ -62,4 +62,41 @@
         WHERE
             DATE( patient_info_table.create_time ) >= CURDATE() - INTERVAL 2 MONTH;
     </select>
+
+    <!--插入逻辑-->
+    <insert id="regis_patient" parameterType="java.util.Map">
+        INSERT INTO patient_info_table (
+            patient_id,
+            patient_name,
+            patient_gender,
+            patient_idCard,
+            patient_birth,
+            create_time,
+            patient_nationality,
+            patient_nativePlace,
+            patient_nation,
+            patient_occupation,
+            patient_maritalStatus,
+            patient_phone,
+            patient_age,
+            poverty_sign,
+            patient_emergencyContact,
+            patient_relationship,
+            patient_contactPhone,
+            patient_homeAddress,
+            patient_workAddress,
+            nowAddress_province,
+            nowAddress_town,
+            nowAddress_prefecture,
+            child_sign,
+            guardian_name,
+            guardian_idCard,
+            guardian_phone
+        )
+        VALUES
+        (#{patient_id},#{name},#{gender},#{idCard},#{birth},#{create_time},#{nationality},#{nativePlace},#{nation},#{occupation},
+         #{maritalStatus},#{phone},#{age},#{poverty_sign},#{emergencyContact},#{emergencyContact_relationship},
+          #{contactPhone},#{homeAddress},#{workAddress},#{nowAddress_province},#{nowAddress_town},#{nowAddress_prefecture}
+          ,#{child_sign},#{guardian_name},#{guardian_idCard},#{guardian_phone});
+    </insert>
 </mapper>

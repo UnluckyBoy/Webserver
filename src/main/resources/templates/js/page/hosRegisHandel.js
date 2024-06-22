@@ -7,12 +7,26 @@ $(document).ready(function() {
     init_currentDay_datas();/*当日挂号数据*/
     init_currentMonth_patients();/*近2月注册数据*/
 
-    // 挂号日期按钮获取时间逻辑
-    $('#registration-time-btn').click(function() {
-        // 获取当前日期和时间
-        $('#registration-time').val(getCurrentTime());
+    btn_Click();/*按钮事件*/
+
+    /*弹窗逻辑*/
+    let modal = $("#modal");
+    let closeBtn = $(".modal-close").first();
+    /*显示弹窗的函数*/
+    function showModal() {
+        modal.css("display", "block");
+    }
+    /*函数调用隐藏*/
+    function hideModal() {
+        modal.css("display", "none");
+    }
+    /*按钮隐藏弹窗的函数*/
+    closeBtn.on("click", function() {
+        modal.css("display", "none");
     });
-    /*按钮响应逻辑*/
+    /*弹窗逻辑*/
+
+    /*挂号页按钮响应逻辑*/
     let $btn=$('#page1').children(0).children();
     $btn.each(function(i, btn) { //使用.each()遍历jQuery对象
         // 使用$(btn)将原生的DOM元素转换成jQuery对象
@@ -34,24 +48,7 @@ $(document).ready(function() {
             }
         });
     });
-    /*按钮响应逻辑*/
-
-    /*弹窗逻辑*/
-    let modal = $("#modal");
-    let closeBtn = $(".modal-close").first();
-    /*显示弹窗的函数*/
-    function showModal() {
-        modal.css("display", "block");
-    }
-    /*函数调用隐藏*/
-    function hideModal() {
-        modal.css("display", "none");
-    }
-    /*按钮隐藏弹窗的函数*/
-    closeBtn.on("click", function() {
-        modal.css("display", "none");
-    });
-    /*弹窗逻辑*/
+    /*挂号页按钮响应逻辑*/
 
     /*挂号逻辑函数*/
     function add_Patient(){
@@ -71,33 +68,6 @@ $(document).ready(function() {
             }
         });
     }
-    // /*清空组件*/
-    // function clearPage1ViewElement(){
-    //     $('#patient-name').val('');
-    //     $('#patient-gender').val('');
-    //     $('#patient-idCard').val('');
-    //     $('#patient-birth').val('');
-    //     $('#patient-nationality').val('');
-    //     $('#patient-nativePlace').val('');
-    //     $('#patient-nation').val('');
-    //     $('#patient-occupation').val('');
-    //     $('#patient-maritalStatus').val('');
-    //     $('#patient-phone').val('');
-    //     $('#patient-age').val('');
-    //     $('#poverty-sign').val('');
-    //     $('#patient-emergencyContact').val('');
-    //     $('#emergencyContact-relationship').val('');
-    //     $('#patient-contactPhone').val('');
-    //     $('#patient-homeAddress').val('');
-    //     $('#patient-workAddress').val('');
-    //     $('#nowAddress-province').val('');
-    //     $('#nowAddress-town').val('');
-    //     $('#nowAddress-prefecture').val('');
-    //     $('#child-sign').val('');
-    //     $('#guardian-name').val('');
-    //     $('#guardian-idCard').val('');
-    //     $('#guardian-phone').val('');
-    // }
 
     /*查询用户信息*/
     function getPatientInfoHandle(patient){
@@ -223,7 +193,49 @@ $(document).ready(function() {
             });
         }
     }
+
+    /*身份证号检测转出生日期及年龄*/
+    $('#createArea').mousedown(function (event){
+        var idCard=$('#create-patient-idCard').val().trim();
+        if (event.which === 1&&idCard!=='') {
+            //model_unCallback('鼠标左键被按下！');
+            let temp=idCard.substring(6, 14);
+            let format_birthDate = temp.substring(0, 4) + '-' + temp.substring(4, 6) + '-01'; // 添加'-01'作为日期部分，因为<input type="date">需要完整的日期
+            //model_unCallback(formattedDate);
+            $('#create-patient-birth').val(format_birthDate); // 显示在指定的div元素中
+            // 将生日字符串转换为Date对象
+            let birthday = new Date(format_birthDate);
+            // 获取当前日期
+            let today = new Date();
+            // 计算年龄(假设birthday和today都是有效的Date对象)
+            let age = today.getFullYear() - birthday.getFullYear();
+            let m = today.getMonth() - birthday.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+                age--;
+            }
+            if(age<=0){
+                age=Math.abs(m);
+                $('#create-patient-age').val(age+'月');
+            }else{
+                $('#create-patient-age').val(age+'岁');
+            }
+        }
+    });
 });
+
+/*按钮事件逻辑*/
+function btn_Click(){
+    // 挂号日期按钮获取时间逻辑
+    $('#registration-time-btn').click(function() {
+        // 获取当前日期和时间
+        $('#registration-time').val(getCurrentTime());
+    });
+
+    /*注册按钮逻辑*/
+    $('#create_btn').click(function (){
+        regis_patient();
+    });
+}
 
 /*当日挂号表格逻辑*/
 function init_currentDay_datas(){
@@ -347,7 +359,7 @@ function init_currentMonth_patients() {
     function bindPatientData(data) {
         var tableBody = $('#patient_table_body'); // 获取tbody元素
         tableBody.empty();
-        var checkedCheckbox = null; // 用于存储当前被选中的复选框
+        var createCheckbox = null; // 用于存储当前被选中的复选框
         // 遍历数据数组
         $.each(data, function (index, item) {
             // 创建一个新的tr元素
@@ -357,21 +369,22 @@ function init_currentMonth_patients() {
                 let edit_Btn=$('#edit_btn');
                 if (this.checked){
                     $('input[type="checkbox"]').not(this).prop('disabled', true);
-                    checkedCheckbox = $(this); // 存储当前被选中的复选框
+                    createCheckbox = $(this); // 存储当前被选中的复选框
                     edit_Btn.toggle();
-                    get_patient_data(checkedCheckbox.closest('tr').find('td:eq(2)').text(),getCurrentTime());/*绑定数据*/
+                    get_patient_data(createCheckbox.closest('tr').find('td:eq(2)').text(),getCurrentTime());/*绑定数据*/
 
                     // this指向被点击复选框
                     // let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
                     // let patient_IDCard_Cell = parentRow.find('td:eq(2)'); // 找到第3个td元素（索引从0开始）
                     // let patient_IDCard = patient_IDCard_Cell.text(); // 获取第3个td元素的文本内容
                     edit_Btn.on('click', function(){
+                        //regis_patient('update');
                         edit_Btn.css('display','none');
                     });
-                }else if (checkedCheckbox && checkedCheckbox[0] === this) {
+                }else if (createCheckbox && createCheckbox[0] === this) {
                     // 如果当前被禁用的复选框（即之前被选中的）被取消选中
                     $('input[type="checkbox"]').prop('disabled', false);
-                    checkedCheckbox = null; // 清除存储的复选框
+                    createCheckbox = null; // 清除存储的复选框
                     edit_Btn.toggle();
                     clear_create_patient_view();/*清空视图*/
                 }
@@ -483,7 +496,12 @@ function get_patient_data(patient){
                 $('#create-nowAddress-province').val(data.handleData.nowAddress_province);
                 $('#create-nowAddress-town').val(data.handleData.nowAddress_town);
                 $('#create-nowAddress-prefecture').val(data.handleData.nowAddress_prefecture);
-                $('#create-child-sign').val(data.handleData.child_sign);
+                //$('#create-child-sign').val(data.handleData.child_sign);
+                if(data.handleData.child_sign==='是'){
+                    $('#create-child-sign').prop('checked', true);
+                    // 触发checkbox的change事件
+                    $('#create-child-sign').trigger('change');
+                }
                 $('#create-guardian-name').val(data.handleData.guardian_name);
                 $('#create-guardian-idCard').val(data.handleData.guardian_idCard);
                 $('#create-guardian-phone').val(data.handleData.guardian_phone);
@@ -545,8 +563,134 @@ function clear_create_patient_view(){
     $('#create-nowAddress-province').val('');
     $('#create-nowAddress-town').val('');
     $('#create-nowAddress-prefecture').val('');
-    $('#create-child-sign').val('');
+    $('#create-child-sign').prop('checked', false);
+    // 触发checkbox的change事件
+    $('#create-child-sign').trigger('change');
     $('#create-guardian-name').val('');
     $('#create-guardian-idCard').val('');
     $('#create-guardian-phone').val('');
+}
+
+/*注册患者逻辑*/
+function regis_patient(){
+    let regis_name=$('#create-patient-name').val().trim();
+    let regis_gender=$('#create-patient-gender').val().trim();
+    let regis_idCard=$('#create-patient-idCard').val().trim();
+    let regis_birth=$('#create-patient-birth').val().trim();
+    let regis_nationality=$('#create-patient-nationality').val().trim();
+    let regis_nativePlace=$('#create-patient-nativePlace').val().trim();
+    let regis_nation=$('#create-patient-nation').val().trim();
+    let regis_occupation=$('#create-patient-occupation').val().trim();
+    let regis_maritalStatus=$('#create-patient-maritalStatus').val().trim();
+    let regis_phone=$('#create-patient-phone').val().trim();
+    let regis_age=$('#create-patient-age').val().trim();
+    let regis_poverty_sign=$('#create-poverty-sign').val().trim();
+    let regis_emergencyContact=$('#create-patient-emergencyContact').val().trim();
+    let regis_emergencyContact_relationship=$('#create-emergencyContact-relationship').val().trim();
+    let regis_contactPhone=$('#create-patient-contactPhone').val().trim();
+    let regis_homeAddress=$('#create-patient-homeAddress').val().trim();
+    let regis_workAddress=$('#create-patient-workAddress').val().trim();
+    let regis_nowAddress_province=$('#create-nowAddress-province').val().trim();
+    let regis_nowAddress_town=$('#create-nowAddress-town').val().trim();
+    let regis_nowAddress_prefecture=$('#create-nowAddress-prefecture').val().trim();
+    let regis_child_sign='';
+    if ($('#create-child-sign').is(':checked')) {
+        regis_child_sign='是';
+    } else {
+        regis_child_sign='否';
+    }
+    let regis_guardian_name=$('#create-guardian-name').val().trim();
+    let regis_guardian_idCard=$('#create-guardian-idCard').val().trim();
+    let regis_guardian_phone=$('#create-guardian-phone').val().trim();
+
+    /*数据封装*/
+    let requestBody={
+        name:regis_name,
+        gender:regis_gender,
+        idCard:regis_idCard,
+        birth:regis_birth,
+        create_time:getCurrentTime(),
+        nationality:regis_nationality,
+        nativePlace:regis_nativePlace,
+        nation:regis_nation,
+        occupation:regis_occupation,
+        maritalStatus:regis_maritalStatus,
+        phone:regis_phone,
+        age:regis_age,
+        poverty_sign:regis_poverty_sign,
+        emergencyContact:regis_emergencyContact,
+        emergencyContact_relationship:regis_emergencyContact_relationship,
+        contactPhone:regis_contactPhone,
+        homeAddress:regis_homeAddress,
+        workAddress:regis_workAddress,
+        nowAddress_province:regis_nowAddress_province,
+        nowAddress_town:regis_nowAddress_town,
+        nowAddress_prefecture:regis_nowAddress_prefecture,
+        child_sign:regis_child_sign,
+        guardian_name:regis_guardian_name,
+        guardian_idCard:regis_guardian_idCard,
+        guardian_phone:regis_guardian_phone
+    };
+
+    let requiredFields = [
+        'name', 'gender', 'idCard','nativePlace', 'nation', 'phone','homeAddress'
+    ];
+    for (let i = 0; i < requiredFields.length; i++) {
+        let fieldName = requiredFields[i];
+        let fieldValue = requestBody[fieldName];
+        // 检查字段值是否为空、未定义、null或空字符串
+        if (!fieldValue || fieldValue === '' || fieldValue === null || fieldValue === undefined) {
+            switch (fieldName){
+                case 'name':
+                    model_unCallback('姓名不能为空！');
+                    break;
+                case 'gender':
+                    model_unCallback('性别不能为空！');
+                    break;
+                case 'idCard':
+                    model_unCallback('身份证不能为空！');
+                    break;
+                case 'nativePlace':
+                    model_unCallback('籍贯不能为空！');
+                    break;
+                case 'nation':
+                    model_unCallback('民族不能为空！');
+                    break;
+                case 'phone':
+                    model_unCallback('电话不能为空！');
+                    break;
+                case 'homeAddress':
+                    model_unCallback('家庭住址不能为空！');
+                    break;
+            }
+            return false;
+        }
+    }
+
+    $.ajax({
+        url:'/api/regis_patient',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(requestBody),
+        dataType: 'json',
+        success: function(data) {
+            if(data.handleType){
+                nullBtn_confirm_model(data.handleMessage,function (){
+                    clear_create_patient_view();
+                    init_currentMonth_patients();
+                });
+            }else{
+                nullBtn_confirm_model(data.handleMessage,function (){
+                    clear_create_patient_view();
+                    init_currentMonth_patients();
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+            nullBtn_confirm_model(data.handleMessage,function (){
+                clear_create_patient_view();
+                init_currentMonth_patients();
+            });
+        }
+    });
 }

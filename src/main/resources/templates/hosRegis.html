@@ -56,10 +56,10 @@
         <div class="main-sub-child-title" id="button-parent-view">
             <button class="matrix-button matrix-button-active">窗口挂号</button>
             <button class="matrix-button matrix-button-notActive">信息注册</button>
-            <button class="matrix-button matrix-button-notActive">信息修正</button>
             <button class="matrix-button matrix-button-notActive">退号管理</button>
             <button class="matrix-button matrix-button-notActive">单据补打</button>
-            <button class="matrix-button matrix-button-notActive">预约登记</button>
+            <button class="matrix-button matrix-button-notActive">挂号统计</button>
+            <button class="matrix-button matrix-button-notActive">其他</button>
         </div>
         <div class="main-sub-child-body" id="main-sub-registration-body"><!--main-sub-child-body-->
             <div id="page1" class="page-view open" style="--view-back:rgba(255,0,0,0.2)">
@@ -231,7 +231,7 @@
                     <button class="sub-matrix-button matrix-element-hide" id="edit_btn">修改</button>
                 </div>
                 <div class="sub-child-body">
-                    <div class="info-view">
+                    <div class="info-view" id="createArea">
                         <span class="default-text bold-text">患者信息</span>
                         <div class="left-label">
                             <span class="small-text default-text bold-text">姓名:<span class="center-text danger-text">*</span></span>
@@ -245,8 +245,9 @@
                             <input class="input-rm-bg default-text" type="text" id="create-patient-idCard">
                             <span class="small-text default-text">拼音代码:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-name-code" readonly>
-                            <span class="small-text default-text bold-text">出生日期:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="create-patient-birth" value="0000-00-00">
+                            <span class="small-text default-text">出生日期:</span>
+                            <!--<input class="input-rm-bg large-input default-text" type="text" id="create-patient-birth" value="0000-00-00">-->
+                            <input class="default-text" type="date" id="create-patient-birth">
                             <span class="small-text default-text">国籍:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-nationality" value="中国">
                             <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
@@ -265,10 +266,10 @@
                                 <option class="default-text" value="已婚">已婚</option>
                                 <option class="default-text" value="离异">离异</option>
                             </select>
-                            <span class="small-text default-text">电话:</span>
+                            <span class="small-text default-text bold-text">电话:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg large-input default-text" type="text" id="create-patient-phone">
                             <span class="small-text default-text">年龄:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-age">
+                            <input class="input-rm-bg short-input default-text" type="text" id="create-patient-age">
                             <span class="small-text default-text bold-text">贫困户:<span class="center-text danger-text">*</span></span>
                             <select class="input-rm-bg default-text" id="create-poverty-sign">
                                 <option class="default-text" value="否">否</option>
@@ -299,7 +300,7 @@
                             <span class="small-text default-text">联系人电话:</span>
                             <input class="input-rm-bg large-input default-text" type="text" id="create-patient-contactPhone">
                             <br>
-                            <span class="small-text default-text">家庭住址:</span>
+                            <span class="small-text default-text bold-text">家庭住址:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg default-text" type="text" id="create-patient-homeAddress">
                             <span class="small-text default-text">工作单位:</span>
                             <input class="input-rm-bg default-text" type="text" id="create-patient-workAddress">
@@ -325,7 +326,7 @@
 
                     <div class="other-view">
                         <div class="other-view-child">
-                            <strong class="primary-text center-text bold-text large-text">当月注册患者详情</strong>
+                            <strong class="default-text center-text bold-text large-text">最近注册患者详情</strong>
                             <div class="horizontal-element-flex-start default-text">
                                 <input class="default-text big-large-input" type="text" id="searchPatient" placeholder="查询">
                                 <input class="default-text" type="date" id="startTime">至

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName PatientInfoMapper
@@ -19,4 +20,5 @@ import java.util.List;
 public interface PatientInfoMapper {
     PatientInfo queryPatient(String keyParam);
     List<PatientView> query_near_two_month_patients();//近2月内注册信息
+    boolean regis_patient(Map<String,Object> map);/*注册患者*/
 }
