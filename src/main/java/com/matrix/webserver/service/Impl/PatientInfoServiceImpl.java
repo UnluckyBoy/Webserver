@@ -33,4 +33,9 @@ public class PatientInfoServiceImpl implements PatientInfoService {
     public boolean regis_patient(Map<String, Object> map) {
         return patientInfoMapper.regis_patient(map);
     }
+
+    @Override
+    public boolean update_PatientInfo(Map<String, Object> map) {
+        return patientInfoMapper.update_PatientInfo(map);
+    }
 }

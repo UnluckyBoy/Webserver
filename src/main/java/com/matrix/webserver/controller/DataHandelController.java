@@ -10,6 +10,7 @@ import com.matrix.webserver.tools.TimeUtil;
 import com.matrix.webserver.tools.UUIDNumberUtil;
 import com.matrix.webserver.tools.WebServerResponse;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,15 +99,25 @@ public class DataHandelController {
     @RequestMapping("/patientInfo")
     public void getPatient(@RequestParam("patient") String patient,
                            Authentication authentication,HttpServletResponse response) throws IOException{
-        PatientInfo patientInfo=patientInfoService.queryPatient(patient);
+        PatientInfo patientInfo = null;
+        try {
+            // 尝试调用 selectOne 方法
+            patientInfo = patientInfoService.queryPatient(patient);
+        } catch (TooManyResultsException e) {
+            // 处理 TooManyResultsException 异常
+            System.out.println("查询异常:"+e.getMessage());
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("查询异常："+e.getMessage())));
+            return; //确保在异常处理后返回或退出
+        }
         // 准备返回的数据
         if(patientInfo==null){
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.failure("请求失败")));
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("获取用户信息失败")));
         }else{
-            System.out.println("返回信息:"+gson.toJson(WebServerResponse.success("请求成功",patientInfo)));
+            //System.out.println("返回信息:"+gson.toJson(WebServerResponse.success("获取用户信息成功",patientInfo)));
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.success("请求成功",patientInfo)));
+            response.getWriter().write(gson.toJson(WebServerResponse.success("获取用户信息成功",patientInfo)));
         }
     }
 
@@ -169,23 +180,62 @@ public class DataHandelController {
         }
     }
 
-
-    @RequestMapping("/regis_patient")
-    public void regisPatient(@RequestBody Map<String, Object> requestBody,HttpServletResponse response) throws IOException, SQLException {
-        requestBody.put("patient_id",
-                TimeUtil.timeToString(TimeUtil.GetTime(true))+
-                        requestBody.get("birth").toString().replace("-","")+ UUIDNumberUtil.randUUIDNumber());
-        System.out.println("推号数据:"+requestBody.toString());
-        boolean result_regis=patientInfoService.regis_patient(requestBody);
-        if(result_regis){
-            response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.success("患者注册成功！")));
-        }else{
-            response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(gson.toJson(WebServerResponse.failure("患者注册失败！")));
+    /**
+     * 注册患者信息
+     * @param requestBody
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/regis_update_patient")
+    public void regisPatient(@RequestBody Map<String, Object> requestBody,HttpServletResponse response) throws IOException{
+        //System.out.println("类型:"+requestBody.get("type").toString());
+        switch (requestBody.get("type").toString()){
+            case "regis":
+                requestBody.put("patient_id",
+                        TimeUtil.timeToString(TimeUtil.GetTime(true))+
+                                requestBody.get("birth").toString().replace("-","")+ UUIDNumberUtil.randUUIDNumber());
+                System.out.println("推号数据:"+requestBody.toString());
+                boolean result_regis=patientInfoService.regis_patient(requestBody);
+                if(result_regis){
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write(gson.toJson(WebServerResponse.success("患者注册成功！")));
+                }else{
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write(gson.toJson(WebServerResponse.failure("患者注册失败！")));
+                }
+                break;
+            case "update":
+                boolean result_update = patientInfoService.update_PatientInfo(requestBody);
+                if (result_update) {
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write(gson.toJson(WebServerResponse.success("修改成功！")));
+                } else {
+                    // 如果没有更新成功（可能是业务逻辑错误，不是SQL异常），也可以返回一个错误响应
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write(gson.toJson(WebServerResponse.failure("更新操作失败——逻辑异常！")));
+                }
+                break;
         }
-        //response.setContentType("application/json;charset=UTF-8");
-        //response.getWriter().write(gson.toJson(WebServerResponse.failure("患者注册失败！")));
+    }
+
+    /**
+     * 更新患者信息
+     * @param requestBody
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/update_patient")
+    public void updatePatient(@RequestBody Map<String, Object> requestBody,HttpServletResponse response) throws IOException{
+        System.out.println("推号数据:"+requestBody.toString());
+        boolean result_update = patientInfoService.update_PatientInfo(requestBody);
+        if (result_update) {
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.success("修改成功！")));
+        } else {
+            // 如果没有更新成功（可能是业务逻辑错误，不是SQL异常），也可以返回一个错误响应
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(gson.toJson(WebServerResponse.failure("更新操作失败——逻辑异常！")));
+        }
     }
 
     /**

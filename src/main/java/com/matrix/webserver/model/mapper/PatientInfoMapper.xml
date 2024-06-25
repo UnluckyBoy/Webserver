@@ -100,4 +100,34 @@
           #{contactPhone},#{homeAddress},#{workAddress},#{nowAddress_province},#{nowAddress_town},#{nowAddress_prefecture}
           ,#{child_sign},#{guardian_name},#{guardian_idCard},#{guardian_phone});
     </insert>
+
+    <!--更新Update逻辑-->
+    <update id="update_PatientInfo" parameterType="java.util.Map">
+        UPDATE patient_info_table
+        SET
+            patient_gender=#{gender},
+            patient_birth=#{birth},
+            patient_nationality=#{nationality},
+            patient_nativePlace=#{nativePlace},
+            patient_nation=#{nation},
+            patient_occupation=#{occupation},
+            patient_maritalStatus=#{maritalStatus},
+            patient_phone=#{phone},
+            patient_age=#{age},
+            poverty_sign=#{poverty_sign},
+            patient_emergencyContact=#{emergencyContact},
+            patient_relationship=#{emergencyContact_relationship},
+            patient_contactPhone=#{contactPhone},
+            patient_homeAddress=#{homeAddress},
+            patient_workAddress=#{workAddress},
+            nowAddress_province=#{nowAddress_province},
+            nowAddress_town=#{nowAddress_town},
+            nowAddress_prefecture=#{nowAddress_prefecture},
+            child_sign=#{child_sign},
+            guardian_name=#{guardian_name},
+            guardian_idCard=#{guardian_idCard},
+            guardian_phone=#{guardian_phone}
+        WHERE
+            patient_name=#{name} and patient_idCard=#{idCard};
+    </update>
 </mapper>

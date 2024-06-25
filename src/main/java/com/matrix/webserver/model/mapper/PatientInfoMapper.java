@@ -21,4 +21,5 @@ public interface PatientInfoMapper {
     PatientInfo queryPatient(String keyParam);
     List<PatientView> query_near_two_month_patients();//近2月内注册信息
     boolean regis_patient(Map<String,Object> map);/*注册患者*/
+    boolean update_PatientInfo(Map<String,Object> map);/*更新信息*/
 }

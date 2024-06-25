@@ -246,7 +246,7 @@ function btn_Click(){
 
     /*注册按钮逻辑*/
     $('#create_btn').click(function (){
-        regis_patient();
+        push_patient_date('regis');
     });
 }
 
@@ -307,7 +307,6 @@ function init_currentDay_datas(){
                     // 如果当前被禁用的复选框（即之前被选中的）被取消选中
                     $('input[type="checkbox"]').prop('disabled', false);
                     checkedCheckbox = null; // 清除存储的复选框
-                    //console.log('else-if:'+checkedCheckbox);
                     cancelBtn.toggle();
                 }
             });
@@ -386,12 +385,15 @@ function init_currentMonth_patients() {
                     edit_Btn.toggle();
                     get_patient_data(createCheckbox.closest('tr').find('td:eq(2)').text(),getCurrentTime());/*绑定数据*/
 
+                    $('#create-patient-name').prop('readonly', true);
+                    $('#create-patient-idCard').prop('readonly', true);
+
                     // this指向被点击复选框
                     // let parentRow = $(this).closest('tr'); // 找到包含复选框的tr元素
                     // let patient_IDCard_Cell = parentRow.find('td:eq(2)'); // 找到第3个td元素（索引从0开始）
                     // let patient_IDCard = patient_IDCard_Cell.text(); // 获取第3个td元素的文本内容
                     edit_Btn.on('click', function(){
-                        update_patient($(this).closest('tr').find('td:eq(2)'));
+                        push_patient_date('update');
                         edit_Btn.css('display','none');
                     });
                 }else if (createCheckbox && createCheckbox[0] === this) {
@@ -399,8 +401,8 @@ function init_currentMonth_patients() {
                     $('input[type="checkbox"]').prop('disabled', false);
                     createCheckbox = null; // 清除存储的复选框
                     edit_Btn.toggle();
-                    //edit_Btn.css('display','none');
                     clear_create_patient_view();/*清空视图*/
+                    input_active();
                 }
             });
             // 为每个属性创建td元素并添加到tr中
@@ -519,11 +521,14 @@ function get_patient_data(patient){
                 $('#create-guardian-name').val(data.handleData.guardian_name);
                 $('#create-guardian-idCard').val(data.handleData.guardian_idCard);
                 $('#create-guardian-phone').val(data.handleData.guardian_phone);
+            }else{
+                nullBtn_confirm_model(data.handleMessage,function (){
+                    clear_create_patient_view();
+                });
             }
         },
         error: function(xhr, status, error) {
-            //console.error("请求失败: " +error);
-            nullBtn_confirm_model('发送数据到后端异常:'+error,function (){
+            nullBtn_confirm_model('发送数据到后端异常:'+status,function (){
                 clear_create_patient_view();
             });
         }
@@ -560,17 +565,21 @@ function clearPage1ViewElement(){
 /*清空注册视图组件数据*/
 function clear_create_patient_view(){
     $('#create-patient-name').val('');
-    $('#create-patient-gender').val('');
+    //$('#create-patient-gender').val('');
+    $('#create-patient-gender').val($('#create-patient-gender option').eq(0).val()).trigger('change');
     $('#create-patient-idCard').val('');
     $('#create-patient-birth').val('');
     $('#create-patient-nationality').val('');
     $('#create-patient-nativePlace').val('');
     $('#create-patient-nation').val('');
-    $('#create-patient-occupation').val('');
-    $('#create-patient-maritalStatus').val('');
+    //$('#create-patient-occupation').val('');
+    $('#create-patient-occupation').val($('#create-patient-occupation').eq(0).val()).trigger('change');
+    //$('#create-patient-maritalStatus').val('');
+    $('#create-patient-maritalStatus').val($('#create-patient-maritalStatus').eq(0).val()).trigger('change');
     $('#create-patient-phone').val('');
     $('#create-patient-age').val('');
-    $('#create-poverty-sign').val('');
+    //$('#create-poverty-sign').val('');
+    $('#create-poverty-sign').val($('#create-poverty-sign').eq(0).val()).trigger('change');
     $('#create-patient-emergencyContact').val('');
     $('#create-emergencyContact-relationship').val('');
     $('#create-patient-contactPhone').val('');
@@ -588,7 +597,7 @@ function clear_create_patient_view(){
 }
 
 /*注册患者逻辑*/
-function regis_patient(){
+function push_patient_date(type){
     let regis_name=$('#create-patient-name').val().trim();
     let regis_gender=$('#create-patient-gender').val().trim();
     let regis_idCard=$('#create-patient-idCard').val().trim();
@@ -621,6 +630,7 @@ function regis_patient(){
 
     /*数据封装*/
     let requestBody={
+        type:type,
         name:regis_name,
         gender:regis_gender,
         idCard:regis_idCard,
@@ -654,6 +664,7 @@ function regis_patient(){
     for (let i = 0; i < requiredFields.length; i++) {
         let fieldName = requiredFields[i];
         let fieldValue = requestBody[fieldName];
+        console.log("输入值为:"+fieldValue);
         // 检查字段值是否为空、未定义、null或空字符串
         if (!fieldValue || fieldValue === '' || fieldValue === null || fieldValue === undefined) {
             switch (fieldName){
@@ -682,9 +693,8 @@ function regis_patient(){
             return false;
         }
     }
-
     $.ajax({
-        url:'/api/regis_patient',
+        url:'/api/regis_update_patient',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(requestBody),
@@ -694,11 +704,13 @@ function regis_patient(){
                 nullBtn_confirm_model(data.handleMessage,function (){
                     clear_create_patient_view();
                     init_currentMonth_patients();
+                    input_active();
                 });
             }else{
                 nullBtn_confirm_model(data.handleMessage,function (){
                     clear_create_patient_view();
                     init_currentMonth_patients();
+                    input_active();
                 });
             }
         },
@@ -706,12 +718,13 @@ function regis_patient(){
             nullBtn_confirm_model(data.handleMessage,function (){
                 clear_create_patient_view();
                 init_currentMonth_patients();
+                input_active();
             });
         }
     });
 }
 
-/*更新信息*/
-function update_patient(patient){
-
+function input_active(){
+    $('#create-patient-name').prop('readonly', false);
+    $('#create-patient-idCard').prop('readonly', false);
 }
