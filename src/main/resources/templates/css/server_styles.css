@@ -350,18 +350,20 @@ a{
     margin-left: 0;
     margin-right: 0;
     flex-direction: column;
-    overflow:auto;
+    /*overflow:auto;*/
 }
 .info-view{
     width: 100%;
     /*height: 50%;*/
     border:1px solid #0c0101;
     min-height: 260px;
+    overflow:auto;
 }
 .other-view{
     /* flex-grow设置为1,使其占据剩余空间 */
     flex-grow: 1;
     border:1px solid #0c0101;
+    max-height: 500px;
 }
 .other-view-child,
 .other-view-child-full{
@@ -370,7 +372,7 @@ a{
     border-radius: 2px;
     margin: 2px 4px;
     flex-direction: column;
-    overflow:auto;
+    /*overflow:auto;*/
 }
 .other-view-child{
     width: 100%;
@@ -378,6 +380,7 @@ a{
 }
 .other-view-child-full{
     flex-grow: 1;
+    overflow:auto;
 }
 .horizontal-element-flex-start{
     display: flex;

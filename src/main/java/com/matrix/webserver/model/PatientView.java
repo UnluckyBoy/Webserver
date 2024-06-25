@@ -23,7 +23,7 @@ public class PatientView implements Serializable {
     private String poverty_sign;
     private String patient_emergencyContact;
     private String patient_relationship;
-    private String guardian_phone;
+    private String patient_contactPhone;
 
     public String getPatient_name() {
         return patient_name;
@@ -137,11 +137,11 @@ public class PatientView implements Serializable {
         this.patient_relationship = patient_relationship;
     }
 
-    public String getGuardian_phone() {
-        return guardian_phone;
+    public String getPatient_contactPhone() {
+        return patient_contactPhone;
     }
 
-    public void setGuardian_phone(String guardian_phone) {
-        this.guardian_phone = guardian_phone;
+    public void setPatient_contactPhone(String patient_contactPhone) {
+        this.patient_contactPhone = patient_contactPhone;
     }
 }

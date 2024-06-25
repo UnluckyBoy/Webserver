@@ -196,7 +196,7 @@ public class DataHandelController {
     @RequestMapping("/get_two_month_patients")
     public void getTwoMonPatients(HttpServletResponse response) throws IOException{
         List<PatientView> resultList=patientInfoService.query_near_two_month_patients();
-        System.out.println("当日挂号数据:"+resultList.toString());
+        System.out.println("2月内注册:"+resultList.get(0).getPatient_contactPhone());
         if(resultList.size()>0){
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(gson.toJson(WebServerResponse.success("获取数据成功",resultList)));

@@ -56,11 +56,12 @@
             patient_info_table.poverty_sign,
             patient_info_table.patient_emergencyContact,
             patient_info_table.patient_relationship,
-            patient_info_table.guardian_phone
+            patient_info_table.patient_contactPhone
         FROM
             patient_info_table
         WHERE
-            DATE( patient_info_table.create_time ) >= CURDATE() - INTERVAL 2 MONTH;
+            DATE( patient_info_table.create_time ) >= CURDATE() - INTERVAL 2 MONTH
+        ORDER BY patient_info_table.create_time DESC;
     </select>
 
     <!--插入逻辑-->

@@ -197,31 +197,44 @@ $(document).ready(function() {
     /*身份证号检测转出生日期及年龄*/
     $('#createArea').mousedown(function (event){
         var idCard=$('#create-patient-idCard').val().trim();
+        var birthTime=$('#create-patient-birth').val().trim();
         if (event.which === 1&&idCard!=='') {
             //model_unCallback('鼠标左键被按下！');
             let temp=idCard.substring(6, 14);
-            let format_birthDate = temp.substring(0, 4) + '-' + temp.substring(4, 6) + '-01'; // 添加'-01'作为日期部分，因为<input type="date">需要完整的日期
-            //model_unCallback(formattedDate);
+            /*添加'-01'作为日期部分，因为<input type="date">需要完整的日期*/
+            let format_birthDate = temp.substring(0, 4) + '-' + temp.substring(4, 6) + '-01';
             $('#create-patient-birth').val(format_birthDate); // 显示在指定的div元素中
-            // 将生日字符串转换为Date对象
-            let birthday = new Date(format_birthDate);
-            // 获取当前日期
-            let today = new Date();
-            // 计算年龄(假设birthday和today都是有效的Date对象)
-            let age = today.getFullYear() - birthday.getFullYear();
-            let m = today.getMonth() - birthday.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
-                age--;
-            }
-            if(age<=0){
-                age=Math.abs(m);
-                $('#create-patient-age').val(age+'月');
-            }else{
-                $('#create-patient-age').val(age+'岁');
-            }
+            calculateAge(format_birthDate);
+        }
+        else if(event.which === 1&&birthTime!==''){
+            calculateAge(birthTime);
         }
     });
 });
+
+/*计算年龄*/
+function calculateAge(birthTime){
+    // 将生日字符串转换为Date对象
+    let birthday = new Date(birthTime);
+    // 获取当前日期
+    let today = new Date();
+    // 计算年龄(假设birthday和today都是有效的Date对象)
+    let age = today.getFullYear() - birthday.getFullYear();
+    let m = today.getMonth() - birthday.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+        age--;
+        if (age === 0) {
+            m += 12; // 将月份差转换为正数
+            age = 0;
+        }
+    }
+    if(age>0){
+        $('#create-patient-age').val(age+'岁');
+    }else{
+        //age=m;
+        $('#create-patient-age').val(m+'月');
+    }
+}
 
 /*按钮事件逻辑*/
 function btn_Click(){
@@ -378,7 +391,7 @@ function init_currentMonth_patients() {
                     // let patient_IDCard_Cell = parentRow.find('td:eq(2)'); // 找到第3个td元素（索引从0开始）
                     // let patient_IDCard = patient_IDCard_Cell.text(); // 获取第3个td元素的文本内容
                     edit_Btn.on('click', function(){
-                        //regis_patient('update');
+                        update_patient($(this).closest('tr').find('td:eq(2)'));
                         edit_Btn.css('display','none');
                     });
                 }else if (createCheckbox && createCheckbox[0] === this) {
@@ -386,6 +399,7 @@ function init_currentMonth_patients() {
                     $('input[type="checkbox"]').prop('disabled', false);
                     createCheckbox = null; // 清除存储的复选框
                     edit_Btn.toggle();
+                    //edit_Btn.css('display','none');
                     clear_create_patient_view();/*清空视图*/
                 }
             });
@@ -405,7 +419,7 @@ function init_currentMonth_patients() {
             row.append($('<td>').text(item.poverty_sign));
             row.append($('<td>').text(item.patient_emergencyContact));
             row.append($('<td>').text(item.patient_relationship));
-            row.append($('<td>').text(item.guardian_phone));
+            row.append($('<td>').text(item.patient_contactPhone));
             // 将tr添加到tbody中
             tableBody.append(row);
         })
@@ -509,7 +523,9 @@ function get_patient_data(patient){
         },
         error: function(xhr, status, error) {
             //console.error("请求失败: " +error);
-            model_unCallback('发送数据到后端异常:'+error);
+            nullBtn_confirm_model('发送数据到后端异常:'+error,function (){
+                clear_create_patient_view();
+            });
         }
     });
 }
@@ -693,4 +709,9 @@ function regis_patient(){
             });
         }
     });
+}
+
+/*更新信息*/
+function update_patient(patient){
+
 }
