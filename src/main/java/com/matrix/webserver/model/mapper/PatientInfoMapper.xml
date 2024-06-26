@@ -18,7 +18,7 @@
             patient_occupation,
             patient_maritalStatus,
             patient_phone,
-            patient_age,
+            CONCAT(patient_age,patient_age_units) as patient_age,
             poverty_sign,
             patient_emergencyContact,
             patient_relationship,
@@ -80,6 +80,7 @@
             patient_maritalStatus,
             patient_phone,
             patient_age,
+            patient_age_units,
             poverty_sign,
             patient_emergencyContact,
             patient_relationship,
@@ -96,7 +97,7 @@
         )
         VALUES
         (#{patient_id},#{name},#{gender},#{idCard},#{birth},#{create_time},#{nationality},#{nativePlace},#{nation},#{occupation},
-         #{maritalStatus},#{phone},#{age},#{poverty_sign},#{emergencyContact},#{emergencyContact_relationship},
+         #{maritalStatus},#{phone},#{age},#{age_units},#{poverty_sign},#{emergencyContact},#{emergencyContact_relationship},
           #{contactPhone},#{homeAddress},#{workAddress},#{nowAddress_province},#{nowAddress_town},#{nowAddress_prefecture}
           ,#{child_sign},#{guardian_name},#{guardian_idCard},#{guardian_phone});
     </insert>
@@ -114,6 +115,7 @@
             patient_maritalStatus=#{maritalStatus},
             patient_phone=#{phone},
             patient_age=#{age},
+            patient_age_units=#{age_units},
             poverty_sign=#{poverty_sign},
             patient_emergencyContact=#{emergencyContact},
             patient_relationship=#{emergencyContact_relationship},

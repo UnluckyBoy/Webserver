@@ -633,6 +633,7 @@ function push_patient_date(type){
     let regis_guardian_idCard=$('#create-guardian-idCard').val().trim();
     let regis_guardian_phone=$('#create-guardian-phone').val().trim();
 
+    console.log('年龄:'+regis_age.length);
     /*数据封装*/
     let requestBody={
         type:type,
@@ -647,7 +648,8 @@ function push_patient_date(type){
         occupation:regis_occupation,
         maritalStatus:regis_maritalStatus,
         phone:regis_phone,
-        age:regis_age,
+        age:regis_age.substring(0,1),
+        age_units:regis_age.substring(1,2),
         poverty_sign:regis_poverty_sign,
         emergencyContact:regis_emergencyContact,
         emergencyContact_relationship:regis_emergencyContact_relationship,
