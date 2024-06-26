@@ -517,12 +517,12 @@ function get_patient_data(patient){
                 $('#create-nowAddress-province').val(data.handleData.nowAddress_province);
                 $('#create-nowAddress-town').val(data.handleData.nowAddress_town);
                 $('#create-nowAddress-prefecture').val(data.handleData.nowAddress_prefecture);
-                //$('#create-child-sign').val(data.handleData.child_sign);
                 if(data.handleData.child_sign==='是'){
                     $('#create-child-sign').prop('checked', true).trigger('change');
                 }else{
                     $('#create-child-sign').prop('checked', false).trigger('change');
                 }
+                $('#create-child-sign').prop('disabled', false);
                 $('#create-guardian-name').val(data.handleData.guardian_name);
                 $('#create-guardian-idCard').val(data.handleData.guardian_idCard);
                 $('#create-guardian-phone').val(data.handleData.guardian_phone);
@@ -570,21 +570,21 @@ function clearPage1ViewElement(){
 /*清空注册视图组件数据*/
 function clear_create_patient_view(){
     $('#create-patient-name').val('');
-    //$('#create-patient-gender').val('');
-    $('#create-patient-gender').val($('#create-patient-gender option').eq(0).val()).trigger('change');
+    $('#create-patient-gender').val($('#create-patient-gender option').first().val()).trigger('change');
     $('#create-patient-idCard').val('');
     $('#create-patient-birth').val('');
     $('#create-patient-nationality').val('');
     $('#create-patient-nativePlace').val('');
-    $('#create-patient-nation').val('');
-    //$('#create-patient-occupation').val('');
-    $('#create-patient-occupation').val($('#create-patient-occupation').eq(0).val()).trigger('change');
-    //$('#create-patient-maritalStatus').val('');
-    $('#create-patient-maritalStatus').val($('#create-patient-maritalStatus').eq(0).val()).trigger('change');
+    $('#create-patient-nation').val($('#create-patient-nation option').first().val()).trigger('change');
+    $('#create-patient-occupation').val($('#create-patient-occupation option').first().val()).trigger('change');
+    $('#create-patient-maritalStatus').val($('#create-patient-maritalStatus option').first().val()).trigger('change');
+    //$('#create-patient-nation').val($('#create-patient-nation option:first').val()).trigger('change');
+    //$('#create-patient-occupation').val($('#create-patient-occupation option:first').val()).trigger('change');
+    //$('#create-patient-maritalStatus').val($('#create-patient-maritalStatus').eq(0).val()).trigger('change');
     $('#create-patient-phone').val('');
     $('#create-patient-age').val('');
-    //$('#create-poverty-sign').val('');
-    $('#create-poverty-sign').val($('#create-poverty-sign').eq(0).val()).trigger('change');
+    //$('#create-poverty-sign').val($('#create-poverty-sign').eq(0).val()).trigger('change');
+    $('#create-poverty-sign').val($('#create-poverty-sign option').first().val()).trigger('change');
     $('#create-patient-emergencyContact').val('');
     $('#create-emergencyContact-relationship').val('');
     $('#create-patient-contactPhone').val('');

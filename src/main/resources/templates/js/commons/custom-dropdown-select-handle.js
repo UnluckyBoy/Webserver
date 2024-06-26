@@ -15,11 +15,11 @@
  */
 $(document).ready(function() {
     // 监听输入框的focus事件以显示选项列表
-    $('#emergencyContact-relationship').on('focus', function() {
+    $('#create-emergencyContact-relationship').on('focus', function() {
         showOptions();
     });
     // 监听输入框的blur事件以隐藏选项列表
-    $('#emergencyContact-relationship').on('blur', function() {
+    $('#create-emergencyContact-relationship').on('blur', function() {
         hideOptions();
     });
     // 初始化选项(如果需要)
@@ -49,5 +49,12 @@ $(document).ready(function() {
         $('.dropdown-option').hide().removeClass('active');
     }
     // 监听键盘事件以处理Enter键等（如果需要）
-    // ...
+
+    /*民族*/
+    // $('#create-patient-nation').select2({
+    //     tags: true, // 允许用户添加新标签（即输入新值）
+    //     //tokenSeparators: [',', ' '], // 允许用户通过逗号或空格分隔输入多个值（如果需要的话）
+    //     placeholder: '请输入', // 设置占位符
+    //     allowClear: true // 允许用户清除已选值
+    // });
 });

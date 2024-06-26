@@ -1134,7 +1134,7 @@ label span {
 
 /*文字效果*/
 .default-text{
-    color: black;
+    color: black !important;
 }
 .blue-text{
     color: #06b9ee;
@@ -1169,4 +1169,9 @@ label span {
 }
 .bold-text{
     font-weight: bold;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    font-size: 12px; /* 设置你想要的字体大小 */
+    /*line-height: 34px; /* 调整行高以匹配容器高度（可选） */
 }
