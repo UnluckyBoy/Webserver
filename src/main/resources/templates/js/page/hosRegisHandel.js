@@ -199,14 +199,19 @@ $(document).ready(function() {
         var idCard=$('#create-patient-idCard').val().trim();
         var birthTime=$('#create-patient-birth').val().trim();
         if (event.which === 1&&idCard!=='') {
-            //model_unCallback('鼠标左键被按下！');
-            let temp=idCard.substring(6, 14);
-            /*添加'-01'作为日期部分，因为<input type="date">需要完整的日期*/
-            let format_birthDate = temp.substring(0, 4) + '-' + temp.substring(4, 6) + '-01';
-            $('#create-patient-birth').val(format_birthDate); // 显示在指定的div元素中
-            calculateAge(format_birthDate);
-        }
-        else if(event.which === 1&&birthTime!==''){
+            if(event.which === 1&&idCard.length<18){
+                nullBtn_confirm_model('身份证号不正确！请检查...',function (){
+                    clear_create_patient_view();
+                });
+            }else{
+                //model_unCallback('鼠标左键被按下！');
+                let temp=idCard.substring(6, 14);
+                /*添加'-01'作为日期部分，因为<input type="date">需要完整的日期*/
+                let format_birthDate = temp.substring(0, 4) + '-' + temp.substring(4, 6) +'-' + temp.substring(6, 8);
+                $('#create-patient-birth').val(format_birthDate); // 显示在指定的div元素中
+                calculateAge(format_birthDate);
+            }
+        }else if(event.which === 1&&birthTime!==''){
             calculateAge(birthTime);
         }
     });
@@ -514,9 +519,9 @@ function get_patient_data(patient){
                 $('#create-nowAddress-prefecture').val(data.handleData.nowAddress_prefecture);
                 //$('#create-child-sign').val(data.handleData.child_sign);
                 if(data.handleData.child_sign==='是'){
-                    $('#create-child-sign').prop('checked', true);
-                    // 触发checkbox的change事件
-                    $('#create-child-sign').trigger('change');
+                    $('#create-child-sign').prop('checked', true).trigger('change');
+                }else{
+                    $('#create-child-sign').prop('checked', false).trigger('change');
                 }
                 $('#create-guardian-name').val(data.handleData.guardian_name);
                 $('#create-guardian-idCard').val(data.handleData.guardian_idCard);
@@ -588,9 +593,9 @@ function clear_create_patient_view(){
     $('#create-nowAddress-province').val('');
     $('#create-nowAddress-town').val('');
     $('#create-nowAddress-prefecture').val('');
-    $('#create-child-sign').prop('checked', false);
+    $('#create-child-sign').prop('checked', false).trigger('change');
     // 触发checkbox的change事件
-    $('#create-child-sign').trigger('change');
+    //$('#create-child-sign').trigger('change');
     $('#create-guardian-name').val('');
     $('#create-guardian-idCard').val('');
     $('#create-guardian-phone').val('');
