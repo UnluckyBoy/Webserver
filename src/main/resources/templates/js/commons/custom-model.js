@@ -14,7 +14,7 @@ function confirm_cancel_model(message, callback) {
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
-                '<div class="modal-foot">'+
+                '<div class="modal-foot-more-btn">'+
                     '<button class="confirm-button confirm default-text bold-text center-text" id="confirm-btn">确定</button>' +
                     '<button class="cancel-button cancel default-text bold-text center-text" id="cancel-btn">取消</button>' +
                 '</div>'+
@@ -66,7 +66,7 @@ function confirm_model(message, callback) {
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
-                '<div class="modal-foot">'+
+                '<div class="modal-foot-one-btn">'+
                     '<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
                 '</div>'+
             '</div>' +
@@ -112,7 +112,7 @@ function nullBtn_confirm_model(message, callback) {
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
-                '<div class="modal-foot">'+
+                '<div class="modal-foot-one-btn">'+
                     //'<button class="confirm-button foot-center-btn default-text bold-text center-text" id="confirm-btn">确定</button>' +
                 '</div>'+
             '</div>' +
@@ -152,7 +152,7 @@ function model_unCallback(message) {
                 '<div class="modal-body-main modal-body-center-item">' +
                     '<span class="fa fa-exclamation-circle danger-text bold-text center-text large-text">' + message + '</span>' +
                 '</div>' +
-                    '<div class="modal-foot">'+
+                    '<div class="modal-foot-one-btn">'+
                 '</div>'+
             '</div>' +
         '</div>';

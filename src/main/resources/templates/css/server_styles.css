@@ -62,9 +62,10 @@ body, html {
     background-size: cover;
     display: flex;
     align-items: center;
+    /*align-items: stretch;*/
     justify-content: left;/*靠左显示*/
     flex-direction: row; /* 明确指定行方向 */
-    overflow: hidden; /* 隐藏任何溢出的内容 */
+    /*overflow: hidden; /* 隐藏任何溢出的内容 */
 }
 .nav{
     width: 110px; /* 占据整个视口宽度:width: 100vw*/
@@ -252,12 +253,13 @@ a{
     align-items: center;
 }
 .back-snow {
+    /*background: #262626 url(../img/background_1.png) no-repeat fixed;*/
     background: #262626 url(../img/background_1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
     width: 100%;
     height: 100vh;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
     position:absolute;
     z-index: -1;
 }
@@ -308,6 +310,7 @@ a{
     background: var(--view-back);
     position: absolute;
     box-sizing: border-box;
+    flex-direction:column;
 }
 .open {
     visibility: visible;
@@ -327,20 +330,32 @@ a{
     display: flex;
     align-items: center;
     justify-content:flex-start;
-    /*margin-left: 2px;*/
 }
 .sub-child-body{
-    width: 100%;
-    height: 100vh;
+    /*width: auto;*/
+    /*height: auto;*/
+    flex: 1; /* 允许它占据剩余空间 */
     background: white;
     margin-top: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+/*页脚*/
+.footer-view {
+    /*margin-bottom: 2px;*/
+    /* 使用 flex 的 margin-top: auto 技巧将 footer 推至底部 */
+    margin-top: auto;
+    width: 100%;
+    max-height: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
 }
 .info-view,
 .other-view{
-    background: #d0f5ca;
     margin-top: 1px;
     box-sizing: border-box;
     display: flex;
@@ -350,7 +365,7 @@ a{
     margin-left: 0;
     margin-right: 0;
     flex-direction: column;
-    /*overflow:auto;*/
+    background: #d0f5ca;
 }
 .info-view{
     width: 100%;
@@ -363,7 +378,9 @@ a{
     /* flex-grow设置为1,使其占据剩余空间 */
     flex-grow: 1;
     border:1px solid #0c0101;
-    max-height: 500px;
+    max-height: 350px;
+    /*max-height: 100vh;*/
+    overflow: hidden;
 }
 .other-view-child,
 .other-view-child-full{
@@ -372,7 +389,7 @@ a{
     border-radius: 2px;
     margin: 2px 4px;
     flex-direction: column;
-    /*overflow:auto;*/
+    overflow:auto;
 }
 .other-view-child{
     width: 100%;
@@ -382,12 +399,15 @@ a{
     flex-grow: 1;
     overflow:auto;
 }
+
+/*组件显示在同一行且内部组件居左显示*/
 .horizontal-element-flex-start{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 4px;
 }
+/*组件显示在同一行且内部组件居中显示*/
 .horizontal-element-center{
     display: flex;
     justify-content: center;
@@ -1032,7 +1052,6 @@ label span {
 .modal-body,
 .modal-body-medium,
 .modal-body-small{
-    /*background-color: #fefefe;*/
     background: #d0f5ca;
     margin: auto;
     border: 1px solid #888;
@@ -1068,12 +1087,9 @@ label span {
     flex: 1;
     width: 100%;
     padding: 10px 20px;
-    /*background: #d0f5ca;*/
     background: none;
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
-    /*justify-content: space-between;*/
 }
 .modal-body-center-item{
     justify-content: center; /* 水平居中 */
@@ -1092,12 +1108,18 @@ label span {
     text-align: center; /* 水平居中单行文本 */
     margin-left: auto; /* 将元素推送到右侧 */
 }
-.modal-foot{
+.modal-foot-more-btn,
+.modal-foot-one-btn{
     display: flex;
-    justify-content: space-between; /* 让两个按钮分别位于左边和右边 */
     align-items: center; /* 如果需要垂直居中按钮 */
     padding: 10px; /* 为按钮添加一些内边距 */
     width: 100%; /* 确保底部栏占据整个modal-body的宽度 */
+}
+.modal-foot-more-btn{
+    justify-content: space-between; /* 让两个按钮分别位于左边和右边 */
+}
+.modal-foot-one-btn{
+    justify-content: center;
 }
 .confirm{
     align-self: flex-start; /* 水平方向上对齐到右下角 */

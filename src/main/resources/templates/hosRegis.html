@@ -51,7 +51,6 @@
             <!--使用JQuery动态加载导航栏菜单-->
         </div>
     </div>
-
     <!-- 页面主体内容 -->
     <div class="main-sub-view">
         <div class="main-sub-child-title" id="button-parent-view">
@@ -94,7 +93,6 @@
                             <input class="input-rm-bg default-text medium-input" type="text" id="patient-nativePlace" readonly>
                             <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-nation" readonly>
-                            <!--<br>-->
                             <span class="small-text default-text">职业:</span>
                             <input class="input-rm-bg medium-input default-text" type="text" id="patient-occupation" readonly>
                             <span class="small-text default-text">婚姻状况:</span>
@@ -189,7 +187,6 @@
                         </div>
                     </div>
 
-                    <!--其他视图-->
                     <div class="other-view">
                         <div class="other-view-child">
                             <strong class="default-text center-text bold-text large-text">当日挂号详情</strong>
@@ -225,12 +222,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="footer-view">
+                    <strong class="default-text center-text bold-text small-text">技术支持@风云扬Studio</strong>
+                </div>
             </div>
             <div id="page2" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
                 <div class="sub-btn-view" id="create-btn-view">
                     <button class="sub-matrix-button" id="create_btn">注册</button>
                     <button class="sub-matrix-button matrix-element-hide" id="edit_btn">修改</button>
                 </div>
+
                 <div class="sub-child-body">
                     <div class="info-view" id="createArea">
                         <span class="default-text bold-text">患者信息</span>
@@ -253,7 +254,7 @@
                             <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
                             <input class="input-rm-bg default-text medium-input" type="text" id="create-patient-nativePlace">
                             <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
-                            <!--<input class="input-rm-bg medium-input default-text" type="text" id="create-patient-nation">-->
+
                             <select class="input-rm-bg medium-input default-text" id="create-patient-nation">
                                 <option class="default-text" value="汉族">汉族</option>
                                 <option class="default-text" value="满族">满族</option>
@@ -312,124 +313,6 @@
                                 <option class="default-text" value="珞巴族">珞巴族</option>
                                 <option class="default-text" value="基诺族">基诺族</option>
                             </select>
-                            <!--
-                            <div id="patient-nation-dropdown-select">
-                                <input list="dropdown-select-list" class="input-rm-bg medium-input default-text" id="create-patient-nation" type="text">
-                                <datalist id="patient-nation-dropdown-select-list">
-                                    <option value="汉族"></option>
-                                    <option value="满族"></option>
-                                    <option value="蒙古族"></option>
-                                    <option value="回族"></option>
-                                    <option value="藏族"></option>
-                                    <option value="维吾尔族"></option>
-                                    <option value="苗族"></option>
-                                    <option value="彝族"></option>
-                                    <option value="壮族"></option>
-                                    <option value="布依族"></option>
-                                    <option value="侗族"></option>
-                                    <option value="瑶族"></option>
-                                    <option value="白族"></option>
-                                    <option value="土家族"></option>
-                                    <option value="哈尼族"></option>
-                                    <option value="哈萨克族"></option>
-                                    <option value="傣族"></option>
-                                    <option value="黎族"></option>
-                                    <option value="傈僳族"></option>
-                                    <option value="佤族"></option>
-                                    <option value="畲族"></option>
-                                    <option value="高山族"></option>
-                                    <option value="拉祜族"></option>
-                                    <option value="水族"></option>
-                                    <option value="东乡族"></option>
-                                    <option value="纳西族"></option>
-                                    <option value="景颇族"></option>
-                                    <option value="柯尔克孜族"></option>
-                                    <option value="土族"></option>
-                                    <option value="达斡尔族"></option>
-                                    <option value="仫佬族"></option>
-                                    <option value="羌族"></option>
-                                    <option value="布朗族"></option>
-                                    <option value="撒拉族"></option>
-                                    <option value="毛南族"></option>
-                                    <option value="仡佬族"></option>
-                                    <option value="锡伯族"></option>
-                                    <option value="阿昌族"></option>
-                                    <option value="普米族"></option>
-                                    <option value="朝鲜族"></option>
-                                    <option value="塔吉克族"></option>
-                                    <option value="怒族"></option>
-                                    <option value="乌孜别克族"></option>
-                                    <option value="俄罗斯族"></option>
-                                    <option value="鄂温克族"></option>
-                                    <option value="德昂族"></option>
-                                    <option value="保安族"></option>
-                                    <option value="裕固族"></option>
-                                    <option value="京族"></option>
-                                    <option value="塔塔尔族"></option>
-                                    <option value="独龙族"></option>
-                                    <option value="鄂伦春族"></option>
-                                    <option value="赫哲族"></option>
-                                    <option value="门巴族"></option>
-                                    <option value="珞巴族"></option>
-                                    <option value="基诺族"></option>
-                                </datalist>
-                                <div class="dropdown-option" data-value="汉族"></div>
-                                <div class="dropdown-option" data-value="满族"></div>
-                                <div class="dropdown-option" data-value="蒙古族"></div>
-                                <div class="dropdown-option" data-value="回族"></div>
-                                <div class="dropdown-option" data-value="藏族"></div>
-                                <div class="dropdown-option" data-value="维吾尔族"></div>
-                                <div class="dropdown-option" data-value="苗族"></div>
-                                <div class="dropdown-option" data-value="彝族"></div>
-                                <div class="dropdown-option" data-value="壮族"></div>
-                                <div class="dropdown-option" data-value="布依族"></div>
-                                <div class="dropdown-option" data-value="侗族"></div>
-                                <div class="dropdown-option" data-value="瑶族"></div>
-                                <div class="dropdown-option" data-value="白族"></div>
-                                <div class="dropdown-option" data-value="土家族"></div>
-                                <div class="dropdown-option" data-value="哈尼族"></div>
-                                <div class="dropdown-option" data-value="哈萨克族"></div>
-                                <div class="dropdown-option" data-value="傣族"></div>
-                                <div class="dropdown-option" data-value="黎族"></div>
-                                <div class="dropdown-option" data-value="傈僳族"></div>
-                                <div class="dropdown-option" data-value="佤族"></div>
-                                <div class="dropdown-option" data-value="畲族"></div>
-                                <div class="dropdown-option" data-value="高山族"></div>
-                                <div class="dropdown-option" data-value="拉祜族"></div>
-                                <div class="dropdown-option" data-value="水族"></div>
-                                <div class="dropdown-option" data-value="东乡族"></div>
-                                <div class="dropdown-option" data-value="纳西族"></div>
-                                <div class="dropdown-option" data-value="景颇族"></div>
-                                <div class="dropdown-option" data-value="柯尔克孜族"></div>
-                                <div class="dropdown-option" data-value="土族"></div>
-                                <div class="dropdown-option" data-value="达斡尔族"></div>
-                                <div class="dropdown-option" data-value="仫佬族"></div>
-                                <div class="dropdown-option" data-value="羌族"></div>
-                                <div class="dropdown-option" data-value="布朗族"></div>
-                                <div class="dropdown-option" data-value="撒拉族"></div>
-                                <div class="dropdown-option" data-value="毛南族"></div>
-                                <div class="dropdown-option" data-value="仡佬族"></div>
-                                <div class="dropdown-option" data-value="锡伯族"></div>
-                                <div class="dropdown-option" data-value="阿昌族"></div>
-                                <div class="dropdown-option" data-value="普米族"></div>
-                                <div class="dropdown-option" data-value="朝鲜族"></div>
-                                <div class="dropdown-option" data-value="塔吉克族"></div>
-                                <div class="dropdown-option" data-value="怒族"></div>
-                                <div class="dropdown-option" data-value="乌孜别克族"></div>
-                                <div class="dropdown-option" data-value="俄罗斯族"></div>
-                                <div class="dropdown-option" data-value="鄂温克族"></div>
-                                <div class="dropdown-option" data-value="德昂族"></div>
-                                <div class="dropdown-option" data-value="保安族"></div>
-                                <div class="dropdown-option" data-value="裕固族"></div>
-                                <div class="dropdown-option" data-value="京族"></div>
-                                <div class="dropdown-option" data-value="塔塔尔族"></div>
-                                <div class="dropdown-option" data-value="独龙族"></div>
-                                <div class="dropdown-option" data-value="鄂伦春族"></div>
-                                <div class="dropdown-option" data-value="赫哲族"></div>
-                                <div class="dropdown-option" data-value="门巴族"></div>
-                                <div class="dropdown-option" data-value="珞巴族"></div>
-                                <div class="dropdown-option" data-value="基诺族"></div>
-                            </div>-->
                             <span class="small-text default-text">职业:</span>
                             <select class="input-rm-bg default-text" id="create-patient-occupation">
                                 <option class="default-text" value="农民">农民</option>
@@ -499,7 +382,6 @@
                             <input class="input-rm-bg large-input default-text" type="text" id="create-guardian-phone"><br>
                         </div>
                     </div>
-
                     <div class="other-view">
                         <div class="other-view-child">
                             <strong class="default-text center-text bold-text large-text">最近注册患者详情</strong>
@@ -510,11 +392,6 @@
                             </div>
                         </div>
                         <div class="other-view-child-full" id="patient_table_view">
-<!--                            <div class="horizontal-element-flex-start default-text">-->
-<!--                                <input class="default-text big-large-input" type="text" id="searchPatient" placeholder="查询">-->
-<!--                                <input class="default-text" type="date" id="startTime">至-->
-<!--                                <input class="default-text" type="date" id="endTime">-->
-<!--                            </div>-->
                             <table class="data-table-view" id="patient_table">
                                 <thead>
                                 <tr>
@@ -541,6 +418,9 @@
                             </table>
                         </div>
                     </div>
+                </div>
+                <div class="footer-view">
+                    <strong class="default-text center-text bold-text small-text">技术支持@风云扬Studio</strong>
                 </div>
             </div>
             <div id="page3" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">

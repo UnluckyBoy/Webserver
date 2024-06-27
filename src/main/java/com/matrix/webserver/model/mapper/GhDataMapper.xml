@@ -32,10 +32,11 @@
             gh_data_table.receive_sign
         FROM
             gh_data_table
-            INNER JOIN patient_info_table ON gh_data_table.patient_id = patient_info_table.patient_id
+                INNER JOIN patient_info_table ON gh_data_table.patient_id = patient_info_table.patient_id
         WHERE
             gh_data_table.expired_sign = '是'
-          AND DATE( gh_data_table.gh_createTime ) = CURDATE();
+          AND DATE( gh_data_table.gh_createTime ) = CURDATE()
+          AND appointment_sign = '否';
     </select>
 
     <!--插入逻辑-->
@@ -56,6 +57,7 @@
             cancel_time = #{cancel_time}
         WHERE
             gh_number = #{gh_number}
-          AND cancel_sign = '否';
+          AND cancel_sign = '否'
+          AND appointment_sign='否';
     </update>
 </mapper>
