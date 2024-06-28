@@ -47,7 +47,6 @@ body, html {
     padding: 0;
     overflow: hidden;
 }
-
 *{
     margin: 0;
     padding: 0;
@@ -271,7 +270,7 @@ a{
     padding-left: 112px; /* 在左边添加内边距 */
     box-sizing: border-box; /* 确保padding不会增加元素宽度 */
     flex-direction: column; /* 明确指定为垂直布局 */
-    background: white;/*rgba(27, 27, 27, 0.6)*/
+    background: #d0f5ca;/*rgba(27, 27, 27, 0.6)*/
     overflow: hidden;
 }
 .main-sub-child-title{
@@ -285,8 +284,9 @@ a{
     justify-content:flex-start; /* 水平分布内容 center,space-between*/
 }
 .main-sub-child-body{
-    width: 100%;
-    height: 100vh;
+    /*width: 100%;*/
+    /*height: 100vh;*/
+    flex: 1; /* 允许它占据剩余空间 */
     background: white;
     display: flex;
     border-radius: 2px;
@@ -302,15 +302,27 @@ a{
 .main-sub-view .main-sub-child-body:last-child {
     margin-bottom: 0; /* 移除最后一个子元素的底部间距 */
 }
+/*页脚*/
+.footer-view {
+    margin-top: auto;
+    width: 100%;
+    max-height: 20px;
+    background: #d0f5ca;
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
 
 /*页面切换*/
 .page-view {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: var(--view-back);
     position: absolute;
     box-sizing: border-box;
     flex-direction:column;
+    display: flex;
+    overflow: hidden;
 }
 .open {
     visibility: visible;
@@ -332,27 +344,13 @@ a{
     justify-content:flex-start;
 }
 .sub-child-body{
-    /*width: auto;*/
-    /*height: auto;*/
     flex: 1; /* 允许它占据剩余空间 */
     background: white;
     margin-top: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-}
-/*页脚*/
-.footer-view {
-    /*margin-bottom: 2px;*/
-    /* 使用 flex 的 margin-top: auto 技巧将 footer 推至底部 */
-    margin-top: auto;
-    width: 100%;
-    max-height: 20px;
-    background-color: rgba(255, 255, 255, 0.6);
-    display: flex;
-    align-items: center; /* 垂直居中 */
-    justify-content: center; /* 水平居中 */
+    /*overflow: hidden;*/
 }
 .info-view,
 .other-view{
@@ -378,7 +376,7 @@ a{
     /* flex-grow设置为1,使其占据剩余空间 */
     flex-grow: 1;
     border:1px solid #0c0101;
-    max-height: 350px;
+    /*max-height: 350px;*/
     /*max-height: 100vh;*/
     overflow: hidden;
 }
