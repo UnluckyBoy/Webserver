@@ -53,391 +53,389 @@
     </div>
     <!-- 页面主体内容 -->
     <div class="main-sub-view">
-        <div class="main-sub-child-title" id="button-parent-view">
-            <button class="matrix-button matrix-button-active">挂号管理</button>
-            <button class="matrix-button matrix-button-notActive">患者信息</button>
-            <button class="matrix-button matrix-button-notActive">退号管理</button>
-            <button class="matrix-button matrix-button-notActive">单据补打</button>
-            <button class="matrix-button matrix-button-notActive">挂号统计</button>
-            <button class="matrix-button matrix-button-notActive">其他</button>
-        </div>
-        <div class="main-sub-child-body" id="main-sub-registration-body"><!--main-sub-child-body-->
-            <div id="page1" class="page-view open" style="--view-back:rgba(255,0,0,0.2)">
-                <div class="sub-btn-view" id="gh-btn-view">
-                    <button class="sub-matrix-button" id="gh_add">新增</button>
-                    <button class="sub-matrix-button" id="gh_appointment">预约</button>
-                    <button class="sub-matrix-button" id="gh_save">挂号</button>
-                    <button class="sub-matrix-button matrix-element-hide" id="gh_cancel">退号</button>
-                </div>
-                <div class="sub-child-body">
-                    <div class="info-view">
-                        <span class="default-text bold-text">患者信息</span>
-                        <div class="left-label">
-                            <span class="small-text default-text">就诊卡号</span>
-                            <input class="input-rm-bg default-text" type="text" id="insurance-id">
-                            <span class="small-text default-text">预约日期</span>
-                            <input class="default-text" type="date" id="appointment-date"><br>
-                            <span class="small-text default-text bold-text">姓名:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg medium-input default-text bold-text" type="text" id="patient-name" readonly>
-                            <span class="small-text default-text bold-text">性别:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg short-input default-text bold-text" type="text" id="patient-gender" readonly>
-                            <span class="small-text default-text bold-text">身份证号:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text" type="text" id="patient-idCard" readonly>
-                            <span class="small-text default-text">拼音代码:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="patient-name-code" readonly>
-                            <span class="small-text default-text bold-text">出生日期:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="patient-birth" readonly>
-                            <span class="small-text default-text">国籍:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="patient-nationality" readonly>
-                            <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text medium-input" type="text" id="patient-nativePlace" readonly>
-                            <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="patient-nation" readonly>
-                            <span class="small-text default-text">职业:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="patient-occupation" readonly>
-                            <span class="small-text default-text">婚姻状况:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="patient-maritalStatus" readonly>
-                            <span class="small-text default-text">电话:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="patient-phone" readonly>
-                            <span class="small-text default-text">年龄:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="patient-age" readonly>
-                            <span class="small-text default-text bold-text">贫困户:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg short-input default-text" type="text" id="poverty-sign" readonly>
+        <div class="main-sub-view-back">
+            <div class="main-sub-child-title" id="button-parent-view">
+                <button class="matrix-button matrix-button-active">挂号管理</button>
+                <button class="matrix-button matrix-button-notActive">患者信息</button>
+                <button class="matrix-button matrix-button-notActive">退号管理</button>
+                <button class="matrix-button matrix-button-notActive">单据补打</button>
+                <button class="matrix-button matrix-button-notActive">挂号统计</button>
+                <button class="matrix-button matrix-button-notActive">其他</button>
+            </div>
+            <div class="main-sub-child-body" id="main-sub-registration-body"><!--main-sub-child-body-->
+                <div id="page1" class="page-view open" style="--view-back:rgba(255,0,0,0.2)">
+                    <div class="sub-btn-view" id="gh-btn-view">
+                        <button class="sub-matrix-button" id="gh_add">新增</button>
+                        <button class="sub-matrix-button" id="gh_appointment">预约</button>
+                        <button class="sub-matrix-button" id="gh_save">挂号</button>
+                        <button class="sub-matrix-button matrix-element-hide" id="gh_cancel">退号</button>
+                    </div>
+                    <div class="sub-child-body">
+                        <div class="info-view">
+                            <span class="default-text bold-text">患者信息</span>
+                            <div class="left-label">
+                                <span class="small-text default-text">就诊卡号</span>
+                                <input class="input-rm-bg default-text" type="text" id="insurance-id">
+                                <span class="small-text default-text">预约日期</span>
+                                <input class="default-text" type="date" id="appointment-date"><br>
+                                <span class="small-text default-text bold-text">姓名:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg medium-input default-text bold-text" type="text" id="patient-name" readonly>
+                                <span class="small-text default-text bold-text">性别:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg short-input default-text bold-text" type="text" id="patient-gender" readonly>
+                                <span class="small-text default-text bold-text">身份证号:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg default-text" type="text" id="patient-idCard" readonly>
+                                <span class="small-text default-text">拼音代码:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="patient-name-code" readonly>
+                                <span class="small-text default-text bold-text">出生日期:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="patient-birth" readonly>
+                                <span class="small-text default-text">国籍:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="patient-nationality" readonly>
+                                <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg default-text medium-input" type="text" id="patient-nativePlace" readonly>
+                                <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="patient-nation" readonly>
+                                <span class="small-text default-text">职业:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="patient-occupation" readonly>
+                                <span class="small-text default-text">婚姻状况:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="patient-maritalStatus" readonly>
+                                <span class="small-text default-text">电话:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="patient-phone" readonly>
+                                <span class="small-text default-text">年龄:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="patient-age" readonly>
+                                <span class="small-text default-text bold-text">贫困户:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg short-input default-text" type="text" id="poverty-sign" readonly>
+                                <br>
+                                <span class="small-text default-text">联系人:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="patient-emergencyContact" readonly>
+                                <span class="small-text default-text">联系人关系:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="emergencyContact-relationship" readonly>
+                                <span class="small-text default-text">联系人电话:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="patient-contactPhone" readonly>
+                                <br>
+                                <span class="small-text default-text">家庭住址:</span>
+                                <input class="input-rm-bg default-text" type="text" id="patient-homeAddress" readonly>
+                                <span class="small-text default-text">工作单位:</span>
+                                <input class="input-rm-bg default-text" type="text" id="patient-workAddress" readonly>
+                                <span class="small-text default-text">现住址:</span>
+                                <input class="input-rm-bg default-text" type="text" id="nowAddress-province" readonly>
+                                <span class="small-text default-text">省</span>
+                                <input class="input-rm-bg default-text" type="text" id="nowAddress-town" readonly>
+                                <span class="small-text default-text">市(州、区)</span>
+                                <input class="input-rm-bg default-text" type="text" id="nowAddress-prefecture" readonly>
+                                <span class="small-text default-text">县</span><br>
+                                <span class="small-text danger-text bold-text">儿童</span>
+                                <input class="input-rm-bg short-input default-text" type="text" id="child-sign" readonly>
+                                <span class="small-text default-text">监护人姓名:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="guardian-name" readonly>
+                                <span class="small-text default-text">监护人身份证号:</span>
+                                <input class="input-rm-bg default-text" type="text" id="guardian-idCard" readonly>
+                                <span class="small-text default-text">监护人联系电话:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="guardian-phone" readonly><br>
+                            </div>
                             <br>
-                            <span class="small-text default-text">联系人:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="patient-emergencyContact" readonly>
-                            <span class="small-text default-text">联系人关系:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="emergencyContact-relationship" readonly>
-                            <span class="small-text default-text">联系人电话:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="patient-contactPhone" readonly>
-                            <br>
-                            <span class="small-text default-text">家庭住址:</span>
-                            <input class="input-rm-bg default-text" type="text" id="patient-homeAddress" readonly>
-                            <span class="small-text default-text">工作单位:</span>
-                            <input class="input-rm-bg default-text" type="text" id="patient-workAddress" readonly>
-                            <span class="small-text default-text">现住址:</span>
-                            <input class="input-rm-bg default-text" type="text" id="nowAddress-province" readonly>
-                            <span class="small-text default-text">省</span>
-                            <input class="input-rm-bg default-text" type="text" id="nowAddress-town" readonly>
-                            <span class="small-text default-text">市(州、区)</span>
-                            <input class="input-rm-bg default-text" type="text" id="nowAddress-prefecture" readonly>
-                            <span class="small-text default-text">县</span><br>
-                            <span class="small-text danger-text bold-text">儿童</span>
-                            <input class="input-rm-bg short-input default-text" type="text" id="child-sign" readonly>
-                            <span class="small-text default-text">监护人姓名:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="guardian-name" readonly>
-                            <span class="small-text default-text">监护人身份证号:</span>
-                            <input class="input-rm-bg default-text" type="text" id="guardian-idCard" readonly>
-                            <span class="small-text default-text">监护人联系电话:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="guardian-phone" readonly><br>
-                        </div>
-                        <br>
-                        <span class="default-text bold-text">挂号费用</span>
-                        <div class="left-label">
-                            <span class="small-text default-text bold-text">挂号类别:<span class="center-text danger-text">*</span></span>
-                            <select class="input-rm-bg default-text" id="registration-type">
-                                <option class="default-text" value="自费">自费</option>
-                                <option class="default-text" value="城乡居民医保">城乡居民医保</option>
-                                <option class="default-text" value="职工医保">职工医保</option>
-                                <option class="default-text" value="三方自费">三方自费</option>
-                                <option class="default-text" value="工伤">工伤</option>
-                            </select>
-                            <span class="small-text default-text bold-text">保险类别:<span class="center-text danger-text">*</span></span>
-                            <select class="input-rm-bg default-text" id="insurance-type">
-                                <option class="default-text" value="自费">自费</option>
-                                <option class="default-text" value="城乡居民医保">城乡居民医保</option>
-                            </select>
-                            <span class="small-text default-text">挂号种类:</span>
-                            <select class="input-rm-bg default-text" id="registration-variety">
-                                <option class="default-text" value="普通门诊挂号">普通挂号</option>
-                                <option class="default-text" value="全免">全免</option>
-                                <option class="default-text" value="急诊挂号">急诊挂号</option>
-                                <option class="default-text" value="专家挂号">专家挂号</option>
-                            </select>
-                            <button class="matrix-auto-button center-text" id="registration-time-btn">挂号日期</button>
-                            <input class="input-rm-bg default-text" type="text" id="registration-time">
-                            <br>
-                            <span class="small-text default-text bold-text">挂号科室:<span class="center-text danger-text">*</span></span>
-                            <select class="input-rm-bg default-text" id="registration-department">
-                                <option class="default-text" value="疼痛科">疼痛科</option>
-                                <option class="default-text" value="脑病科">脑病科</option>
-                                <option class="default-text" value="普外肛肠科">普外肛肠科</option>
-                                <option class="default-text" value="儿科">儿科</option>
-                                <option class="default-text" value="妇产科">妇产科</option>
-                                <option class="default-text" value="康复科">康复科</option>
-                                <option class="default-text" value="内一科">内一科</option>
-                                <option class="default-text" value="内二科">内二科</option>
-                            </select>
-                            <span class="small-text default-text">接诊医生:</span>
-                            <select class="input-rm-bg default-text" id="receive_physician">
-                                <option class="default-text" value="张医师">张医师</option>
-                                <option class="default-text" value="李医师">李医师</option>
-                                <option class="default-text" value="王医师">王医师</option>
-                            </select>
-                            <div class="inline-elements">
-                                <div class="checkbox" for="reexamination">
-                                    <span class="small-text blue-text bold-text">复诊</span>
-                                    <input type="checkbox" id="reexamination" name="reexamination" required>
+                            <span class="default-text bold-text">挂号费用</span>
+                            <div class="left-label">
+                                <span class="small-text default-text bold-text">挂号类别:<span class="center-text danger-text">*</span></span>
+                                <select class="input-rm-bg default-text" id="registration-type">
+                                    <option class="default-text" value="自费">自费</option>
+                                    <option class="default-text" value="城乡居民医保">城乡居民医保</option>
+                                    <option class="default-text" value="职工医保">职工医保</option>
+                                    <option class="default-text" value="三方自费">三方自费</option>
+                                    <option class="default-text" value="工伤">工伤</option>
+                                </select>
+                                <span class="small-text default-text bold-text">保险类别:<span class="center-text danger-text">*</span></span>
+                                <select class="input-rm-bg default-text" id="insurance-type">
+                                    <option class="default-text" value="自费">自费</option>
+                                    <option class="default-text" value="城乡居民医保">城乡居民医保</option>
+                                </select>
+                                <span class="small-text default-text">挂号种类:</span>
+                                <select class="input-rm-bg default-text" id="registration-variety">
+                                    <option class="default-text" value="普通门诊挂号">普通挂号</option>
+                                    <option class="default-text" value="全免">全免</option>
+                                    <option class="default-text" value="急诊挂号">急诊挂号</option>
+                                    <option class="default-text" value="专家挂号">专家挂号</option>
+                                </select>
+                                <button class="matrix-auto-button center-text" id="registration-time-btn">挂号日期</button>
+                                <input class="input-rm-bg default-text" type="text" id="registration-time">
+                                <br>
+                                <span class="small-text default-text bold-text">挂号科室:<span class="center-text danger-text">*</span></span>
+                                <select class="input-rm-bg default-text" id="registration-department">
+                                    <option class="default-text" value="疼痛科">疼痛科</option>
+                                    <option class="default-text" value="脑病科">脑病科</option>
+                                    <option class="default-text" value="普外肛肠科">普外肛肠科</option>
+                                    <option class="default-text" value="儿科">儿科</option>
+                                    <option class="default-text" value="妇产科">妇产科</option>
+                                    <option class="default-text" value="康复科">康复科</option>
+                                    <option class="default-text" value="内一科">内一科</option>
+                                    <option class="default-text" value="内二科">内二科</option>
+                                </select>
+                                <span class="small-text default-text">接诊医生:</span>
+                                <select class="input-rm-bg default-text" id="receive_physician">
+                                    <option class="default-text" value="张医师">张医师</option>
+                                    <option class="default-text" value="李医师">李医师</option>
+                                    <option class="default-text" value="王医师">王医师</option>
+                                </select>
+                                <div class="inline-elements">
+                                    <div class="checkbox" for="reexamination">
+                                        <span class="small-text blue-text bold-text">复诊</span>
+                                        <input type="checkbox" id="reexamination" name="reexamination" required>
+                                    </div>
+                                    <div class="checkbox" for="emergency-treatment">
+                                        <span class="small-text blue-text bold-text">急诊</span>
+                                        <input type="checkbox" id="emergency-treatment" name="emergency-treatment" required>
+                                    </div>
                                 </div>
-                                <div class="checkbox" for="emergency-treatment">
-                                    <span class="small-text blue-text bold-text">急诊</span>
-                                    <input type="checkbox" id="emergency-treatment" name="emergency-treatment" required>
+                            </div>
+                        </div>
+
+                        <div class="other-view">
+                            <div class="other-view-child">
+                                <strong class="default-text center-text bold-text large-text">当日挂号详情</strong>
+                                <div class="horizontal-element-center">
+                                    <p class="danger-text center-text bold-text small-text">红色-已退号</p>
+                                    <p class="default-text center-text bold-text small-text">,</p>
+                                    <p class="blue-text center-text bold-text small-text">蓝色-已接诊</p>
+                                </div>
+                                <div class="horizontal-element-flex-start default-text">
+                                    <input class="default-text big-large-input" type="text" id="searchInput" placeholder="查询">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="other-view">
-                        <div class="other-view-child">
-                            <strong class="default-text center-text bold-text large-text">当日挂号详情</strong>
-                            <div class="horizontal-element-center">
-                                <p class="danger-text center-text bold-text small-text">红色-已退号</p>
-                                <p class="default-text center-text bold-text small-text">,</p>
-                                <p class="blue-text center-text bold-text small-text">蓝色-已接诊</p>
+                            <div class="other-view-child-full" id="gh_data_table_view">
+                                <table class="data-table-view" id="gh_data_table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>挂号单号</th>
+                                        <th>挂号类型</th>
+                                        <th>费用类型</th>
+                                        <th>患者ID</th>
+                                        <th>患者姓名</th>
+                                        <th>挂号日期</th>
+                                        <th>挂号科室</th>
+                                        <th>退号标志</th>
+                                        <th>挂号收费</th>
+                                        <th>接诊标志</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="gh_data_table_body">
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="horizontal-element-flex-start default-text">
-                                <input class="default-text big-large-input" type="text" id="searchInput" placeholder="查询">
-                            </div>
-                        </div>
-                        <div class="other-view-child-full" id="gh_data_table_view">
-                            <table class="data-table-view" id="gh_data_table">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>挂号单号</th>
-                                    <th>挂号类型</th>
-                                    <th>费用类型</th>
-                                    <th>患者ID</th>
-                                    <th>患者姓名</th>
-                                    <th>挂号日期</th>
-                                    <th>挂号科室</th>
-                                    <th>退号标志</th>
-                                    <th>挂号收费</th>
-                                    <th>接诊标志</th>
-                                </tr>
-                                </thead>
-                                <tbody id="gh_data_table_body">
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="page2" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
-                <div class="sub-btn-view" id="create-btn-view">
-                    <button class="sub-matrix-button" id="create_btn">注册</button>
-                    <button class="sub-matrix-button matrix-element-hide" id="edit_btn">修改</button>
-                </div>
+                <div id="page2" class="page-view close" style="--view-back:rgba(85,0,255,0.2)">
+                    <div class="sub-btn-view" id="create-btn-view">
+                        <button class="sub-matrix-button" id="create_btn">注册</button>
+                        <button class="sub-matrix-button matrix-element-hide" id="edit_btn">修改</button>
+                    </div>
+                    <div class="sub-child-body">
+                        <div class="info-view" id="createArea">
+                            <span class="default-text bold-text">患者信息</span>
+                            <div class="left-label">
+                                <span class="small-text default-text bold-text">姓名:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg medium-input default-text bold-text" type="text" id="create-patient-name">
+                                <span class="small-text default-text bold-text">性别:<span class="center-text danger-text">*</span></span>
+                                <select class="input-rm-bg default-text" id="create-patient-gender">
+                                    <option class="default-text" value="男">男</option>
+                                    <option class="default-text" value="女">女</option>
+                                </select>
+                                <span class="small-text default-text bold-text">身份证号:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg default-text" type="text" id="create-patient-idCard">
+                                <span class="small-text default-text">拼音代码:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-name-code" readonly>
+                                <span class="small-text default-text">出生日期:</span>
+                                <input class="default-text" type="date" id="create-patient-birth">
+                                <span class="small-text default-text">国籍:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-nationality" value="中国">
+                                <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg default-text medium-input" type="text" id="create-patient-nativePlace">
+                                <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
 
-                <div class="sub-child-body">
-                    <div class="info-view" id="createArea">
-                        <span class="default-text bold-text">患者信息</span>
-                        <div class="left-label">
-                            <span class="small-text default-text bold-text">姓名:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg medium-input default-text bold-text" type="text" id="create-patient-name">
-                            <span class="small-text default-text bold-text">性别:<span class="center-text danger-text">*</span></span>
-                            <select class="input-rm-bg default-text" id="create-patient-gender">
-                                <option class="default-text" value="男">男</option>
-                                <option class="default-text" value="女">女</option>
-                            </select>
-                            <span class="small-text default-text bold-text">身份证号:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text" type="text" id="create-patient-idCard">
-                            <span class="small-text default-text">拼音代码:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-name-code" readonly>
-                            <span class="small-text default-text">出生日期:</span>
-                            <input class="default-text" type="date" id="create-patient-birth">
-                            <span class="small-text default-text">国籍:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="create-patient-nationality" value="中国">
-                            <span class="small-text default-text bold-text">籍贯:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text medium-input" type="text" id="create-patient-nativePlace">
-                            <span class="small-text default-text bold-text">民族:<span class="center-text danger-text">*</span></span>
-
-                            <select class="input-rm-bg medium-input default-text" id="create-patient-nation">
-                                <option class="default-text" value="汉族">汉族</option>
-                                <option class="default-text" value="满族">满族</option>
-                                <option class="default-text" value="蒙古族">蒙古族</option>
-                                <option class="default-text" value="回族">回族</option>
-                                <option class="default-text" value="藏族">藏族</option>
-                                <option class="default-text" value="维吾尔族">维吾尔族</option>
-                                <option class="default-text" value="苗族">苗族</option>
-                                <option class="default-text" value="彝族">彝族</option>
-                                <option class="default-text" value="壮族">壮族</option>
-                                <option class="default-text" value="布依族">布依族</option>
-                                <option class="default-text" value="侗族">侗族</option>
-                                <option class="default-text" value="瑶族">瑶族</option>
-                                <option class="default-text" value="白族">白族</option>
-                                <option class="default-text" value="土家族">土家族</option>
-                                <option class="default-text" value="哈尼族">哈尼族</option>
-                                <option class="default-text" value="哈萨克族">哈萨克族</option>
-                                <option class="default-text" value="傣族">傣族</option>
-                                <option class="default-text" value="黎族">黎族</option>
-                                <option class="default-text" value="傈僳族">傈僳族</option>
-                                <option class="default-text" value="佤族">佤族</option>
-                                <option class="default-text" value="畲族">畲族</option>
-                                <option class="default-text" value="高山族">高山族</option>
-                                <option class="default-text" value="拉祜族">拉祜族</option>
-                                <option class="default-text" value="水族">水族</option>
-                                <option class="default-text" value="东乡族">东乡族</option>
-                                <option class="default-text" value="纳西族">纳西族</option>
-                                <option class="default-text" value="景颇族">景颇族</option>
-                                <option class="default-text" value="柯尔克孜族">柯尔克孜族</option>
-                                <option class="default-text" value="土族">土族</option>
-                                <option class="default-text" value="达斡尔族">达斡尔族</option>
-                                <option class="default-text" value="仫佬族">仫佬族</option>
-                                <option class="default-text" value="羌族">羌族</option>
-                                <option class="default-text" value="布朗族">布朗族</option>
-                                <option class="default-text" value="撒拉族">撒拉族</option>
-                                <option class="default-text" value="毛南族">毛南族</option>
-                                <option class="default-text" value="仡佬族">仡佬族</option>
-                                <option class="default-text" value="锡伯族">锡伯族</option>
-                                <option class="default-text" value="阿昌族">阿昌族</option>
-                                <option class="default-text" value="普米族">普米族</option>
-                                <option class="default-text" value="朝鲜族">朝鲜族</option>
-                                <option class="default-text" value="塔吉克族">塔吉克族</option>
-                                <option class="default-text" value="怒族">怒族</option>
-                                <option class="default-text" value="乌孜别克族">乌孜别克族</option>
-                                <option class="default-text" value="俄罗斯族">俄罗斯族</option>
-                                <option class="default-text" value="鄂温克族">鄂温克族</option>
-                                <option class="default-text" value="德昂族">德昂族</option>
-                                <option class="default-text" value="保安族">保安族</option>
-                                <option class="default-text" value="裕固族">裕固族</option>
-                                <option class="default-text" value="京族">京族</option>
-                                <option class="default-text" value="塔塔尔族">塔塔尔族</option>
-                                <option class="default-text" value="独龙族">独龙族</option>
-                                <option class="default-text" value="鄂伦春族">鄂伦春族</option>
-                                <option class="default-text" value="赫哲族">赫哲族</option>
-                                <option class="default-text" value="门巴族">门巴族</option>
-                                <option class="default-text" value="珞巴族">珞巴族</option>
-                                <option class="default-text" value="基诺族">基诺族</option>
-                            </select>
-                            <span class="small-text default-text">职业:</span>
-                            <select class="input-rm-bg default-text" id="create-patient-occupation">
-                                <option class="default-text" value="农民">农民</option>
-                                <option class="default-text" value="职工">职工</option>
-                                <option class="default-text" value="其他">其他</option>
-                            </select>
-                            <span class="small-text default-text">婚姻状况:</span>
-                            <select class="input-rm-bg default-text" id="create-patient-maritalStatus">
-                                <option class="default-text" value="未婚">未婚</option>
-                                <option class="default-text" value="已婚">已婚</option>
-                                <option class="default-text" value="离异">离异</option>
-                            </select>
-                            <span class="small-text default-text bold-text">电话:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="create-patient-phone">
-                            <span class="small-text default-text">年龄:</span>
-                            <input class="input-rm-bg short-input default-text" type="text" id="create-patient-age">
-                            <span class="small-text default-text bold-text">贫困户:<span class="center-text danger-text">*</span></span>
-                            <select class="input-rm-bg default-text" id="create-poverty-sign">
-                                <option class="default-text" value="否">否</option>
-                                <option class="default-text" value="是">是</option>
-                            </select>
-                            <br>
-                            <span class="small-text default-text">联系人:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="create-patient-emergencyContact">
-                            <span class="small-text default-text">联系人关系:</span>
-                            <div id="dropdown-select-container">
-                                <input list="dropdown-select-list" class="input-rm-bg medium-input default-text" id="create-emergencyContact-relationship" type="text">
-                                <datalist id="dropdown-select-list">
-                                    <option value="父子"></option>
-                                    <option value="母子"></option>
-                                    <option value="兄弟"></option>
-                                    <option value="夫妻"></option>
-                                    <option value="同事"></option>
-                                    <option value="其他"></option>
-                                </datalist>
-                                <!-- 模拟的下拉列表选项 -->
-                                <div class="dropdown-option" data-value="父子"></div>
-                                <div class="dropdown-option" data-value="母子"></div>
-                                <div class="dropdown-option" data-value="兄弟"></div>
-                                <div class="dropdown-option" data-value="夫妻"></div>
-                                <div class="dropdown-option" data-value="同事"></div>
-                                <div class="dropdown-option" data-value="其他"></div>
+                                <select class="input-rm-bg medium-input default-text" id="create-patient-nation">
+                                    <option class="default-text" value="汉族">汉族</option>
+                                    <option class="default-text" value="满族">满族</option>
+                                    <option class="default-text" value="蒙古族">蒙古族</option>
+                                    <option class="default-text" value="回族">回族</option>
+                                    <option class="default-text" value="藏族">藏族</option>
+                                    <option class="default-text" value="维吾尔族">维吾尔族</option>
+                                    <option class="default-text" value="苗族">苗族</option>
+                                    <option class="default-text" value="彝族">彝族</option>
+                                    <option class="default-text" value="壮族">壮族</option>
+                                    <option class="default-text" value="布依族">布依族</option>
+                                    <option class="default-text" value="侗族">侗族</option>
+                                    <option class="default-text" value="瑶族">瑶族</option>
+                                    <option class="default-text" value="白族">白族</option>
+                                    <option class="default-text" value="土家族">土家族</option>
+                                    <option class="default-text" value="哈尼族">哈尼族</option>
+                                    <option class="default-text" value="哈萨克族">哈萨克族</option>
+                                    <option class="default-text" value="傣族">傣族</option>
+                                    <option class="default-text" value="黎族">黎族</option>
+                                    <option class="default-text" value="傈僳族">傈僳族</option>
+                                    <option class="default-text" value="佤族">佤族</option>
+                                    <option class="default-text" value="畲族">畲族</option>
+                                    <option class="default-text" value="高山族">高山族</option>
+                                    <option class="default-text" value="拉祜族">拉祜族</option>
+                                    <option class="default-text" value="水族">水族</option>
+                                    <option class="default-text" value="东乡族">东乡族</option>
+                                    <option class="default-text" value="纳西族">纳西族</option>
+                                    <option class="default-text" value="景颇族">景颇族</option>
+                                    <option class="default-text" value="柯尔克孜族">柯尔克孜族</option>
+                                    <option class="default-text" value="土族">土族</option>
+                                    <option class="default-text" value="达斡尔族">达斡尔族</option>
+                                    <option class="default-text" value="仫佬族">仫佬族</option>
+                                    <option class="default-text" value="羌族">羌族</option>
+                                    <option class="default-text" value="布朗族">布朗族</option>
+                                    <option class="default-text" value="撒拉族">撒拉族</option>
+                                    <option class="default-text" value="毛南族">毛南族</option>
+                                    <option class="default-text" value="仡佬族">仡佬族</option>
+                                    <option class="default-text" value="锡伯族">锡伯族</option>
+                                    <option class="default-text" value="阿昌族">阿昌族</option>
+                                    <option class="default-text" value="普米族">普米族</option>
+                                    <option class="default-text" value="朝鲜族">朝鲜族</option>
+                                    <option class="default-text" value="塔吉克族">塔吉克族</option>
+                                    <option class="default-text" value="怒族">怒族</option>
+                                    <option class="default-text" value="乌孜别克族">乌孜别克族</option>
+                                    <option class="default-text" value="俄罗斯族">俄罗斯族</option>
+                                    <option class="default-text" value="鄂温克族">鄂温克族</option>
+                                    <option class="default-text" value="德昂族">德昂族</option>
+                                    <option class="default-text" value="保安族">保安族</option>
+                                    <option class="default-text" value="裕固族">裕固族</option>
+                                    <option class="default-text" value="京族">京族</option>
+                                    <option class="default-text" value="塔塔尔族">塔塔尔族</option>
+                                    <option class="default-text" value="独龙族">独龙族</option>
+                                    <option class="default-text" value="鄂伦春族">鄂伦春族</option>
+                                    <option class="default-text" value="赫哲族">赫哲族</option>
+                                    <option class="default-text" value="门巴族">门巴族</option>
+                                    <option class="default-text" value="珞巴族">珞巴族</option>
+                                    <option class="default-text" value="基诺族">基诺族</option>
+                                </select>
+                                <span class="small-text default-text">职业:</span>
+                                <select class="input-rm-bg default-text" id="create-patient-occupation">
+                                    <option class="default-text" value="农民">农民</option>
+                                    <option class="default-text" value="职工">职工</option>
+                                    <option class="default-text" value="其他">其他</option>
+                                </select>
+                                <span class="small-text default-text">婚姻状况:</span>
+                                <select class="input-rm-bg default-text" id="create-patient-maritalStatus">
+                                    <option class="default-text" value="未婚">未婚</option>
+                                    <option class="default-text" value="已婚">已婚</option>
+                                    <option class="default-text" value="离异">离异</option>
+                                </select>
+                                <span class="small-text default-text bold-text">电话:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="create-patient-phone">
+                                <span class="small-text default-text">年龄:</span>
+                                <input class="input-rm-bg short-input default-text" type="text" id="create-patient-age">
+                                <span class="small-text default-text bold-text">贫困户:<span class="center-text danger-text">*</span></span>
+                                <select class="input-rm-bg default-text" id="create-poverty-sign">
+                                    <option class="default-text" value="否">否</option>
+                                    <option class="default-text" value="是">是</option>
+                                </select>
+                                <br>
+                                <span class="small-text default-text">联系人:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="create-patient-emergencyContact">
+                                <span class="small-text default-text">联系人关系:</span>
+                                <div id="dropdown-select-container">
+                                    <input list="dropdown-select-list" class="input-rm-bg medium-input default-text" id="create-emergencyContact-relationship" type="text">
+                                    <datalist id="dropdown-select-list">
+                                        <option value="父子"></option>
+                                        <option value="母子"></option>
+                                        <option value="兄弟"></option>
+                                        <option value="夫妻"></option>
+                                        <option value="同事"></option>
+                                        <option value="其他"></option>
+                                    </datalist>
+                                    <!-- 模拟的下拉列表选项 -->
+                                    <div class="dropdown-option" data-value="父子"></div>
+                                    <div class="dropdown-option" data-value="母子"></div>
+                                    <div class="dropdown-option" data-value="兄弟"></div>
+                                    <div class="dropdown-option" data-value="夫妻"></div>
+                                    <div class="dropdown-option" data-value="同事"></div>
+                                    <div class="dropdown-option" data-value="其他"></div>
+                                </div>
+                                <span class="small-text default-text">联系人电话:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="create-patient-contactPhone">
+                                <br>
+                                <span class="small-text default-text bold-text">家庭住址:<span class="center-text danger-text">*</span></span>
+                                <input class="input-rm-bg default-text" type="text" id="create-patient-homeAddress">
+                                <span class="small-text default-text">工作单位:</span>
+                                <input class="input-rm-bg default-text" type="text" id="create-patient-workAddress">
+                                <span class="small-text default-text">现住址:</span>
+                                <input class="input-rm-bg default-text" type="text" id="create-nowAddress-province">
+                                <span class="small-text default-text">省</span>
+                                <input class="input-rm-bg default-text" type="text" id="create-nowAddress-town">
+                                <span class="small-text default-text">市(州、区)</span>
+                                <input class="input-rm-bg default-text" type="text" id="create-nowAddress-prefecture">
+                                <span class="small-text default-text">县</span><br>
+                                <div class="checkbox" for="child-sign">
+                                    <span class="small-text danger-text bold-text">儿童标志</span>
+                                    <input type="checkbox" id="create-child-sign" name="child-sign" required="">
+                                </div>
+                                <span class="small-text default-text">监护人姓名:</span>
+                                <input class="input-rm-bg medium-input default-text" type="text" id="create-guardian-name">
+                                <span class="small-text default-text">监护人身份证号:</span>
+                                <input class="input-rm-bg default-text" type="text" id="create-guardian-idCard">
+                                <span class="small-text default-text">监护人联系电话:</span>
+                                <input class="input-rm-bg large-input default-text" type="text" id="create-guardian-phone"><br>
                             </div>
-                            <span class="small-text default-text">联系人电话:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="create-patient-contactPhone">
-                            <br>
-                            <span class="small-text default-text bold-text">家庭住址:<span class="center-text danger-text">*</span></span>
-                            <input class="input-rm-bg default-text" type="text" id="create-patient-homeAddress">
-                            <span class="small-text default-text">工作单位:</span>
-                            <input class="input-rm-bg default-text" type="text" id="create-patient-workAddress">
-                            <span class="small-text default-text">现住址:</span>
-                            <input class="input-rm-bg default-text" type="text" id="create-nowAddress-province">
-                            <span class="small-text default-text">省</span>
-                            <input class="input-rm-bg default-text" type="text" id="create-nowAddress-town">
-                            <span class="small-text default-text">市(州、区)</span>
-                            <input class="input-rm-bg default-text" type="text" id="create-nowAddress-prefecture">
-                            <span class="small-text default-text">县</span><br>
-                            <div class="checkbox" for="child-sign">
-                                <span class="small-text danger-text bold-text">儿童标志</span>
-                                <input type="checkbox" id="create-child-sign" name="child-sign" required="">
+                        </div>
+                        <div class="other-view">
+                            <div class="other-view-child">
+                                <strong class="default-text center-text bold-text large-text">最近注册患者详情</strong>
+                                <div class="horizontal-element-flex-start default-text">
+                                    <input class="default-text big-large-input" type="text" id="searchPatient" placeholder="查询">
+                                    <input class="default-text" type="date" id="startTime">至
+                                    <input class="default-text" type="date" id="endTime">
+                                </div>
                             </div>
-                            <span class="small-text default-text">监护人姓名:</span>
-                            <input class="input-rm-bg medium-input default-text" type="text" id="create-guardian-name">
-                            <span class="small-text default-text">监护人身份证号:</span>
-                            <input class="input-rm-bg default-text" type="text" id="create-guardian-idCard">
-                            <span class="small-text default-text">监护人联系电话:</span>
-                            <input class="input-rm-bg large-input default-text" type="text" id="create-guardian-phone"><br>
+                            <div class="other-view-child-full" id="patient_table_view">
+                                <table class="data-table-view" id="patient_table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>姓名</th>
+                                        <th>身份证号</th>
+                                        <th>出生日期</th>
+                                        <th>年龄</th>
+                                        <th>性别</th>
+                                        <th>职业</th>
+                                        <th>民族</th>
+                                        <th>注册日期</th>
+                                        <th>电话</th>
+                                        <th>家庭地址</th>
+                                        <th>婚姻状况</th>
+                                        <th>是否贫困户</th>
+                                        <th>紧急联系人</th>
+                                        <th>关系</th>
+                                        <th>联系人电话</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="patient_table_body">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="other-view">
-                        <div class="other-view-child">
-                            <strong class="default-text center-text bold-text large-text">最近注册患者详情</strong>
-                            <div class="horizontal-element-flex-start default-text">
-                                <input class="default-text big-large-input" type="text" id="searchPatient" placeholder="查询">
-                                <input class="default-text" type="date" id="startTime">至
-                                <input class="default-text" type="date" id="endTime">
-                            </div>
-                        </div>
-                        <div class="other-view-child-full" id="patient_table_view">
-                            <table class="data-table-view" id="patient_table">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>姓名</th>
-                                    <th>身份证号</th>
-                                    <th>出生日期</th>
-                                    <th>年龄</th>
-                                    <th>性别</th>
-                                    <th>职业</th>
-                                    <th>民族</th>
-                                    <th>注册日期</th>
-                                    <th>电话</th>
-                                    <th>家庭地址</th>
-                                    <th>婚姻状况</th>
-                                    <th>是否贫困户</th>
-                                    <th>紧急联系人</th>
-                                    <th>关系</th>
-                                    <th>联系人电话</th>
-                                </tr>
-                                </thead>
-                                <tbody id="patient_table_body">
-                                </tbody>
-                            </table>
-                        </div>
+                </div>
+                <div id="page3" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">
+                    <div class="sub-btn-view"><strong class="center-text">测试</strong></div>
+                    <div class="sub-child-body">
+                        <strong class="medium-text default-text center-text">主体</strong>
                     </div>
                 </div>
-            </div>
-            <div id="page3" class="page-view close" style="--view-back:rgba(0,102,255,0.2)">
-                <div class="sub-btn-view"><strong class="center-text">测试</strong></div>
-                <div class="sub-child-body">
-                    <strong class="medium-text default-text center-text">主体</strong>
+                <div id="page4" class="page-view close" style="--view-back:rgba(85,255,0,0.2)">
+
                 </div>
-                <div class="footer-view">
-                    <strong class="default-text center-text bold-text small-text">技术支持@风云扬Studio</strong>
+                <div id="page5" class="page-view close" style="--view-back:rgba(200,120,0,0.2)">
+
+                </div>
+                <div id="page6" class="page-view close" style="--view-back:rgba(10,180,100,0.2)">
+
                 </div>
             </div>
-            <div id="page4" class="page-view close" style="--view-back:rgba(85,255,0,0.2)">
-
+            <div class="footer-view">
+                <strong class="default-text center-text bold-text small-text">技术支持@风云扬Studio</strong>
             </div>
-            <div id="page5" class="page-view close" style="--view-back:rgba(200,120,0,0.2)">
-
-            </div>
-            <div id="page6" class="page-view close" style="--view-back:rgba(10,180,100,0.2)">
-
-            </div>
-        </div>
-        <div class="footer-view">
-            <strong class="default-text center-text bold-text small-text">技术支持@风云扬Studio</strong>
         </div>
     </div>
 </div>

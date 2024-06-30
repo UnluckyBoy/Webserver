@@ -270,7 +270,18 @@ a{
     padding-left: 112px; /* 在左边添加内边距 */
     box-sizing: border-box; /* 确保padding不会增加元素宽度 */
     flex-direction: column; /* 明确指定为垂直布局 */
-    background: #d0f5ca;/*rgba(27, 27, 27, 0.6)*/
+    background: whitesmoke;/*rgba(27, 27, 27, 0.6),#d0f5ca*/
+    overflow: hidden;
+}
+.main-sub-view-back{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    /*padding-left: 112px; !* 在左边添加内边距 *!*/
+    box-sizing: border-box; /* 确保padding不会增加元素宽度 */
+    flex-direction: column; /* 明确指定为垂直布局 */
+    background: #d0f5ca;/*rgba(27, 27, 27, 0.6),#d0f5ca*/
     overflow: hidden;
 }
 .main-sub-child-title{
@@ -322,7 +333,7 @@ a{
     box-sizing: border-box;
     flex-direction:column;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
 }
 .open {
     visibility: visible;
@@ -350,7 +361,7 @@ a{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    /*overflow: hidden;*/
+    overflow: auto;
 }
 .info-view,
 .other-view{
@@ -375,10 +386,10 @@ a{
 .other-view{
     /* flex-grow设置为1,使其占据剩余空间 */
     flex-grow: 1;
-    border:1px solid #0c0101;
-    /*max-height: 350px;*/
-    /*max-height: 100vh;*/
-    overflow: hidden;
+    /*border:1px solid #0c0101;*/
+    min-height: 570px;
+    max-height: 100vh;
+    overflow: auto;
 }
 .other-view-child,
 .other-view-child-full{
@@ -387,7 +398,6 @@ a{
     border-radius: 2px;
     margin: 2px 4px;
     flex-direction: column;
-    overflow:auto;
 }
 .other-view-child{
     width: 100%;
@@ -422,10 +432,10 @@ a{
     background: #d1dbd1; /* 滚动条轨道的颜色 */
 }
 .info-view::-webkit-scrollbar-thumb {
-    background: #4d94ff; /* 滚动条滑块的颜色 */
+    background: #347e34; /* 滚动条滑块的颜色 */
 }
 .info-view::-webkit-scrollbar-thumb:hover {
-    background: #347e34; /* 滚动条滑块在鼠标悬停时的颜色 */
+    background: #4d94ff; /* 滚动条滑块在鼠标悬停时的颜色 */
 }
 .other-view::-webkit-scrollbar {
     width: 10px;
@@ -435,10 +445,10 @@ a{
     background: #d1dbd1;
 }
 .other-view::-webkit-scrollbar-thumb {
-    background: #0053c6;
+    background: #347e34;
 }
 .other-view::-webkit-scrollbar-thumb:hover {
-    background: #347e34;
+    background: #4d94ff;
 }
 .other-view-child-full::-webkit-scrollbar {
     width: 10px;
@@ -448,10 +458,11 @@ a{
     background: #d1dbd1;
 }
 .other-view-child-full::-webkit-scrollbar-thumb {
-    background: #0053c6;
+    /*background: #0053c6;*/
+    background: #347e34;
 }
 .other-view-child-full::-webkit-scrollbar-thumb:hover {
-    background: #347e34;
+    background: #0053c6;
 }
 
 
@@ -1141,6 +1152,7 @@ label span {
 .data-table-view {
     width: 100%; /* 确保表格宽度占满容器 */
     border-collapse: collapse; /* 合并相邻的边框 */
+    overflow: auto;
 }
 
 .data-table-view th,
