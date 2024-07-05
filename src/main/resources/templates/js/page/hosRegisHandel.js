@@ -39,7 +39,13 @@ $(document).ready(function() {
                     break;
                 case 'gh_appointment':
                     /*appointment-预约*/
-                    console.log('预约');
+                    gh_appointment_model(function (confirmed){
+                        if(confirmed){
+                            alert('预约成功!');
+                        }else{
+                            alert('取消预约!');
+                        }
+                    });
                     break;
                 case 'gh_save':
                     /*挂号*/
@@ -414,9 +420,9 @@ function init_currentMonth_patients() {
             row.append($('<td>').append(patient_checkbox));
             row.append($('<td>').text(item.patient_name));
             row.append($('<td>').text(item.patient_idCard));
-            row.append($('<td>').text(item.patient_gender));
             row.append($('<td>').text(item.patient_birth));
             row.append($('<td>').text(item.patient_age));
+            row.append($('<td>').text(item.patient_gender));
             row.append($('<td>').text(item.patient_occupation));
             row.append($('<td>').text(item.patient_nation));
             row.append($('<td>').text(item.create_time));
