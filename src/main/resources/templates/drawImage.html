@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrix</title>
+</head>
+<body>
+<div>
+    <input type="file" id="imageInput" name="imageInput" accept="image/*" />
+    <input type="text" id="textInput" name="textInput" placeholder="绘制内容" />
+    <input type="number" id="drawRaduis" name="textInput" placeholder="绘制半径" />
+    <select id="sizeSelect" name="sizeSelect">
+        <option value="500*500">500*500</option>
+        <option value="1366*768">1366*768</option>
+        <option value="1440*900">1440*900</option>
+        <option value="1600*900">1600*900</option>
+        <option value="1680*1050">1680*1050</option>
+        <option value="1920*1080">1920*1080</option>
+    </select>
+    <button type="submit" id="drawBtn">绘制</button>
+</div>
+<div>
+    <canvas id="imageCanvas"></canvas>
+</div>
+<script src="./js/commons/text-image.iife.js"></script>
+<script src="./js/commons/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#imageInput').on('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    console.log(e.target.result);
+                    $('#drawBtn').click(function () {
+                        const size=$('#sizeSelect').val();
+                        var imgWidth=0;
+                        var imgHeight=0;
+                        switch(size){
+                            case '500*500':
+                                imgWidth=500;
+                                imgHeight=500;
+                                break;
+                            case '1366*768':
+                                imgWidth=1366;
+                                imgHeight=768;
+                                break;
+                            case '1440*900':
+                                imgWidth=1440;
+                                imgHeight=900;
+                                break;
+                            case '1600*900':
+                                imgWidth=1600;
+                                imgHeight=900;
+                                break;
+                            case '1680*1050':
+                                imgWidth=1680;
+                                imgHeight=1050;
+                                break;
+                            case '1920*1080':
+                                imgWidth=1920;
+                                imgHeight=1080;
+                                break;
+                        };
+                        if (e.target.result) {
+                            textImage.createTextImage({
+                                canvas: document.getElementById('imageCanvas'),
+                                replaceText: $('#textInput').val(),// 可选,配置作画的文本,默认6(string)
+                                raduis: parseInt($('#drawRaduis').val(), 10),// 可选,配置绘制半径,该值越大越稀疏,默认10(int)
+                                isGray: false,// 可选,配置是否灰度化,若开启灰度化则会丢失色彩,默认为 false
+                                source: {
+                                    //text: 'love', // 绘制的文本是：Text Image
+                                    img: e.target.result,// './imgs/head_64x64.png'
+                                    width: imgWidth,// 选填,配置图片宽度,默认为图片自身宽度
+                                    height: imgHeight // 选填,配置图片高度,默认为图片自身高度
+                                },
+                            });
+                        } else {
+                            alert("File content is empty.");
+                        }
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+</body>
+</html>

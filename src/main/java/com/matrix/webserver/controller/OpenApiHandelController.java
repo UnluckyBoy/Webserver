@@ -65,4 +65,9 @@ public class OpenApiHandelController {
     public void getAuthority(@RequestParam("account") String account){
         System.out.println("用户权限:"+authorityService.queryAuthority(account));
     }
+
+    @RequestMapping("/draw_image")
+    public String drawImage(){
+        return "drawImage";
+    }
 }
